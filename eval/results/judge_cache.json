@@ -1,0 +1,2009 @@
+{
+  "d7f619c2f22286719fbadbaf671e9f8b6b846df450c4e9f7c3778f211e2d7c00": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Mỗi khóa tuyển tối đa 500 học viên.",
+          "supported": true,
+          "reason": "Mệnh đề được suy ra trực tiếp từ đoạn [1] ('tối đa 500 học viên/ khoá' trong mục '3. Chỉ tiêu tuyển sinh')."
+        }
+      ],
+      "supported": 1,
+      "total": 1
+    },
+    "error": ""
+  },
+  "194afa80e82d730a9e95c4d39f54a0791527dddbf599b3e61f6dd7a18c971b40": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm, trả lời trực tiếp số lượng học viên tối đa cho mỗi khóa."
+    },
+    "error": ""
+  },
+  "b3f0f9d227539ed2b35558a92818dd7a82c74aeb81026ac942dd2afc974d5334": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đúng hoàn toàn nội dung so với đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "8f3e87e53324f39275f08bda9322adb726ea8ef5260ba5d844a6896b2af9290a": {
+    "score": 0.4,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình AI Thực Chiến không áp dụng chính sách bảo lưu kết quả học tập.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] ghi rõ: 'Do tính chất tập trung và triển khai theo mô hình toàn thời gian trong 12 tuần, chương trình không áp dụng chính sách bảo lưu.'"
+        },
+        {
+          "claim": "Học viên có trách nhiệm tham gia đầy đủ chương trình theo đúng cam kết đã ký kết trong Thỏa thuận tham gia chương trình với Trường Đại học VinUni.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] ghi nguyên văn: 'Học viên có trách nhiệm tham gia đầy đủ chương trình theo đúng cam kết đã ký kết trong Thỏa thuận tham gia chương trình với Trường Đại học VinUni.'"
+        },
+        {
+          "claim": "Số hotline liên hệ của bộ phận tuyển sinh là 0979.489.846.",
+          "supported": false,
+          "reason": "Ngữ cảnh không đề cập đến số hotline 0979.489.846."
+        },
+        {
+          "claim": "Số điện thoại liên hệ của Ms. Phương Thảo thuộc bộ phận tuyển sinh là 0388.339.478.",
+          "supported": false,
+          "reason": "Ngữ cảnh không đề cập đến thông tin Ms. Phương Thảo hay số điện thoại 0388.339.478."
+        },
+        {
+          "claim": "Địa chỉ email liên hệ của bộ phận tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": false,
+          "reason": "Ngữ cảnh [5] cung cấp email AIThucchien@vinuni.edu.vn để liên hệ Ban tổ chức, không ghi rõ đây là email của 'bộ phận tuyển sinh'."
+        }
+      ],
+      "supported": 2,
+      "total": 5
+    },
+    "error": ""
+  },
+  "f53a58c426744e954d23dbd26bee1d8f6d47d07e747f5b60ffb783418d3d5bea": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm câu hỏi, trả lời rõ ràng về việc không áp dụng chính sách bảo lưu kết quả học tập."
+    },
+    "error": ""
+  },
+  "b5ffc0fe3b078905fc34e322308cf05a948b4cfe6cb8b228fb6101b6bc3172a4": {
+    "score": 0.5,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Bảo lưu chỉ được xem xét trong trường hợp khẩn cấp hoặc bất khả kháng (cần gửi đề xuất bằng văn bản và được phê duyệt).",
+        "Thông tin đối chiếu/làm rõ về các chia sẻ không chính thức trên cộng đồng Facebook."
+      ],
+      "reason": "Câu trả lời đã nêu đúng quy định chung là không áp dụng bảo lưu. Tuy nhiên, câu trả lời thiếu dữ kiện quan trọng về ngoại lệ (trường hợp khẩn cấp/bất khả kháng có thể được xem xét) và không đề cập đến thông tin làm rõ từ cộng đồng Facebook như trong đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "0cbb8aeaf936295b13345158cfb15b94e5bbede8100e1d6028cd32639a8e89d9": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình AI Thực Chiến kéo dài 12 tuần.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1], [2], [3] đều khẳng định rõ Chương trình AI Thực chiến được thiết kế/đào tạo trong 12 tuần."
+        }
+      ],
+      "supported": 1,
+      "total": 1
+    },
+    "error": ""
+  },
+  "8c429e045bfb1f1140441036b1163ccc9c2213f6305b198c5fa6f209a21f709d": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm, trả lời trực tiếp và đầy đủ khoảng thời gian kéo dài của chương trình được hỏi."
+    },
+    "error": ""
+  },
+  "aaed818b0125954beec9683afee6ac9c2187791ea63d5bbedc7a65d08931caa2": {
+    "score": 0.5,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Học toàn thời gian",
+        "Chia thành 3 giai đoạn: 3 tuần nền tảng, 3 tuần chuyên sâu theo định hướng, và 6 tuần thực chiến tại doanh nghiệp đối tác"
+      ],
+      "reason": "Câu trả lời nêu đúng tổng thời gian (12 tuần) nhưng còn thiếu thông tin về hình thức học (toàn thời gian) và chi tiết phân bổ thời gian của 3 giai đoạn."
+    },
+    "error": ""
+  },
+  "d7c97c33fd43ae4232dfa971c1d562d1ab458195c0b803ed8f3ee375a665450b": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Mỗi khoá tuyển tối đa 500 học viên.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] ghi rõ chỉ tiêu tuyển sinh là 'tối đa 500 học viên/ khoá'."
+        }
+      ],
+      "supported": 1,
+      "total": 1
+    },
+    "error": ""
+  },
+  "f28735e5be8ba411147ca145b89855264250b62d6710cee7d1b1baada17d0986": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm câu hỏi, cung cấp trực tiếp số lượng học viên tối đa cho mỗi khóa."
+    },
+    "error": ""
+  },
+  "996efa353eddfc64864f82fd6b32b2117cf916c35d406985f8f2ffc8231b4a46": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đúng hoàn toàn và đầy đủ thông tin so với đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "cf6d0e4741441ca2ca2fac3d90eb7f6ccb2e68779c74fe87a6572874c165a6f2": {
+    "score": 0.25,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình AI Thực Chiến là của VinUni.",
+          "supported": false,
+          "reason": "Ngữ cảnh không đề cập đến 'VinUni' hay tên chương trình là 'AI Thực Chiến'."
+        },
+        {
+          "claim": "Chương trình AI Thực Chiến của VinUni có ba track chính.",
+          "supported": false,
+          "reason": "Ngữ cảnh không đề cập đến tên chương trình là 'AI Thực Chiến' hay 'VinUni'."
+        },
+        {
+          "claim": "Track thứ nhất của chương trình AI Thực Chiến là AI Infrastructure (hoặc AI LLMOps & Data).",
+          "supported": false,
+          "reason": "Ngữ cảnh không đề cập đến 'chương trình AI Thực Chiến'."
+        },
+        {
+          "claim": "Track AI Infrastructure dành cho người quan tâm đến hạ tầng, dữ liệu, triển khai mô hình và vận hành hệ thống AI.",
+          "supported": true,
+          "reason": "Ngữ cảnh ở đoạn [2] ghi rõ track AI Infrastructure phù hợp với (dành cho) người quan tâm đến hạ tầng, dữ liệu, triển khai mô hình và vận hành hệ thống AI."
+        },
+        {
+          "claim": "Track thứ hai của chương trình AI Thực Chiến là AI Products (hoặc AI Product Manager).",
+          "supported": false,
+          "reason": "Ngữ cảnh không đề cập đến 'chương trình AI Thực Chiến'."
+        },
+        {
+          "claim": "Track AI Products dành cho người quan tâm đến nhu cầu người dùng, bài toán kinh doanh và quá trình phát triển sản phẩm AI.",
+          "supported": true,
+          "reason": "Ngữ cảnh ở đoạn [3] ghi rõ track AI Products phù hợp với (dành cho) người quan tâm đến nhu cầu người dùng, bài toán kinh doanh và quá trình phát triển sản phẩm AI."
+        },
+        {
+          "claim": "Track thứ ba của chương trình AI Thực Chiến là AI Applications (hoặc AI Engineer).",
+          "supported": false,
+          "reason": "Ngữ cảnh không đề cập đến 'chương trình AI Thực Chiến'."
+        },
+        {
+          "claim": "Track AI Applications dành cho người muốn trực tiếp xây dựng ứng dụng, AI Agent và các hệ thống AI phục vụ bài toán cụ thể.",
+          "supported": true,
+          "reason": "Ngữ cảnh ở đoạn [4] ghi rõ track AI Applications phù hợp với (dành cho) người muốn trực tiếp xây dựng ứng dụng, AI Agent và các hệ thống AI phục vụ bài toán cụ thể."
+        },
+        {
+          "claim": "Mỗi học viên chương trình AI Thực Chiến thường chọn một track để học chuyên sâu trong ba tuần thứ hai.",
+          "supported": false,
+          "reason": "Ngữ cảnh không nhắc đến tên 'chương trình AI Thực Chiến'."
+        },
+        {
+          "claim": "Tài liệu của các track trong chương trình AI Thực Chiến có thể được chia sẻ để học viên tham khảo thêm tùy thuộc vào cách tổ chức của từng khóa.",
+          "supported": false,
+          "reason": "Ngữ cảnh không nhắc đến tên 'chương trình AI Thực Chiến'."
+        },
+        {
+          "claim": "Thông tin về các track của chương trình AI Thực Chiến được lấy từ cộng đồng Facebook.",
+          "supported": false,
+          "reason": "Ngữ cảnh chỉ đề cập 'Theo chia sẻ cộng đồng', không nhắc đến 'cộng đồng Facebook' hay 'chương trình AI Thực Chiến'."
+        },
+        {
+          "claim": "Thông tin về các track của chương trình AI Thực Chiến không phải là nguồn chính thức.",
+          "supported": false,
+          "reason": "Ngữ cảnh không có thông tin khẳng định đây 'không phải là nguồn chính thức'."
+        }
+      ],
+      "supported": 3,
+      "total": 12
+    },
+    "error": ""
+  },
+  "42774bad686edd841010f3645652c04f31569ac63b34faf12ce173a2539d302c": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm câu hỏi, liệt kê cụ thể và mô tả ngắn gọn các track của chương trình."
+    },
+    "error": ""
+  },
+  "0215f0e30a95ea34927e3fa6ba4ee6e0e539b7ca7225b206d881d9262bc392ad": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đã nêu chính xác và đầy đủ 3 track (định hướng) của chương trình, các tên gọi khác được mở rộng phù hợp với nội dung đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "15d0f9ae92792821ecd95f5709d0f06a7b8676bea30806d40747a5d0489711c2": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Số điện thoại hotline liên hệ tuyển sinh là 0979.489.846.",
+          "supported": true,
+          "reason": "Ngữ cảnh đoạn [9] ghi rõ hotline liên hệ tuyển sinh là 0979.489.846."
+        },
+        {
+          "claim": "Số điện thoại của nhân viên tuyển sinh Ms. Phương Thảo là 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh đoạn [9] ghi rõ thông tin tuyển sinh Ms. Phương Thảo đi kèm số điện thoại 0388.339.478."
+        },
+        {
+          "claim": "Email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh đoạn [9] ghi rõ email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 3,
+      "total": 3
+    },
+    "error": ""
+  },
+  "b0cb1d8f5868a655f1e3510dbe0a8a664ec457f47cc8b405c198c1a2d565e6b9": {
+    "score": 0.0,
+    "detail": {
+      "reason": "Câu trả lời không cung cấp điều kiện dự tuyển theo yêu cầu của câu hỏi, mà chỉ thông báo chưa tìm thấy dữ kiện và đưa ra thông tin liên hệ."
+    },
+    "error": ""
+  },
+  "c9b1a182bc798200a2034c7893313fc4e704b7154abc373c6ec67f38f67ff52c": {
+    "score": 0.0,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Đối tượng dự tuyển là sinh viên đang theo học hoặc đã tốt nghiệp Đại học/Cao đẳng/Trung cấp các ngành công nghệ liên quan",
+        "Ứng viên trái ngành cần có nền tảng toán học, tư duy logic và kinh nghiệm thực tế về phân tích kinh doanh, dữ liệu, lập trình hoặc phát triển phần mềm",
+        "Yêu cầu bổ sung: định hướng nghề nghiệp trong lĩnh vực AI, tư duy logic, học nhanh, động lực mạnh, tinh thần kỷ luật và cam kết cao"
+      ],
+      "reason": "Câu trả lời không cung cấp bất kỳ thông tin nào về điều kiện dự tuyển theo đáp án chuẩn và báo không tìm thấy dữ kiện."
+    },
+    "error": ""
+  },
+  "6c610fe30776d22ca2b78d170eed7df76d0588d566676b3589bf0b8949e07687": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Bạn có thể liên hệ với Ms. Phương Thảo để hỏi thêm về tuyển sinh.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] ghi rõ 'Liên hệ tuyển sinh: Ms. Phương Thảo – 0388.339.478'."
+        },
+        {
+          "claim": "Số điện thoại liên hệ của Ms. Phương Thảo là 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] ghi rõ số điện thoại của Ms. Phương Thảo là '0388.339.478'."
+        },
+        {
+          "claim": "Email liên hệ về tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] trong mục liên hệ tuyển sinh liệt kê 'Email: AIthucchien@vinuni.edu.vn'."
+        }
+      ],
+      "supported": 3,
+      "total": 3
+    },
+    "error": ""
+  },
+  "625a828628eeb5055fe60e55c5e1b9c0c6a2dd432e9517d63f90166c8450d5a2": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm, chỉ rõ tên người cần liên hệ cùng phương thức liên lạc (số điện thoại, email) để hỏi về tuyển sinh."
+    },
+    "error": ""
+  },
+  "a11efc8edff9181ba1aec49e4bdb311cd62bc19b76286dc60e852f7463459ccb": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Hotline 0979.489.846"
+      ],
+      "reason": "Câu trả lời nêu đúng thông tin liên hệ của Ms. Phương Thảo và Email, nhưng còn thiếu thông tin số hotline 0979.489.846."
+    },
+    "error": ""
+  },
+  "9274fefb67e76601ad271368b886d2f4088691fcb40746e71e7ac5ddddcd690b": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình kéo dài 12 tuần.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1], [3], [4] khẳng định chương trình được thiết kế/kéo dài trong 12 tuần."
+        },
+        {
+          "claim": "Học viên cần cam kết học tập toàn thời gian.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3], [4], [5] đề cập chương trình triển khai theo hình thức toàn thời gian và yêu cầu mức độ cam kết thời gian cao (toàn thời gian hoặc gần như toàn thời gian)."
+        }
+      ],
+      "supported": 2,
+      "total": 2
+    },
+    "error": ""
+  },
+  "bed09a3749c6cb910b2a5f59886044e5e8f37e96726f8651748042365facb92f": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm, giải đáp đủ cả hai ý được hỏi: thời gian kéo dài (12 tuần) và thời gian học viên cần dành ra mỗi tuần (toàn thời gian)."
+    },
+    "error": ""
+  },
+  "fc22e62d5a1d7aa841c83613ccef982ae6acf792a652277ce9b0e508553f7e14": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Chi tiết khung giờ học cụ thể (sáng 9:00-13:00, chiều 14:00-18:00, tối và cuối tuần làm dự án nhóm)"
+      ],
+      "reason": "Câu trả lời đã nêu đúng thời lượng 12 tuần và hình thức cam kết toàn thời gian, tuy nhiên chưa có chi tiết về khung giờ học cụ thể trong ngày/tuần như ở đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "6323f455db14d4d82c32d05526f93879f3352242a40c8e9550fdd0b5b98addba": {
+    "score": 0.7142857142857143,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Lộ trình 12 tuần của chương trình AI Thực Chiến được tổ chức theo mô hình 3+3+6.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] khẳng định rõ lộ trình 12 tuần của chương trình được mô tả theo mô hình 3+3+6."
+        },
+        {
+          "claim": "Trong ba tuần đầu của chương trình AI Thực Chiến, học viên học kiến thức nền tảng chung.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] ghi rõ: 'Ba tuần đầu: học kiến thức nền tảng chung.'"
+        },
+        {
+          "claim": "Trong ba tuần tiếp theo của chương trình AI Thực Chiến, học viên học chuyên sâu theo track và xây dựng dự án.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] ghi rõ: 'Ba tuần tiếp theo: học chuyên sâu theo track và xây dựng dự án.'"
+        },
+        {
+          "claim": "Trong sáu tuần cuối của chương trình AI Thực Chiến, học viên làm việc toàn thời gian tại doanh nghiệp.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] ghi rõ: 'Sáu tuần cuối: làm việc toàn thời gian tại doanh nghiệp.'"
+        },
+        {
+          "claim": "Giai đoạn cuối của chương trình AI Thực Chiến đưa học viên vào môi trường doanh nghiệp để giải quyết bài toán thực tế dưới sự hướng dẫn của mentor.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] ghi rõ: 'Giai đoạn cuối đưa học viên vào môi trường doanh nghiệp để giải quyết bài toán thực tế dưới sự hướng dẫn của mentor.'"
+        },
+        {
+          "claim": "Nguồn thông tin về lộ trình 12 tuần của chương trình AI Thực Chiến được lấy từ phản hồi của người dùng trên Facebook.",
+          "supported": false,
+          "reason": "Ngữ cảnh không đề cập đến việc nguồn thông tin về lộ trình 12 tuần được lấy từ phản hồi của người dùng trên Facebook."
+        },
+        {
+          "claim": "Nguồn thông tin về lộ trình 12 tuần của chương trình AI Thực Chiến không phải là nguồn chính thức.",
+          "supported": false,
+          "reason": "Ngữ cảnh không khẳng định nguồn thông tin về lộ trình 12 tuần không phải là nguồn chính thức."
+        }
+      ],
+      "supported": 5,
+      "total": 7
+    },
+    "error": ""
+  },
+  "6f6e1f3bb82bd415bb4477b7e650629c62e4a4781389530f3ef787e339115b3d": {
+    "score": 0.5,
+    "detail": {
+      "reason": "Câu trả lời đã nêu rõ các giai đoạn của lộ trình 12 tuần, tuy nhiên ở yêu cầu cung cấp 'link nguồn', câu trả lời chỉ đề cập chung nguồn gốc thông tin (từ Facebook) mà không cung cấp đường link cụ thể."
+    },
+    "error": ""
+  },
+  "90b9d36c77068fcdcb789a3a68fad96b6b690e19c446b2d6a0bb743c56c72c10": {
+    "score": 0.7,
+    "detail": {
+      "wrong": [
+        "Khẳng định nguồn thông tin chỉ từ Facebook và không phải nguồn chính thức"
+      ],
+      "missing": [
+        "Nguồn từ sổ tay học viên và trang thông tin của VinUni (vinuni.edu.vn)"
+      ],
+      "reason": "Câu trả lời nêu rất chính xác và đầy đủ các giai đoạn trong lộ trình 12 tuần (mô hình 3+3+6). Tuy nhiên, về phần nguồn thông tin, câu trả lời thiếu nguồn chính thức từ VinUni/sổ tay học viên và sai khi cho rằng thông tin không có nguồn chính thức."
+    },
+    "error": ""
+  },
+  "75150a7dceabbc59efd842baa8a22e780b5e444ed23bd9fa2a8bae9e050de6f2": {
+    "score": 0.875,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Trong ba tuần đầu của chương trình AI Thực Chiến, lịch học diễn ra từ khoảng 9:00 đến 18:00.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ theo lịch được một số học viên chia sẻ thì ba tuần đầu có thể học từ khoảng 9:00 đến 18:00."
+        },
+        {
+          "claim": "Trong ba tuần chuyên sâu của chương trình AI Thực Chiến, thời gian học trên lớp là từ khoảng 9:00 đến 13:00.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ ba tuần chuyên sâu có thể học trên lớp từ khoảng 9:00 đến 13:00."
+        },
+        {
+          "claim": "Trong ba tuần chuyên sâu của chương trình AI Thực Chiến, buổi chiều được dành cho tự học, làm bài lab hoặc phát triển dự án nhóm.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ buổi chiều của giai đoạn chuyên sâu thường dành cho tự học, làm bài lab hoặc phát triển dự án nhóm."
+        },
+        {
+          "claim": "Trong sáu tuần tại doanh nghiệp, lịch học của chương trình AI Thực Chiến tuân theo lịch của đơn vị tiếp nhận.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ sáu tuần tại doanh nghiệp tuân theo lịch của đơn vị tiếp nhận."
+        },
+        {
+          "claim": "Một số doanh nghiệp yêu cầu học viên check-in trong khoảng từ 8:30 đến 9:00 và làm việc đủ thời gian của một ngày.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ một số doanh nghiệp yêu cầu học viên check-in trong khoảng 8:30-9:00 và làm việc đủ thời lượng của một ngày làm việc."
+        },
+        {
+          "claim": "Lịch học được nêu trong thông tin là lịch tham khảo từ cộng đồng.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] xác nhận đây chỉ là lịch tham khảo từ cộng đồng."
+        },
+        {
+          "claim": "Thời khóa biểu chính xác của chương trình AI Thực Chiến phải lấy từ email, sổ tay học viên và doanh nghiệp tiếp nhận.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] ghi rõ thời khóa biểu chính xác phải lấy từ email, sổ tay học viên và doanh nghiệp tiếp nhận."
+        },
+        {
+          "claim": "Nguồn thông tin về lịch học đến từ phản hồi của học viên trên Facebook và tài liệu chính thức.",
+          "supported": false,
+          "reason": "Ngữ cảnh không hề đề cập đến nguồn thông tin đến từ 'Facebook'."
+        }
+      ],
+      "supported": 7,
+      "total": 8
+    },
+    "error": ""
+  },
+  "2222cd188c6cddc394b2263e08a2f66fa923fa2d19bb679fe84e14d40a5246d6": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm, giải đáp đầy đủ cả hai ý của câu hỏi (lịch học hằng ngày cụ thể và nguồn lấy thông tin)."
+    },
+    "error": ""
+  },
+  "d9c4c9fe178dc0e9d6a9e1b6e1ca6a0ac776a3dbef7dc8e2d26f65d457d435f2": {
+    "score": 0.65,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Lịch học hằng ngày chính thức theo sổ tay học viên: sáng 9:00-13:00 (lý thuyết + thực hành có hướng dẫn), chiều 14:00-18:00 (thực hành lab/coding), tối và cuối tuần (phát triển dự án nhóm)."
+      ],
+      "reason": "Câu trả lời nêu đầy đủ thông tin tham khảo từ cộng đồng Facebook và các nguồn lấy lịch chính xác. Tuy nhiên, câu trả lời bị thiếu chi tiết về lịch học hằng ngày chính thức được quy định trong sổ tay học viên (sáng, chiều, tối/cuối tuần làm gì)."
+    },
+    "error": ""
+  },
+  "74d80a8f10f7ccbea2fc37082241027c256660fb40186dbfe9d02f8c520ec500": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình học kéo dài 12 tuần.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ đoạn [5]: 'Lộ trình 12 tuần được tổ chức như thế nào?'"
+        },
+        {
+          "claim": "Chương trình học được tổ chức theo mô hình 3+3+6.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ đoạn [5]: 'Chương trình được mô tả theo mô hình 3+3+6:'"
+        },
+        {
+          "claim": "Ba tuần đầu của chương trình học là học kiến thức nền tảng.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ đoạn [5]: 'Ba tuần đầu: học kiến thức nền tảng chung.'"
+        },
+        {
+          "claim": "Ba tuần tiếp theo của chương trình học là học chuyên sâu và xây dựng dự án.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ đoạn [5]: 'Ba tuần tiếp theo: học chuyên sâu theo track và xây dựng dự án.'"
+        },
+        {
+          "claim": "Sáu tuần cuối của chương trình học là làm việc tại doanh nghiệp.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ đoạn [5]: 'Sáu tuần cuối: làm việc toàn thời gian tại doanh nghiệp.'"
+        },
+        {
+          "claim": "Hotline của bộ phận tuyển sinh là 0979.489.846.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ đoạn [9]: 'Kênh liên hệ tuyển sinh: - hotline: 0979.489.846'."
+        },
+        {
+          "claim": "Số điện thoại tư vấn của Ms. Phương Thảo thuộc bộ phận tuyển sinh là 0388.339.478.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ đoạn [9]: 'Kênh liên hệ tuyển sinh: ... - tuyen_sinh: Ms. Phương Thảo — 0388.339.478'."
+        },
+        {
+          "claim": "Email của bộ phận tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ đoạn [9]: 'Kênh liên hệ tuyển sinh: ... - email: AIthucchien@vinuni.edu.vn'."
+        }
+      ],
+      "supported": 8,
+      "total": 8
+    },
+    "error": ""
+  },
+  "02e659e1526991c5cfe7335160500a157c3059f7d3b059d117015ff3dd4b1500": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào cả hai ý được hỏi: cung cấp thời gian của chương trình học và phản hồi rõ ràng về việc không thể tự tra cứu trạng thái hồ sơ cá nhân kèm theo hướng dẫn liên hệ cụ thể."
+    },
+    "error": ""
+  },
+  "7b63af50cffcfb9a0a89adb0d7a4e79722e59985470b97c1d5cde335f9af56ef": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đầy đủ và chính xác tất cả các thông tin từ đáp án chuẩn (thời gian học 12 tuần, không tra cứu được hồ sơ qua kênh này, cung cấp hotline và email liên hệ). Các thông tin bổ sung không làm sai lệch nội dung."
+    },
+    "error": ""
+  },
+  "9998a417169ceaa91dc46b1b2ef9d8961d92a736ff1b448ccefbe660288710fc": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Hotline của kênh tuyển sinh là 0979.489.846.",
+          "supported": true,
+          "reason": "Ngữ cảnh [6] xác nhận hotline của kênh tuyển sinh là 0979.489.846."
+        },
+        {
+          "claim": "Ms. Phương Thảo là người liên hệ tuyển sinh với số điện thoại 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [6] xác nhận tuyen_sinh là Ms. Phương Thảo với số điện thoại 0388.339.478."
+        },
+        {
+          "claim": "Email của kênh tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [6] xác nhận email của kênh tuyển sinh là AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 3,
+      "total": 3
+    },
+    "error": ""
+  },
+  "a6f107add213acf83246ce73d69949234916a663d981a96614315e1d681ef280": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào vấn đề được hỏi, nêu rõ tình trạng thông tin hiện tại đối với câu hỏi và cung cấp hướng giải quyết trực tiếp cho đúng thắc mắc đó."
+    },
+    "error": ""
+  },
+  "b568fa33901be39c761c575d300a65550b1250d47597affe1e705391637b9e31": {
+    "score": 0.0,
+    "detail": {
+      "wrong": [
+        "Trả lời không có đủ dữ kiện để xác định trong khi đáp án có thông tin chi tiết."
+      ],
+      "missing": [
+        "Xác nhận có sự khác nhau về thời gian học.",
+        "Chi tiết sự khác nhau: Sổ tay chính thức ghi buổi sáng 9:00-13:00 và buổi chiều 14:00-18:00, trong khi Facebook chia sẻ 3 tuần đầu học khoảng 9:00-18:00.",
+        "Nên tin bên nào: Ưu tiên thông tin chính thức mới nhất từ VinUni/Vingroup và xác nhận lại với ban tổ chức."
+      ],
+      "reason": "Câu trả lời không cung cấp được thông tin so sánh và nguồn thông tin cần tin tưởng như đáp án chuẩn, thay vào đó từ chối trả lời vì thiếu dữ kiện."
+    },
+    "error": ""
+  },
+  "8663ca183e66e1c9ddd8b1ffe1c13197046bad20b64de809c3c5af19288f7bfa": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Hotline liên hệ hỗ trợ tuyển sinh là 0979.489.846.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] ghi rõ thông tin kênh liên hệ tuyển sinh có hotline là 0979.489.846."
+        },
+        {
+          "claim": "Ms. Phương Thảo là người liên hệ hỗ trợ tuyển sinh với số điện thoại 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] ghi rõ thông tin tuyển sinh liên hệ qua Ms. Phương Thảo — 0388.339.478."
+        },
+        {
+          "claim": "Email liên hệ hỗ trợ tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] ghi rõ thông tin email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 3,
+      "total": 3
+    },
+    "error": ""
+  },
+  "d7f925789f65c325da49faf47597f62b84f70d06501a0e466b808f3f17e1fd38": {
+    "score": 0.0,
+    "detail": {
+      "reason": "Câu trả lời từ chối cung cấp thông tin do không có dữ kiện, không trả lời đúng trọng tâm so sánh và định hướng hai track như câu hỏi yêu cầu."
+    },
+    "error": ""
+  },
+  "51ae301f9a50b5496da110341d2e9f2a1e264cd85b840d794ec585cebc798398": {
+    "score": 0.0,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "AI Applications và AI Engineer thực chất là cùng một track (chỉ khác tên gọi giữa các tài liệu).",
+        "Nội dung track tập trung xây dựng ứng dụng và giải pháp AI (AI Agent, RAG, ReAct Agent, hệ thống Multi-Agent, tích hợp mô hình vào ứng dụng).",
+        "Tư vấn chọn track theo định hướng nghề nghiệp: AI Applications nếu muốn lập trình/trực tiếp xây ứng dụng, AI Products nếu muốn làm sản phẩm/nghiên cứu người dùng, AI Infrastructure nếu làm hạ tầng/dữ liệu/vận hành."
+      ],
+      "reason": "Câu trả lời không cung cấp thông tin theo yêu cầu mà từ chối trả lời và chuyển hướng liên hệ hotline."
+    },
+    "error": ""
+  },
+  "824357a640908026bb076e4437ecbf3cfed93516987d9fba6aae43dbc672f07b": {
+    "score": 0.5,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Học viên được nghỉ tối đa 04 buổi trong toàn khóa.",
+          "supported": false,
+          "reason": "Ngữ cảnh [1] chỉ ghi nhận đây là thông tin từ thành viên cộng đồng và cần đối chiếu lại, trong khi Quy định đào tạo ở ngữ cảnh [2] chỉ áp dụng quy định nghỉ tối đa 04 buổi cho thời gian học tại VinUni (giai đoạn 1 và giai đoạn 2), không phải cho toàn khóa."
+        },
+        {
+          "claim": "Học viên không được nghỉ 02 buổi liên tiếp trong cùng một tuần.",
+          "supported": true,
+          "reason": "Được suy ra trực tiếp từ quy định chuyên cần ở ngữ cảnh [2]: 'và không được nghỉ 02 buổi liên tiếp trong cùng một tuần'."
+        }
+      ],
+      "supported": 1,
+      "total": 2
+    },
+    "error": ""
+  },
+  "377bb8932d4cc9ac5a287dddf36849b41479354039d8d3128b42705b9821d309": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã trả lời thẳng và trực tiếp vào số buổi nghỉ tối đa được hỏi (04 buổi)."
+    },
+    "error": ""
+  },
+  "1c615ef605004727b4a659ccc9e7b4b0f59580b0df8c57e512b56aebe1e37959": {
+    "score": 0.85,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Dữ kiện về trường hợp nghỉ vượt quá 04 buổi phải được Giám đốc Chương trình phê duyệt trước khi nghỉ",
+        "Chi tiết buổi nghỉ (sáng hoặc chiều) và thời gian học áp dụng (giai đoạn 1 và giai đoạn 2 tại VinUni)"
+      ],
+      "reason": "Câu trả lời đã nêu đúng ý chính (tối đa 04 buổi, không nghỉ 2 buổi liên tiếp trong tuần) và không có dữ kiện sai. Tuy nhiên còn thiếu ý về trường hợp vượt quá cần sự phê duyệt của Giám đốc Chương trình."
+    },
+    "error": ""
+  },
+  "b276d12475b649c4d90f0d1e693aa9c80b198fb0baae3196d7bf226d553eead1": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình AI Thực Chiến không áp dụng chính sách bảo lưu kết quả học tập.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] ghi rõ: 'Do tính chất tập trung và triển khai theo mô hình toàn thời gian trong 12 tuần, chương trình không áp dụng chính sách bảo lưu.'"
+        },
+        {
+          "claim": "Việc bảo lưu kết quả học tập tại chương trình AI Thực Chiến có thể được xem xét trong trường hợp khẩn cấp hoặc bất khả kháng.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] ghi rõ: 'Bảo lưu chỉ được xem xét trong các trường hợp sự kiện khẩn cấp hoặc sự kiện bất khả kháng, theo quy định tại Thỏa thuận đã ký'."
+        },
+        {
+          "claim": "Việc cho phép bảo lưu hoàn toàn thuộc thẩm quyền quyết định của chương trình AI Thực Chiến.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] ghi rõ: 'Việc chấp thuận bảo lưu (nếu có) hoàn toàn thuộc thẩm quyền quyết định của Chương trình'."
+        },
+        {
+          "claim": "Học viên cần gửi đề xuất bằng văn bản trước khi tạm dừng tham gia chương trình AI Thực Chiến.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] ghi rõ: 'Học viên phải gửi đề xuất bằng văn bản và được phê duyệt trước khi tạm dừng tham gia chương trình.'"
+        },
+        {
+          "claim": "Đề xuất bảo lưu của học viên cần được phê duyệt trước khi tạm dừng tham gia chương trình AI Thực Chiến.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] ghi rõ đề xuất của học viên cần 'được phê duyệt trước khi tạm dừng tham gia chương trình.'"
+        }
+      ],
+      "supported": 5,
+      "total": 5
+    },
+    "error": ""
+  },
+  "2bf8fdcf62277cac4066769fe2656d0f14df45a1a0be7e36e01d9d15fab15d61": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đi thẳng vào trọng tâm, giải đáp trực tiếp thắc mắc về việc có được bảo lưu kết quả học tập hay không và nêu rõ quy định/điều kiện đi kèm."
+    },
+    "error": ""
+  },
+  "cf60bafe7ef72e9a795f1c2e745065a0626a0b68881c7373dfe1662d8c4233af": {
+    "score": 0.9,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Lý do chương trình không áp dụng chính sách bảo lưu (do tính chất toàn thời gian trong 12 tuần)",
+        "Giải thích thông tin trên cộng đồng Facebook là không chính thức và chưa thống nhất"
+      ],
+      "reason": "Câu trả lời trả lời đúng và đầy đủ quy định cốt lõi về việc bảo lưu (không áp dụng, ngoại trừ trường hợp khẩn cấp/bất khả kháng cần đề xuất bằng văn bản và phê duyệt trước). Chỉ thiếu chi tiết về lý do 12 tuần toàn thời gian và việc làm rõ thông tin Facebook chưa chính thức."
+    },
+    "error": ""
+  },
+  "d79aeec2b7d6550098e4e947b0718269341d9f8ef66a408a7c05b227fb347ff3": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "f95915a90bce43c95550d1588f6d97416f09bee613ae35482baad13597d92cef": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "1a340603145c0e204ef787a24b8bb4c5fa550de9e8f97a0988bf8c2aea1a4365": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "a79703a092f81a87f0c634a3ddfdcaf53e1057082d3b836194210087bef596f3": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "f33096e680e2ec6db763be1dc5e803e03d9ffe3ea205ba7151cbd853e5932790": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "791464166842cb8041817b20bb109890124f880dea83ec8bce8a8358637fb7e3": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "2cec7294eec03b35a051a6313eee338f73c5fb4acbd27f0380245559c9c741d0": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "6edd2e2d02efbcc514e681deca8d49071da5f2f4606e7496103bd6eccc32c2f9": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "b20b68ac17976eb7498178431fc25706ee664c96e6531c5930a9d5d6d38ecc62": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "3653ffd13e2994a0e3942b3705a2093bf894aaab37382b9165ee755509df4442": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "3a85c594b600c58347a9fb7694ee8fc59d712b3c7a1ddaeb8b7ee6914e591cbd": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "6f4384980e3c6a530583515ced2723852bca7b00ae36a3868473a0ad0e3a2279": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "6a6319be173d989ede8cd6adf1cfa049729eefbaf3cede8df939c8c00621e825": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "d0b03ef5819a9d0ffd2039baabe951b2c21478ab0a1c8c4d947252ba269dcdf2": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "25a8c390e826fd23006e08db7a1b57df3a5d73a8c7339d68004e40288fd18569": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "c7ad1100b5d2ad69586966d35f4b7e2fc79b5fe9b84ad90611b7fe563ed62227": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "5e618a5eb788956e6326d267b49d399028f7ddb9f70cd25f38a68ffc09787c2c": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "1ba9880a0891d58f9e1a36c9d1352fc55964db6498b04213296ec34e3555b41a": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "797add9f426ece31ab8bfc9d4d0aa3566d905d782207a15db04a51522e6d143e": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "fdd203515539a4d47e5e678f537b21085430b7c77a05d485e34898d3f4530a76": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "f2b998a276fba5e3e630449183e0e4642e2a3e068ab5be41e3b3a7496ae9b23c": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "5fc578ea289d320536c0c4ce2caf4f057ff129b1feeaf1d218e2a17193454b0d": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "176b05a073b50ff47ce2937f18365df2a99d00c626c8d17ac0e6882ef82f0075": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "cd14a50c21c3ea97efe5eb6c93cb13842eedd96b94daa5a9150052e007e47f23": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "b5c456e3d318d495f2a5c34104b38e89d5dd25721fd171d7688982c642e08f9f": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "3c2837359aae8635976e448f413a4ffcb71c20863287c71f0b133f6cebaa9458": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "4aeadcaf2da89cb434c1b52949b5b39ee7f8528d21b0f83c1f854f9234bf8108": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "6068e7b5d060ad0c0b7527b2319afb1756634eeb6da8436ba160b497d5828203": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "e211809bfcf500dd0df9beb0a6f34f1d0eab7a975fcffc6d2a24eef336780181": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "a3a0d0f835bf15ceded79560aa1b3b9085b9e4baa7f8e1a87e4894752ed1af62": {
+    "score": null,
+    "detail": {},
+    "error": "APIStatusError: Error code: 402 - {'error': {'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\", 'code': 402, 'metadata': {'limit_source': 'openrouter_key_limit', 'remedy_hint': \"Raise or remove this API key's usage limit at https://openrouter.ai/settings/keys, or use a key without a limit.\", 'provider_name': None, 'previous_errors': [{'code': 402, 'message': \"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 54627. To increase, visit https://openrouter.ai/workspaces/default/keys/0c93180e5168e1b0999aad089df3000f14957520d6b0e4dbe0030d6139af51a6 and adjust the key's total limit\"}]}}, 'user_id': 'user_36nYRF6do6xVIkUbXspadpvrgqz'}"
+  },
+  "3904dfcb331be6c19c4727c28a4bbbc528ce6c73812cfb6e5834a882d3fa3340": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình AI Thực Chiến kéo dài 12 tuần.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1], [2], và [3] đều nêu rõ chương trình kéo dài 12 tuần."
+        }
+      ],
+      "supported": 1,
+      "total": 1
+    },
+    "error": ""
+  },
+  "6aba981b385dcfee07cb20b31cda8417005fa53ebe2fba3ade1824b021ce663b": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã trả lời thẳng vào trọng tâm thời gian kéo dài của chương trình AI Thực Chiến (12 tuần) đúng như câu hỏi yêu cầu."
+    },
+    "error": ""
+  },
+  "341961f0a0f261cef29fb683cfee390078413f1536542495b4cf5c22e58f389f": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "học toàn thời gian, chia thành 3 giai đoạn: 3 tuần nền tảng, 3 tuần chuyên sâu theo định hướng, và 6 tuần thực chiến tại doanh nghiệp đối tác"
+      ],
+      "reason": "Trả lời đúng thời lượng tổng cộng (12 tuần) nhưng thiếu chi tiết về hình thức học và các giai đoạn cụ thể của chương trình."
+    },
+    "error": ""
+  },
+  "dac96c3e4a0601b8a043008e6677bf2b96ff11ab48a16d70fcdb2cf36c0ba658": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Mỗi khoá tuyển tối đa 500 học viên.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ chỉ tiêu tuyển sinh là tối đa 500 học viên/ khoá."
+        }
+      ],
+      "supported": 1,
+      "total": 1
+    },
+    "error": ""
+  },
+  "e62762082e117eb3da8b43b99e86a17f2ed689eea87e18573e746936b3e05223": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã trực tiếp và chính xác vào số lượng học viên tối đa của mỗi khóa."
+    },
+    "error": ""
+  },
+  "7986d7243e28c4d52efd88105ec0a001b251443429d1fd958b6fe87f14ae5ec7": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đúng nội dung, đầy đủ dữ kiện so với đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "02b4015d6364942ed446a27491a73f33c0dc214640870e00366cca2dc037b076": {
+    "score": 0.8888888888888888,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình AI Thực Chiến của VinUni có ba track chính.",
+          "supported": false,
+          "reason": "Ngữ cảnh không nhắc đến tên chương trình là 'AI Thực Chiến của VinUni'."
+        },
+        {
+          "claim": "Track thứ nhất của chương trình là AI Infrastructure hoặc AI LLMOps & Data.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ track là 'AI Infrastructure hoặc AI LLMOps & Data'."
+        },
+        {
+          "claim": "Track AI Infrastructure hoặc AI LLMOps & Data dành cho những ai quan tâm đến hạ tầng, dữ liệu, triển khai mô hình và vận hành hệ thống AI.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu track này phù hợp với người quan tâm đến hạ tầng, dữ liệu, triển khai mô hình và vận hành hệ thống AI."
+        },
+        {
+          "claim": "Track thứ hai của chương trình là AI Products hoặc AI Product Manager.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu track là 'AI Products hoặc AI Product Manager'."
+        },
+        {
+          "claim": "Track AI Products hoặc AI Product Manager dành cho những ai quan tâm đến nhu cầu người dùng, bài toán kinh doanh và quá trình phát triển sản phẩm AI.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu track này phù hợp với người quan tâm đến nhu cầu người dùng, bài toán kinh doanh và quá trình phát triển sản phẩm AI."
+        },
+        {
+          "claim": "Track thứ ba của chương trình là AI Applications hoặc AI Engineer.",
+          "supported": true,
+          "reason": "Ngữ cảnh [4] nêu track là 'AI Applications hoặc AI Engineer'."
+        },
+        {
+          "claim": "Track AI Applications hoặc AI Engineer dành cho những ai muốn trực tiếp xây dựng ứng dụng, AI Agent và các hệ thống AI phục vụ bài toán cụ thể.",
+          "supported": true,
+          "reason": "Ngữ cảnh [4] nêu track này phù hợp với người muốn trực tiếp xây dựng ứng dụng, AI Agent và các hệ thống AI phục vụ bài toán cụ thể."
+        },
+        {
+          "claim": "Mỗi học viên thường chọn một track để học chuyên sâu trong ba tuần thứ hai.",
+          "supported": true,
+          "reason": "Ngữ cảnh [4] khẳng định mỗi học viên thường chọn một track để học chuyên sâu trong ba tuần thứ hai."
+        },
+        {
+          "claim": "Tài liệu của các track có thể được chia sẻ để học viên tham khảo thêm tùy thuộc vào cách tổ chức của từng khóa.",
+          "supported": true,
+          "reason": "Ngữ cảnh [4] nêu tài liệu của các track có thể được chia sẻ để học viên tham khảo thêm, nhưng điều này phụ thuộc vào cách tổ chức của từng khóa."
+        }
+      ],
+      "supported": 8,
+      "total": 9
+    },
+    "error": ""
+  },
+  "8b6bc8636fed9f0b6d202e3ee85ef1af11ef5cd64f8861eedeb042b8613d2d82": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã liệt kê trực tiếp và chính xác ba track của chương trình (AI Infrastructure, AI Products, AI Applications) đúng với trọng tâm câu hỏi."
+    },
+    "error": ""
+  },
+  "a47661d6870b433b1de4b4a372a9e792a7be580fb8e5c0da92f5ba53b05e430a": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đã nêu đầy đủ 3 track chính của chương trình theo đúng nội dung của đáp án chuẩn (mặc dù diễn đạt chi tiết và mở rộng thêm mô tả cho từng track)."
+    },
+    "error": ""
+  },
+  "0b6c824c14c9a01652a5dc4e6728c9ff31c9bab46462b1c93d8e0de5c71d1482": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Dữ liệu không đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu hỏi về điều kiện dự tuyển của chương trình.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] cho biết chưa tìm thấy dữ kiện đủ căn cứ để trả lời câu này (mặc dù ngữ cảnh trước đó có cung cấp, nhưng ta xét theo đúng văn bản nguồn [10])."
+        },
+        {
+          "claim": "Hotline tuyển sinh là 0979.489.846.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] nêu rõ hotline: 0979.489.846."
+        },
+        {
+          "claim": "Nhân sự phụ trách tuyển sinh là Ms. Phương Thảo với số điện thoại 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] nêu rõ tuyen_sinh: Ms. Phương Thảo — 0388.339.478."
+        },
+        {
+          "claim": "Email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] nêu rõ email: AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 4,
+      "total": 4
+    },
+    "error": ""
+  },
+  "ee6fa390d9f164747b751d4952048d0802c131a81bbcdfad3ed672171f4e4d11": {
+    "score": 0.0,
+    "detail": {
+      "reason": "Câu trả lời né tránh việc trả lời câu hỏi về điều kiện dự tuyển, chỉ cung cấp kênh liên hệ và thông báo không tìm thấy dữ kiện."
+    },
+    "error": ""
+  },
+  "cc4728c607ddfd6679531a58cb75177e323c3bc4b8afe58234688c84ff150051": {
+    "score": 0.0,
+    "detail": {
+      "wrong": [
+        "Nói rằng chưa tìm thấy dữ kiện và đưa ra kênh liên hệ thay vì trả lời câu hỏi"
+      ],
+      "missing": [
+        "Sinh viên đang theo học hoặc đã tốt nghiệp Đại học/Cao đẳng/Trung cấp các ngành công nghệ liên quan",
+        "Ứng viên trái ngành cần nền tảng toán học, tư duy logic và kinh nghiệm thực tế về phân tích kinh doanh, dữ liệu, lập trình hoặc phát triển phần mềm",
+        "Định hướng nghề nghiệp trong lĩnh vực AI, tư duy logic, học nhanh, động lực mạnh và tinh thần kỷ luật, cam kết cao"
+      ],
+      "reason": "Câu trả lời không cung cấp điều kiện dự tuyển theo đáp án chuẩn mà từ chối trả lời do thiếu dữ kiện và chỉ cung cấp thông tin liên hệ."
+    },
+    "error": ""
+  },
+  "7ef2bcb09b990300ca83faa6c77972501c811839294efa0e3cd3c829308bdd04": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Người cần liên hệ để biết thêm thông tin về tuyển sinh là Ms. Phương Thảo.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ liên hệ tuyển sinh: Ms. Phương Thảo – 0388.339.478."
+        },
+        {
+          "claim": "Số điện thoại để liên hệ với Ms. Phương Thảo là 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ số điện thoại của Ms. Phương Thảo là 0388.339.478."
+        },
+        {
+          "claim": "Email để liên hệ với Ms. Phương Thảo là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ Email là AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 3,
+      "total": 3
+    },
+    "error": ""
+  },
+  "ca9128be43eed8e9f381ebe87be8cdac8fc3ed1b8fe3e2a6c669c6d7e758cd4c": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời cung cấp trực tiếp thông tin liên hệ (tên, số điện thoại, email) để hỏi thêm về tuyển sinh, trúng trọng tâm câu hỏi."
+    },
+    "error": ""
+  },
+  "773dbf0602b1559c745bc1501fe58c009ea4dfdd5bcee9d0448e46ba3a56cafb": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Hotline 0979.489.846"
+      ],
+      "reason": "Thiếu thông tin liên hệ qua hotline 0979.489.846 so với đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "ddf838539e6a08690550c49ba981bde31b26cc1d52f0f5eb1f25ebd421f00276": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình kéo dài 12 tuần.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] và [4] đều nêu rõ chương trình được thiết kế trong 12 tuần."
+        },
+        {
+          "claim": "Học viên cần cam kết học tập toàn thời gian.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] ('phù hợp hơn với người có thể cam kết học tập toàn thời gian trong 12 tuần'), [4] ('triển khai theo hình thức toàn thời gian (full-time)') và [5] ('tương đương một công việc toàn thời gian') đều xác nhận điều này."
+        }
+      ],
+      "supported": 2,
+      "total": 2
+    },
+    "error": ""
+  },
+  "ad5034f5aaff8e18179e6b976d725957de6328a020ecaa62f56f9b97971a7765": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã nêu rõ thời gian kéo dài của chương trình (12 tuần) và thời gian học viên cần dành ra (cam kết học tập toàn thời gian), đáp ứng đúng trọng tâm cả hai ý của câu hỏi."
+    },
+    "error": ""
+  },
+  "66d107557fe96813e06f3534c7d63781246b0ed3392dd1c3e35fd850232a8187": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "thời gian cụ thể mỗi tuần/ngày (sáng 9:00-13:00, chiều 14:00-18:00, tối và cuối tuần làm dự án nhóm)"
+      ],
+      "reason": "Thiếu thông tin chi tiết về thời gian học cụ thể trong ngày/tuần nhưng các ý chính về thời lượng 12 tuần và hình thức toàn thời gian đều có."
+    },
+    "error": ""
+  },
+  "329958e1082e900f4005ddbb0e2a2b5c7824e636e8e140a8d6e8ab1f248463ed": {
+    "score": 0.8333333333333334,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Lộ trình 12 tuần của chương trình AI Thực Chiến được tổ chức theo mô hình 3+3+6.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ: 'Chương trình được mô tả theo mô hình 3+3+6'."
+        },
+        {
+          "claim": "Ba tuần đầu tiên của lộ trình là học kiến thức nền tảng chung.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ: '- Ba tuần đầu: học kiến thức nền tảng chung.'"
+        },
+        {
+          "claim": "Ba tuần tiếp theo của lộ trình là học chuyên sâu theo track và xây dựng dự án.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ: '- Ba tuần tiếp theo: học chuyên sâu theo track và xây dựng dự án.'"
+        },
+        {
+          "claim": "Sáu tuần cuối cùng của lộ trình là làm việc toàn thời gian tại doanh nghiệp.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ: '- Sáu tuần cuối: làm việc toàn thời gian tại doanh nghiệp.'"
+        },
+        {
+          "claim": "Giai đoạn cuối đưa học viên vào môi trường doanh nghiệp để giải quyết bài toán thực tế dưới sự hướng dẫn của mentor.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ: 'Giai đoạn cuối đưa học viên vào môi trường doanh nghiệp để giải quyết bài toán thực tế dưới sự hướng dẫn của mentor.'"
+        },
+        {
+          "claim": "Thông tin về lộ trình được lấy từ nguồn không chính thức.",
+          "supported": false,
+          "reason": "Ngữ cảnh có nhắc đến một số thông tin mang tính tham khảo từ cộng đồng hoặc cần xác nhận, nhưng không có mệnh đề nào trong ngữ cảnh nói chung chung rằng 'Thông tin về lộ trình được lấy từ nguồn không chính thức'."
+        }
+      ],
+      "supported": 5,
+      "total": 6
+    },
+    "error": ""
+  },
+  "d9c1fcd0f566f845c1e7c5f7ff2bf714ca2f4ebbe9a47c081dcf80ab80793953": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã nêu đầy đủ các giai đoạn trong lộ trình 12 tuần (3 tuần nền tảng, 3 tuần chuyên sâu, 6 tuần thực tập) và có đề cập đến nguồn thông tin theo yêu cầu."
+    },
+    "error": ""
+  },
+  "042ffd12ed3385f68eab33fbafef4d04b38e281a95f3f73e8530a05334370b3f": {
+    "score": 0.5,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Link nguồn: sổ tay học viên và trang thông tin của VinUni (vinuni.edu.vn), cùng tổng hợp phản hồi cộng đồng trên Facebook."
+      ],
+      "reason": "Thiếu hoàn toàn thông tin về link nguồn / nguồn tài liệu theo yêu cầu của đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "87d6b09f54cab41345b854013e7354c9e0fc673e16a6e2d8d93698498dbc1464": {
+    "score": 0.8571428571428571,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Trong ba tuần đầu của chương trình AI Thực Chiến, thời gian học là từ khoảng 9:00 đến 18:00.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu: 'Ba tuần đầu có thể học từ khoảng 9:00 đến 18:00.'"
+        },
+        {
+          "claim": "Trong ba tuần chuyên sâu của chương trình AI Thực Chiến, thời gian học trên lớp là từ khoảng 9:00 đến 13:00.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu: 'Ba tuần chuyên sâu có thể học trên lớp từ khoảng 9:00 đến 13:00.'"
+        },
+        {
+          "claim": "Trong ba tuần chuyên sâu của chương trình AI Thực Chiến, buổi chiều dành cho tự học, làm bài lab hoặc phát triển dự án nhóm.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu: 'Buổi chiều của giai đoạn chuyên sâu thường dành cho tự học, làm bài lab hoặc phát triển dự án nhóm.'"
+        },
+        {
+          "claim": "Trong sáu tuần tại doanh nghiệp của chương trình AI Thực Chiến, lịch học tuân theo lịch của đơn vị tiếp nhận.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu: 'Sáu tuần tại doanh nghiệp tuân theo lịch của đơn vị tiếp nhận.'"
+        },
+        {
+          "claim": "Trong sáu tuần tại doanh nghiệp, đơn vị tiếp nhận thường yêu cầu học viên check-in trong khoảng 8:30-9:00 và làm việc đủ thời gian của một ngày làm việc.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu: 'Một số doanh nghiệp yêu cầu học viên check-in trong khoảng 8:30-9:00 và làm việc đủ thời lượng của một ngày làm việc.'"
+        },
+        {
+          "claim": "Thông tin về lịch học hằng ngày được lấy từ phản hồi của cộng đồng học viên trên Facebook.",
+          "supported": false,
+          "reason": "Ngữ cảnh [1] chỉ nói là 'Theo lịch được một số học viên chia sẻ' và 'lịch tham khảo từ cộng đồng', không nhắc đến cụ thể là 'trên Facebook'."
+        },
+        {
+          "claim": "Thông tin về lịch học hằng ngày không phải là nguồn chính thức.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu: 'Đây chỉ là lịch tham khảo từ cộng đồng. Thời khóa biểu chính xác phải lấy từ email, sổ tay học viên và doanh nghiệp tiếp nhận.'"
+        }
+      ],
+      "supported": 6,
+      "total": 7
+    },
+    "error": ""
+  },
+  "bd94935137f23b4fe74749a2b1c24282ec8548f5982f52635bf56161daaaec5a": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã đáp ứng đầy đủ cả hai ý của câu hỏi: cung cấp chi tiết lịch học hằng ngày và nêu rõ nguồn lấy thông tin."
+    },
+    "error": ""
+  },
+  "79a6e89c9f8974d2b39f8ce75e548d47574ff412a477f7fc739f67747fbc04c0": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Nguồn chính thức từ sổ tay học viên và email"
+      ],
+      "reason": "Câu trả lời nêu thiếu lịch học chi tiết từ sổ tay học viên (sáng 9:00-13:00, chiều 14:00-18:00, tối và cuối tuần làm dự án) và bỏ sót việc nguồn chính thức phải lấy từ sổ tay học viên/email, chỉ nhận diện nguồn Facebook."
+    },
+    "error": ""
+  },
+  "bb3ccda26aaf236b2f92cb3358848cd0e7766bb03c4b7cb9cd4507d95546fc6e": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình AI Thực Chiến có thời gian học tổng cộng là 12 tuần.",
+          "supported": true,
+          "reason": "Ngữ cảnh [5] nhắc đến 'Lộ trình 12 tuần'."
+        },
+        {
+          "claim": "Chương trình AI Thực Chiến được chia thành 3 giai đoạn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [5] mô tả chương trình theo mô hình 3+3+6 gồm 3 giai đoạn."
+        },
+        {
+          "claim": "Chương trình AI Thực Chiến có 3 tuần học kiến thức nền tảng.",
+          "supported": true,
+          "reason": "Ngữ cảnh [5] nêu rõ 'Ba tuần đầu: học kiến thức nền tảng chung'."
+        },
+        {
+          "claim": "Chương trình AI Thực Chiến có 3 tuần học chuyên sâu.",
+          "supported": true,
+          "reason": "Ngữ cảnh [5] nêu rõ 'Ba tuần tiếp theo: học chuyên sâu theo track và xây dựng dự án'."
+        },
+        {
+          "claim": "Chương trình AI Thực Chiến có 6 tuần thực tập tại doanh nghiệp.",
+          "supported": true,
+          "reason": "Ngữ cảnh [5] nêu rõ 'Sáu tuần cuối: làm việc toàn thời gian tại doanh nghiệp'."
+        },
+        {
+          "claim": "Hệ thống không thể kiểm tra trạng thái hồ sơ cá nhân của mã HS999.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] nêu rõ câu này nằm ngoài phạm vi hỗ trợ (vd. tra cứu hồ sơ cá nhân) và đưa ra câu hỏi soạn sẵn."
+        },
+        {
+          "claim": "Số Hotline liên hệ là 0979.489.846.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] ghi rõ hotline: 0979.489.846."
+        },
+        {
+          "claim": "Nhân viên tư vấn là Ms. Phương Thảo.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] ghi rõ tuyen_sinh: Ms. Phương Thảo."
+        },
+        {
+          "claim": "Số điện thoại của Ms. Phương Thảo là 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] ghi rõ số điện thoại của Ms. Phương Thảo là 0388.339.478."
+        },
+        {
+          "claim": "Email liên hệ là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] ghi rõ email: AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 10,
+      "total": 10
+    },
+    "error": ""
+  },
+  "eb2fed57b1112de4f03383d2c9b3b4646c03e717c92735f0b6d1405c69befa81": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã đề cập đầy đủ đến cả hai ý được hỏi: thời gian học của chương trình và trạng thái hồ sơ mã HS999 (hướng dẫn cách liên hệ để kiểm tra vì hệ thống không hỗ trợ trực tiếp)."
+    },
+    "error": ""
+  },
+  "16ae4fe5f0016921bbe63c39d0dca29f80e72f0db79ea82a78091ccbecd82341": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đã đáp ứng đầy đủ các ý chính của đáp án chuẩn: thời gian học 12 tuần, và thông báo không tra cứu được trạng thái hồ sơ qua kênh này kèm theo thông tin liên hệ (hotline và email) chính xác."
+    },
+    "error": ""
+  },
+  "5190e732f24ef2b341b7b0b0418463e9d85136f33385c9788222648fdd5fe312": {
+    "score": 0.6,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Người trả lời đã chuyển câu hỏi về thời gian học đến bộ phận tuyển sinh để xác nhận sự khác biệt giữa trang chính thức và nhóm Facebook.",
+          "supported": false,
+          "reason": "Ngữ cảnh chỉ cung cấp câu hỏi soạn sẵn để gửi nhân viên chứ không nói người trả lời đã thực sự chuyển câu hỏi đi."
+        },
+        {
+          "claim": "Bộ phận tuyển sinh sẽ cho biết nên tin bên nào nếu có sự khác biệt về thông tin thời gian học.",
+          "supported": false,
+          "reason": "Ngữ cảnh cung cấp câu hỏi mẫu để hỏi bộ phận tuyển sinh nhưng không xác nhận bộ phận tuyển sinh sẽ trả lời như vậy."
+        },
+        {
+          "claim": "Số điện thoại hotline của bộ phận tuyển sinh là 0979.489.846.",
+          "supported": true,
+          "reason": "Ngữ cảnh ghi rõ hotline: 0979.489.846."
+        },
+        {
+          "claim": "Số điện thoại của Ms. Phương Thảo là 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh ghi rõ tuyen_sinh: Ms. Phương Thảo — 0388.339.478."
+        },
+        {
+          "claim": "Địa chỉ email liên hệ của bộ phận tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh ghi rõ email: AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 3,
+      "total": 5
+    },
+    "error": ""
+  },
+  "1967d4bda9300ecd3d83c64e82493f6375327141e1062f512ec7e6a1f78651d4": {
+    "score": 0.0,
+    "detail": {
+      "reason": "Câu trả lời né tránh việc cung cấp thông tin hoặc đưa ra nhận định trực tiếp, thay vào đó lại chuyển câu hỏi cho bộ phận khác và cung cấp thông tin liên hệ."
+    },
+    "error": ""
+  },
+  "ba0f0e5326bd38880d3e8e053d19b05f7979f42cebf259d59091fdaeea96fb39": {
+    "score": 0.0,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Có khác nhau. Sổ tay chính thức ghi buổi sáng 9:00-13:00 và buổi chiều 14:00-18:00, trong khi chia sẻ cộng đồng Facebook nói 3 tuần đầu học khoảng 9:00-18:00.",
+        "Khi hai nguồn mâu thuẫn thì phải ưu tiên thông tin chính thức mới nhất từ VinUni và Vingroup, và xác nhận lại với ban tổ chức."
+      ],
+      "reason": "Câu trả lời của người dùng không cung cấp thông tin so sánh thời gian học giữa hai nguồn và không đưa ra kết luận nên tin bên nào theo đáp án chuẩn, mà chỉ đóng vai trò chuyển tiếp câu hỏi và cung cấp thông tin liên hệ."
+    },
+    "error": ""
+  },
+  "a2aa7997d4c2f297e383e109dbd50d62aab2a963da0be3b9303c1c2cac017189": {
+    "score": 0.6666666666666666,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Track AI Applications tập trung vào việc xây dựng ứng dụng và giải pháp AI.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ: 'Track AI Applications tập trung vào việc xây dựng ứng dụng và giải pháp AI.'"
+        },
+        {
+          "claim": "Track AI Applications phù hợp với những người thích lập trình và trực tiếp xây dựng giải pháp.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ: 'Track này thường phù hợp với người thích lập trình và trực tiếp xây dựng giải pháp.'"
+        },
+        {
+          "claim": "Thông tin về track AI Engineer không có trong ngữ cảnh hiện tại.",
+          "supported": false,
+          "reason": "Ngữ cảnh [1] có nhắc đến 'AI Engineer' trong phần tên track (AI Applications hoặc AI Engineer)."
+        }
+      ],
+      "supported": 2,
+      "total": 3
+    },
+    "error": ""
+  },
+  "04d9a30192c7d01b219630685fbbf0c42c79108c73095a59b115c20e2f8ca3f5": {
+    "score": 0.5,
+    "detail": {
+      "reason": "Câu trả lời đã trả lời được một phần (về track AI Applications và ai nên chọn nó), nhưng bỏ qua phần lớn trọng tâm còn lại của câu hỏi là làm rõ sự khác biệt với track AI Engineer và ai nên chọn track AI Engineer do bị thiếu ngữ cảnh."
+    },
+    "error": ""
+  },
+  "0c2a58c80a8701c746248964fd7a404aa1207e9e3d46bcccae0def7108e4038b": {
+    "score": 0.3,
+    "detail": {
+      "wrong": [
+        "Nói rằng track AI Engineer không có trong ngữ cảnh nên không thể so sánh",
+        "Khuyên liên hệ bộ phận tuyển sinh để biết ai nên chọn track AI Engineer"
+      ],
+      "missing": [
+        "Nêu được AI Applications và AI Engineer thực chất là cùng một track, chỉ khác tên gọi",
+        "Nêu các nội dung tập trung của track: AI Agent, RAG, ReAct Agent, hệ thống Multi-Agent, tích hợp mô hình vào ứng dụng",
+        "Đưa ra đầy đủ định hướng chọn track theo các nhóm: AI Applications, AI Products, AI Infrastructure"
+      ],
+      "reason": "Câu trả lời chỉ đúng một phần nhỏ về track AI Applications, còn lại từ chối trả lời và đưa ra thông tin sai lệch rằng không có thông tin về AI Engineer trong khi đáp án chuẩn đã nêu rõ hai track này thực chất là một."
+    },
+    "error": ""
+  },
+  "28d5623a637924020ed6266b33c8f3e5b11d454490cb9f62db870402ae949000": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Học viên được nghỉ tối đa 04 buổi trong toàn khóa.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ: 'Học viên được phép nghỉ tối đa 04 buổi (sáng hoặc chiều) trong toàn bộ thời gian học tập tại VinUni'."
+        },
+        {
+          "claim": "Học viên không được nghỉ 02 buổi liên tiếp trong cùng một tuần.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ: 'và không được nghỉ 02 buổi liên tiếp trong cùng một tuần.'"
+        }
+      ],
+      "supported": 2,
+      "total": 2
+    },
+    "error": ""
+  },
+  "a0d5eb77c2e738ad311150e724e7eeb2101f00f87b768485e80ce03dec146c17": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã đi thẳng vào trọng tâm là số buổi học viên được nghỉ tối đa trong toàn khóa (04 buổi)."
+    },
+    "error": ""
+  },
+  "ce447ddf6afe1da770c422ebf9a8a926dcc2275b92dd4bfe0452c502c5d5a2cd": {
+    "score": 0.85,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Thiếu thông tin chi tiết về giai đoạn (giai đoạn 1 và giai đoạn 2 tại VinUni)",
+        "Thiếu thông tin về việc vượt quá phải được Giám đốc Chương trình phê duyệt trước khi nghỉ"
+      ],
+      "reason": "Câu trả lời đã nêu đúng ý chính về số buổi nghỉ tối đa (04 buổi) và quy định không nghỉ 2 buổi liên tiếp trong tuần, nhưng thiếu các chi tiết phụ về phạm vi thời gian/địa điểm và quy trình xin phép khi vượt quá."
+    },
+    "error": ""
+  },
+  "99dc258f9410639ab2aed61bbd04a0f6d5d9aeeccdf9eb86d841f1887c154b81": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Không có đủ dữ kiện trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu hỏi về việc bảo lưu kết quả học tập.",
+          "supported": true,
+          "reason": "Ngữ cảnh [9] nêu rõ 'Mình chưa tìm thấy dữ kiện đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu này chính xác' liên quan đến câu hỏi về bảo lưu kết quả học tập sang khóa sau."
+        },
+        {
+          "claim": "Người dùng có thể liên hệ với bộ phận tuyển sinh qua số hotline 0979.489.846 để được hỗ trợ.",
+          "supported": true,
+          "reason": "Ngữ cảnh [9] ghi nhận kênh liên hệ tuyển sinh có hotline: 0979.489.846."
+        },
+        {
+          "claim": "Người dùng có thể liên hệ với Ms. Phương Thảo qua số điện thoại 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [9] nêu rõ Ms. Phương Thảo — 0388.339.478."
+        },
+        {
+          "claim": "Địa chỉ email liên hệ của bộ phận tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [9] ghi nhận email liên hệ: AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 4,
+      "total": 4
+    },
+    "error": ""
+  },
+  "2b495568bb5367c2154e8aaac3401144b45278c38ef97ed1ee72bca5aed439e1": {
+    "score": 0.0,
+    "detail": {
+      "reason": "Câu trả lời né tránh việc trả lời trực tiếp câu hỏi (thừa nhận không có dữ kiện và hướng dẫn liên hệ bộ phận tuyển sinh), do đó không đáp ứng được trọng tâm của câu hỏi."
+    },
+    "error": ""
+  },
+  "d3041d420f42f447303d27fac4e4d7dc7f537150f23189ef372b9f44f2a69cc2": {
+    "score": 0.0,
+    "detail": {
+      "wrong": [
+        "Khẳng định chưa tìm thấy dữ kiện đủ căn cứ để trả lời"
+      ],
+      "missing": [
+        "Theo sổ tay học viên chính thức, chương trình không áp dụng chính sách bảo lưu do tính chất toàn thời gian trong 12 tuần",
+        "Bảo lưu chỉ được xem xét trong trường hợp khẩn cấp hoặc bất khả kháng, phải gửi đề xuất bằng văn bản và được Chương trình phê duyệt trước",
+        "Chia sẻ trên cộng đồng Facebook cho rằng 'có thể được bảo lưu' nhưng đó không phải nguồn chính thức và chưa thống nhất"
+      ],
+      "reason": "Câu trả lời hoàn toàn né tránh việc cung cấp thông tin theo đáp án chuẩn (chính sách bảo lưu của chương trình), thay vào đó lại đi hướng dẫn liên hệ bộ phận tuyển sinh."
+    },
+    "error": ""
+  },
+  "e6b08f5dd0469a5e8cc69874c58e995fcbf97885aa3a51aa22f6d0ccb2540ab5": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Học viên không phải đóng học phí.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] và [3] đều nêu rõ học viên được tài trợ/miễn 100% học phí."
+        },
+        {
+          "claim": "Học viên được hỗ trợ 8 triệu đồng/tháng.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1], [3] và [4] đều nêu rõ học viên nhận trợ cấp/hỗ trợ 8 triệu đồng/tháng trong thời gian tham gia chương trình."
+        }
+      ],
+      "supported": 2,
+      "total": 2
+    },
+    "error": ""
+  },
+  "5f8c75e31b95f6972254d6f1ed61572f15507216ac4045676570a7b45943b0e5": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã đáp ứng đầy đủ và trực tiếp cả hai ý của câu hỏi: có phải đóng học phí không và có được hỗ trợ tiền hằng tháng không."
+    },
+    "error": ""
+  },
+  "e06603d06bdb74ce7c6f63d1da15ae8983410884b618faa2d2b91c09fcb23ea8": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Điều kiện nhận trợ cấp (chuyên cần, hoàn thành yêu cầu học tập, tuân thủ cam kết đã ký)"
+      ],
+      "reason": "Câu trả lời đã nêu đúng ý chính là miễn học phí và hỗ trợ 8 triệu đồng/tháng, tuy nhiên còn thiếu chi tiết về các điều kiện để nhận được khoản trợ cấp này."
+    },
+    "error": ""
+  },
+  "1356ee30a731235f45194bb91ea51c5d4778e86a81c36ddfcb043711a1bfc064": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Tài liệu tuyển sinh chính thức và chia sẻ cộng đồng chưa có dữ kiện đủ căn cứ để trả lời thời gian học cụ thể trong buổi sáng và buổi chiều.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] có nêu 'Mình chưa tìm thấy dữ kiện đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu này chính xác' và 'Câu hỏi soạn sẵn để gửi nhân viên: \"Buổi sáng và buổi chiều học từ mấy giờ đến mấy giờ?\"'."
+        },
+        {
+          "claim": "Hotline tuyển sinh là 0979.489.846.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] ghi rõ hotline: 0979.489.846."
+        },
+        {
+          "claim": "Ms. Phương Thảo phụ trách tuyển sinh theo số điện thoại 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] ghi rõ tuyen_sinh: Ms. Phương Thảo — 0388.339.478."
+        },
+        {
+          "claim": "Email tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [8] ghi rõ email: AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 4,
+      "total": 4
+    },
+    "error": ""
+  },
+  "f3983a490f12e9b12c201cfa8ed30dcaea4b44c6d135f255c57468981b78b06b": {
+    "score": 0.0,
+    "detail": {
+      "reason": "Câu hỏi yêu cầu biết thời gian học buổi sáng và buổi chiều, nhưng câu trả lời lại từ chối trả lời do không có dữ kiện và chỉ cung cấp thông tin liên hệ."
+    },
+    "error": ""
+  },
+  "d3c147bcaa3786ec2df88ef28066a1e060b3a7f36a7d4f16c71fadfb158382aa": {
+    "score": 0.0,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Buổi sáng học từ 9:00 đến 13:00",
+        "Buổi chiều học từ 14:00 đến 18:00"
+      ],
+      "reason": "Câu trả lời không cung cấp thông tin về thời gian học buổi sáng và buổi chiều theo đáp án chuẩn, mà lại từ chối trả lời và cung cấp thông tin liên hệ."
+    },
+    "error": ""
+  },
+  "a1dd35a1fba089c7ccdeb5c4ae6e8852a075e13a8bea2b199f2529e99db7e35f": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Tài liệu tuyển sinh chính thức và chia sẻ cộng đồng chưa có đủ dữ kiện để trả lời chính xác câu hỏi về cấu hình máy tính cần chuẩn bị để học.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] nêu rõ: 'Mình chưa tìm thấy dữ kiện đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu này chính xác' đối với câu hỏi về cấu hình máy tính."
+        },
+        {
+          "claim": "Kênh liên hệ tuyển sinh có hotline là 0979.489.846.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] nêu rõ kênh liên hệ tuyển sinh có hotline: 0979.489.846."
+        },
+        {
+          "claim": "Ms. Phương Thảo phụ trách tuyển sinh qua số điện thoại 0388.339.478.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] nêu rõ tuyển sinh: Ms. Phương Thảo — 0388.339.478."
+        },
+        {
+          "claim": "Email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn.",
+          "supported": true,
+          "reason": "Ngữ cảnh [10] nêu rõ email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn."
+        }
+      ],
+      "supported": 4,
+      "total": 4
+    },
+    "error": ""
+  },
+  "56ec1339f3aa0e73ee68aa151d7b591841334e5be8802b3c2a83d22e9a06e55a": {
+    "score": 0.0,
+    "detail": {
+      "reason": "Câu trả lời né tránh việc trả lời cấu hình máy tính và yêu cầu liên hệ tuyển sinh, không đi thẳng vào trọng tâm câu hỏi."
+    },
+    "error": ""
+  },
+  "7ed9b23b87e01560efe44c4f4ad578c548b6f73687f30144a37bc965b295b52f": {
+    "score": 0.0,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "CPU Intel Core i7 hoặc Apple M2 trở lên",
+        "RAM tối thiểu 16GB",
+        "Ổ cứng ít nhất 256GB SSD",
+        "Hệ điều hành Windows 10/11, macOS hoặc Linux",
+        "Kết nối mạng ổn định"
+      ],
+      "reason": "Câu trả lời của người dùng từ chối trả lời và hướng dẫn liên hệ tuyển sinh, hoàn toàn không cung cấp thông tin về cấu hình máy tính theo đáp án chuẩn."
+    },
+    "error": ""
+  },
+  "c091ea3e00d9b38d356162f8916dcd1f38f54ef67493cda135e6fbd5520f3c7d": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Học viên được chấm điểm dựa trên điểm bài thực hành labs.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm bài thực hành labs hàng ngày (tuần 1-6)'."
+        },
+        {
+          "claim": "Học viên được chấm điểm dựa trên điểm dự án build.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm quá trình và kết quả dự án #build (tuần 1-6)'."
+        },
+        {
+          "claim": "Học viên được chấm điểm dựa trên điểm thi giữa kỳ.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm thi giữa kỳ (ở tuần thứ 6)'."
+        },
+        {
+          "claim": "Học viên được chấm điểm dựa trên điểm thực chiến tại doanh nghiệp.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm quá trình thực chiến tại doanh nghiệp'."
+        },
+        {
+          "claim": "Học viên được chấm điểm dựa trên điểm chuyên cần cùng thái độ.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm chuyên cần và thái độ'."
+        }
+      ],
+      "supported": 5,
+      "total": 5
+    },
+    "error": ""
+  },
+  "a28c4b5da1b74bc0b47ce48218cb31ff575c0c94a3c478a77d1f47519a0edd2b": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã liệt kê đầy đủ và trực tiếp các thành phần dùng để chấm điểm cho học viên theo đúng trọng tâm của câu hỏi."
+    },
+    "error": ""
+  },
+  "c1ee0eb04bb381ca0abc82f4d19fa03e3a5c7d309485fb574caa35f0513fe26a": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đã nêu đầy đủ các thành phần chấm điểm theo đúng ý của đáp án chuẩn (điểm thực hành lab, điểm dự án #build, điểm thi giữa kỳ, điểm thực chiến tại doanh nghiệp, điểm chuyên cần và thái độ), chỉ lược bỏ các chi tiết phụ về thời gian (tuần 1-6) nhưng vẫn đảm bảo đúng nội dung cốt lõi."
+    },
+    "error": ""
+  },
+  "9f241ddd14784d5fd3316a555dc82f2a30dce08f36e63a3c17bba1027e5c7e58": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Quy trình tuyển sinh gồm 2 vòng.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ quy trình tuyển sinh gồm: Vòng 1 – Xét hồ sơ trực tuyến và Vòng 2 – Đánh giá năng lực đầu vào."
+        },
+        {
+          "claim": "Vòng 1 của quy trình tuyển sinh là xét hồ sơ trực tuyến.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ: 'Vòng 1 – Xét hồ sơ trực tuyến'."
+        },
+        {
+          "claim": "Vòng 2 của quy trình tuyển sinh là đánh giá năng lực đầu vào.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] nêu rõ: 'Vòng 2 – Đánh giá năng lực đầu vào'."
+        }
+      ],
+      "supported": 3,
+      "total": 3
+    },
+    "error": ""
+  },
+  "b66f891d74bbb43e355dcb5905a2ac0951e7d37bf7b006c148cdd59308295e67": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã nêu rõ số vòng của quy trình tuyển sinh (2 vòng) và liệt kê tên các vòng đó, đáp ứng đúng trọng tâm câu hỏi."
+    },
+    "error": ""
+  },
+  "b0ce01031be6faddebdcaa7957ef26b27190a2fabc233897a71c86225d560a51": {
+    "score": 0.6,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Chi tiết vòng 1 (CV, thông tin nền tảng học thuật – kỹ thuật, hồ sơ năng lực nếu có)",
+        "Chi tiết vòng 2 (tư duy logic, lập trình và dữ liệu cơ bản, xử lý tình huống thực tiễn)",
+        "Hành động sau đó (xếp lớp theo trình độ và phân công dự án)"
+      ],
+      "reason": "Câu trả lời nêu đúng số vòng (2 vòng) và tên cơ bản của 2 vòng, nhưng thiếu toàn bộ các chi tiết cụ thể bên trong của từng vòng và bước xử lý sau tuyển sinh."
+    },
+    "error": ""
+  },
+  "63cfffc357ce9f5483434c81417fc9171cc1c632743456d7966a3fa343f821f2": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Hồ sơ đăng ký cần nộp bao gồm CV.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ: 'Hồ sơ đăng ký: CV, thông tin nền tảng học thuật – kỹ thuật, portfolio (nếu có).'"
+        },
+        {
+          "claim": "Hồ sơ đăng ký cần nộp bao gồm thông tin nền tảng học thuật – kỹ thuật.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ: 'Hồ sơ đăng ký: CV, thông tin nền tảng học thuật – kỹ thuật, portfolio (nếu có).'"
+        },
+        {
+          "claim": "Hồ sơ đăng ký cần nộp bao gồm portfolio nếu có.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ: 'Hồ sơ đăng ký: CV, thông tin nền tảng học thuật – kỹ thuật, portfolio (nếu có).'"
+        },
+        {
+          "claim": "Hình thức nộp hồ sơ là trực tuyến qua link https://forms.gle/NoUJQc7Ei5CtYVKJ8.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu rõ: 'Hình thức nộp hồ sơ: Trực tuyến (online)' và 'Link đăng ký tuyển sinh: [Tại đây](https://forms.gle/NoUJQc7Ei5CtYVKJ8)'."
+        }
+      ],
+      "supported": 4,
+      "total": 4
+    },
+    "error": ""
+  },
+  "c53dfc02dc1072353f1bcde629bf11283b97de8642702bc055ba3db0afcfb745": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã nêu rõ các thành phần cần có trong hồ sơ đăng ký (CV, thông tin nền tảng học thuật – kỹ thuật, portfolio), đi thẳng vào trọng tâm câu hỏi."
+    },
+    "error": ""
+  },
+  "83dd44dbee04ed78320b816903d4324f03bc085d78e658aa4564dc0774ef1043": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời đã nêu đầy đủ các thành phần của hồ sơ đăng ký (CV, thông tin nền tảng học thuật – kỹ thuật, portfolio nếu có) và hình thức nộp (trực tuyến) giống với đáp án chuẩn. Việc bổ sung thêm link đăng ký không làm sai lệch thông tin."
+    },
+    "error": ""
+  },
+  "ef582aa805de3c5b7a075337e5b0f343c3a52662d773c0a9dff9141d8d15e7ca": {
+    "score": 0.6666666666666666,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình thực chiến có các doanh nghiệp tham gia chủ yếu là các công ty công nghệ trực thuộc Tập đoàn Vingroup.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu rõ: 'các doanh nghiệp tham gia giai đoạn thực chiến chủ yếu là các công ty công nghệ trực thuộc Tập đoàn Vingroup'."
+        },
+        {
+          "claim": "Các công ty công nghệ trực thuộc Tập đoàn Vingroup tham gia chương trình thực chiến bao gồm VinSmartFuture, VinSOC, VinRobotics, VinMotion, và VinDynamics.",
+          "supported": true,
+          "reason": "Ngữ cảnh [3] nêu rõ: 'bao gồm: VinSmartFuture, VinSOC, VinRobotics, VinMotion, VinDynamics, v.v.'"
+        },
+        {
+          "claim": "Không có thông tin cụ thể về tất cả các công ty tham gia và địa điểm thực chiến.",
+          "supported": false,
+          "reason": "Ngữ cảnh có cung cấp thông tin về một số công ty tham gia và địa điểm thực chiến (như Hà Nội, TP. Hồ Chí Minh và các công ty thuộc Vingroup), do đó mệnh đề này mâu thuẫn với ngữ cảnh."
+        }
+      ],
+      "supported": 2,
+      "total": 3
+    },
+    "error": ""
+  },
+  "8d57b24963ec6e8c05167f0ffb8464a61391a4b488a9c888014d2accd1135be4": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã nêu trực tiếp các công ty tham gia chương trình thực chiến (VinSmartFuture, VinSOC, VinRobotics, VinMotion, VinDynamics, v.v.), đúng với trọng tâm câu hỏi."
+    },
+    "error": ""
+  },
+  "baa800bb8dd2e409277f5a678ce865137c960a8173e7f95dd80293af61b07df1": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "Cơ sở ở cả Hà Nội và TP. Hồ Chí Minh",
+        "Danh sách thực tế thay đổi theo từng đợt và cần được ban tổ chức xác nhận"
+      ],
+      "reason": "Câu trả lời nêu đúng các công ty thuộc Tập đoàn Vingroup, nhưng thiếu thông tin về địa điểm (Hà Nội, TP.HCM) và việc danh sách thay đổi theo từng đợt cần ban tổ chức xác nhận."
+    },
+    "error": ""
+  },
+  "06d0ddbfee3f888f9aafbe86ee8e9690cbe3fc41a9027dd24f4484f2869c5245": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Học phần nền tảng được tổ chức tại Trường Đại học VinUni.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] và [2] đều nêu rõ phần/học phần nền tảng được tổ chức tại Trường Đại học VinUni."
+        },
+        {
+          "claim": "Trường Đại học VinUni nằm ở Khu đô thị Vinhomes Ocean Park.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu: 'Trường Đại học VinUni, Khu đô thị Vinhomes Ocean Park'."
+        },
+        {
+          "claim": "Khu đô thị Vinhomes Ocean Park thuộc xã Gia Lâm, Hà Nội.",
+          "supported": true,
+          "reason": "Ngữ cảnh [2] nêu: 'Khu đô thị Vinhomes Ocean Park, xã Gia Lâm, Hà Nội'."
+        }
+      ],
+      "supported": 3,
+      "total": 3
+    },
+    "error": ""
+  },
+  "066a813a006e73252b8fc2b66030568a7c5bb125e8a54e62ae91d1c9e5db3391": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã nêu chính xác địa chỉ tổ chức học phần nền tảng đúng như trọng tâm câu hỏi."
+    },
+    "error": ""
+  },
+  "687ce955c4a0b1abeafb32ee8c5612aeb016e7c8cbd5d91e547dd80bfb7bb729": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời cung cấp đầy đủ thông tin về địa điểm học (Trường Đại học VinUni, Khu đô thị Vinhomes Ocean Park, Gia Lâm, Hà Nội) hoàn toàn trùng khớp với đáp án chuẩn, việc thêm từ 'xã' trước 'Gia Lâm' không làm sai lệch bản chất địa điểm."
+    },
+    "error": ""
+  },
+  "0880af888c805b96d0697f5579de34226281a520f763b7c6352c2853d2dc5189": {
+    "score": 0.5,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Chương trình học kéo dài 12 tuần.",
+          "supported": true,
+          "reason": "Ngữ cảnh [4] nêu rõ: 'Chương trình được thiết kế trong 12 tuần'."
+        },
+        {
+          "claim": "Chương trình học kéo dài 3 tháng.",
+          "supported": false,
+          "reason": "Ngữ cảnh nói chương trình kéo dài 12 tuần, không nhắc trực tiếp đến việc kéo dài 3 tháng."
+        }
+      ],
+      "supported": 1,
+      "total": 2
+    },
+    "error": ""
+  },
+  "86123206d732a766b98079d75c43d6e28886d7a5325706de1720ad9a0630e9f8": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời trực tiếp đúng vào thời gian học (3 tháng) được hỏi."
+    },
+    "error": ""
+  },
+  "307a38d10df4eae76f046dcabf71ad33e0afaea2f69b13d7080eb3bde94510c6": {
+    "score": 1.0,
+    "detail": {
+      "wrong": [],
+      "missing": [],
+      "reason": "Câu trả lời hoàn toàn trùng khớp về mặt nội dung với đáp án chuẩn (12 tuần, khoảng 3 tháng)."
+    },
+    "error": ""
+  },
+  "326e9a88b1a0d1e892d1344dfdfca492ed21d3dd3dd963d637089201136f920a": {
+    "score": 1.0,
+    "detail": {
+      "claims": [
+        {
+          "claim": "Điều kiện để được công nhận hoàn thành chương trình bao gồm đạt điểm tổng kết tối thiểu.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] quy định điều kiện đạt là 'Đạt điểm tổng kết từ mức đạt (Pass) trở lên'."
+        },
+        {
+          "claim": "Điều kiện để được công nhận hoàn thành chương trình bao gồm hoàn thành các thành phần đánh giá.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] quy định điều kiện đạt là 'Hoàn thành đầy đủ các thành phần đánh giá bắt buộc'."
+        },
+        {
+          "claim": "Điều kiện để được công nhận hoàn thành chương trình bao gồm tham gia đủ thời gian.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] quy định điều kiện đạt là 'Tham gia chương trình đủ thời lượng tối thiểu theo quy định'."
+        },
+        {
+          "claim": "Điều kiện để được công nhận hoàn thành chương trình bao gồm không vi phạm quy định.",
+          "supported": true,
+          "reason": "Ngữ cảnh [1] quy định điều kiện đạt là 'Không vi phạm nghiêm trọng các quy định về học thuật, kỷ luật hoặc đạo đức nghề nghiệp'."
+        }
+      ],
+      "supported": 4,
+      "total": 4
+    },
+    "error": ""
+  },
+  "cfa20321168e170a6f0707e3fce718e5d38e8b2d72c967cdd88190d777f4321a": {
+    "score": 1.0,
+    "detail": {
+      "reason": "Câu trả lời đã đi thẳng vào trọng tâm, nêu rõ các điều kiện để được công nhận hoàn thành chương trình theo đúng câu hỏi."
+    },
+    "error": ""
+  },
+  "deace5503441dcb0532b6efa121306241edd63648e73d30eca2608fea98e03f2": {
+    "score": 0.8,
+    "detail": {
+      "wrong": [],
+      "missing": [
+        "chi tiết về mức điểm tổng kết (Pass)",
+        "chi tiết về các thành phần đánh giá bắt buộc",
+        "chi tiết về thời lượng tối thiểu",
+        "chi tiết về vi phạm nghiêm trọng (học thuật, kỷ luật hoặc đạo đức nghề nghiệp)"
+      ],
+      "reason": "Câu trả lời đã nêu đủ các ý chính theo đáp án chuẩn nhưng diễn đạt quá ngắn gọn, thiếu các định lượng và chi tiết cụ thể (Pass, bắt buộc, tối thiểu, loại vi phạm)."
+    },
+    "error": ""
+  }
+}

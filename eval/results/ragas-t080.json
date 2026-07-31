@@ -1,0 +1,1278 @@
+{
+  "dataset_version": "2026-07-30c",
+  "dataset_total": 23,
+  "judge_model": "google/gemini-3.5-flash-lite",
+  "contexts_mode": "retrieved",
+  "scored": 23,
+  "llm_calls": 44,
+  "cache_hits": 36,
+  "skipped": [],
+  "aggregate": {
+    "faithfulness": {
+      "mean": 0.9135955831608006,
+      "n": 23,
+      "none": 0
+    },
+    "answer_relevancy": {
+      "mean": 0.7608695652173914,
+      "n": 23,
+      "none": 0
+    },
+    "answer_correctness": {
+      "mean": 0.6456521739130434,
+      "n": 23,
+      "none": 0
+    }
+  },
+  "samples": [
+    {
+      "id": "S01",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Chương trình AI Thực Chiến kéo dài 12 tuần.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1], [2], và [3] đều nêu rõ chương trình kéo dài 12 tuần."
+            }
+          ],
+          "supported": 1,
+          "total": 1
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã trả lời thẳng vào trọng tâm thời gian kéo dài của chương trình AI Thực Chiến (12 tuần) đúng như câu hỏi yêu cầu."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.8,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "học toàn thời gian, chia thành 3 giai đoạn: 3 tuần nền tảng, 3 tuần chuyên sâu theo định hướng, và 6 tuần thực chiến tại doanh nghiệp đối tác"
+          ],
+          "reason": "Trả lời đúng thời lượng tổng cộng (12 tuần) nhưng thiếu chi tiết về hình thức học và các giai đoạn cụ thể của chương trình."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "S02",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Mỗi khoá tuyển tối đa 500 học viên.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ chỉ tiêu tuyển sinh là tối đa 500 học viên/ khoá."
+            }
+          ],
+          "supported": 1,
+          "total": 1
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã trực tiếp và chính xác vào số lượng học viên tối đa của mỗi khóa."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 1.0,
+        "detail": {
+          "wrong": [],
+          "missing": [],
+          "reason": "Câu trả lời đúng nội dung, đầy đủ dữ kiện so với đáp án chuẩn."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "S03",
+      "faithfulness": {
+        "score": 0.8888888888888888,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Chương trình AI Thực Chiến của VinUni có ba track chính.",
+              "supported": false,
+              "reason": "Ngữ cảnh không nhắc đến tên chương trình là 'AI Thực Chiến của VinUni'."
+            },
+            {
+              "claim": "Track thứ nhất của chương trình là AI Infrastructure hoặc AI LLMOps & Data.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ track là 'AI Infrastructure hoặc AI LLMOps & Data'."
+            },
+            {
+              "claim": "Track AI Infrastructure hoặc AI LLMOps & Data dành cho những ai quan tâm đến hạ tầng, dữ liệu, triển khai mô hình và vận hành hệ thống AI.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu track này phù hợp với người quan tâm đến hạ tầng, dữ liệu, triển khai mô hình và vận hành hệ thống AI."
+            },
+            {
+              "claim": "Track thứ hai của chương trình là AI Products hoặc AI Product Manager.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu track là 'AI Products hoặc AI Product Manager'."
+            },
+            {
+              "claim": "Track AI Products hoặc AI Product Manager dành cho những ai quan tâm đến nhu cầu người dùng, bài toán kinh doanh và quá trình phát triển sản phẩm AI.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu track này phù hợp với người quan tâm đến nhu cầu người dùng, bài toán kinh doanh và quá trình phát triển sản phẩm AI."
+            },
+            {
+              "claim": "Track thứ ba của chương trình là AI Applications hoặc AI Engineer.",
+              "supported": true,
+              "reason": "Ngữ cảnh [4] nêu track là 'AI Applications hoặc AI Engineer'."
+            },
+            {
+              "claim": "Track AI Applications hoặc AI Engineer dành cho những ai muốn trực tiếp xây dựng ứng dụng, AI Agent và các hệ thống AI phục vụ bài toán cụ thể.",
+              "supported": true,
+              "reason": "Ngữ cảnh [4] nêu track này phù hợp với người muốn trực tiếp xây dựng ứng dụng, AI Agent và các hệ thống AI phục vụ bài toán cụ thể."
+            },
+            {
+              "claim": "Mỗi học viên thường chọn một track để học chuyên sâu trong ba tuần thứ hai.",
+              "supported": true,
+              "reason": "Ngữ cảnh [4] khẳng định mỗi học viên thường chọn một track để học chuyên sâu trong ba tuần thứ hai."
+            },
+            {
+              "claim": "Tài liệu của các track có thể được chia sẻ để học viên tham khảo thêm tùy thuộc vào cách tổ chức của từng khóa.",
+              "supported": true,
+              "reason": "Ngữ cảnh [4] nêu tài liệu của các track có thể được chia sẻ để học viên tham khảo thêm, nhưng điều này phụ thuộc vào cách tổ chức của từng khóa."
+            }
+          ],
+          "supported": 8,
+          "total": 9
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã liệt kê trực tiếp và chính xác ba track của chương trình (AI Infrastructure, AI Products, AI Applications) đúng với trọng tâm câu hỏi."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 1.0,
+        "detail": {
+          "wrong": [],
+          "missing": [],
+          "reason": "Câu trả lời đã nêu đầy đủ 3 track chính của chương trình theo đúng nội dung của đáp án chuẩn (mặc dù diễn đạt chi tiết và mở rộng thêm mô tả cho từng track)."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "S04",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Dữ liệu không đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu hỏi về điều kiện dự tuyển của chương trình.",
+              "supported": true,
+              "reason": "Ngữ cảnh [10] cho biết chưa tìm thấy dữ kiện đủ căn cứ để trả lời câu này (mặc dù ngữ cảnh trước đó có cung cấp, nhưng ta xét theo đúng văn bản nguồn [10])."
+            },
+            {
+              "claim": "Hotline tuyển sinh là 0979.489.846.",
+              "supported": true,
+              "reason": "Ngữ cảnh [10] nêu rõ hotline: 0979.489.846."
+            },
+            {
+              "claim": "Nhân sự phụ trách tuyển sinh là Ms. Phương Thảo với số điện thoại 0388.339.478.",
+              "supported": true,
+              "reason": "Ngữ cảnh [10] nêu rõ tuyen_sinh: Ms. Phương Thảo — 0388.339.478."
+            },
+            {
+              "claim": "Email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn.",
+              "supported": true,
+              "reason": "Ngữ cảnh [10] nêu rõ email: AIthucchien@vinuni.edu.vn."
+            }
+          ],
+          "supported": 4,
+          "total": 4
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 0.0,
+        "detail": {
+          "reason": "Câu trả lời né tránh việc trả lời câu hỏi về điều kiện dự tuyển, chỉ cung cấp kênh liên hệ và thông báo không tìm thấy dữ kiện."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.0,
+        "detail": {
+          "wrong": [
+            "Nói rằng chưa tìm thấy dữ kiện và đưa ra kênh liên hệ thay vì trả lời câu hỏi"
+          ],
+          "missing": [
+            "Sinh viên đang theo học hoặc đã tốt nghiệp Đại học/Cao đẳng/Trung cấp các ngành công nghệ liên quan",
+            "Ứng viên trái ngành cần nền tảng toán học, tư duy logic và kinh nghiệm thực tế về phân tích kinh doanh, dữ liệu, lập trình hoặc phát triển phần mềm",
+            "Định hướng nghề nghiệp trong lĩnh vực AI, tư duy logic, học nhanh, động lực mạnh và tinh thần kỷ luật, cam kết cao"
+          ],
+          "reason": "Câu trả lời không cung cấp điều kiện dự tuyển theo đáp án chuẩn mà từ chối trả lời do thiếu dữ kiện và chỉ cung cấp thông tin liên hệ."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "S05",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Người cần liên hệ để biết thêm thông tin về tuyển sinh là Ms. Phương Thảo.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ liên hệ tuyển sinh: Ms. Phương Thảo – 0388.339.478."
+            },
+            {
+              "claim": "Số điện thoại để liên hệ với Ms. Phương Thảo là 0388.339.478.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ số điện thoại của Ms. Phương Thảo là 0388.339.478."
+            },
+            {
+              "claim": "Email để liên hệ với Ms. Phương Thảo là AIthucchien@vinuni.edu.vn.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ Email là AIthucchien@vinuni.edu.vn."
+            }
+          ],
+          "supported": 3,
+          "total": 3
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời cung cấp trực tiếp thông tin liên hệ (tên, số điện thoại, email) để hỏi thêm về tuyển sinh, trúng trọng tâm câu hỏi."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.8,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Hotline 0979.489.846"
+          ],
+          "reason": "Thiếu thông tin liên hệ qua hotline 0979.489.846 so với đáp án chuẩn."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "M01",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Chương trình kéo dài 12 tuần.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] và [4] đều nêu rõ chương trình được thiết kế trong 12 tuần."
+            },
+            {
+              "claim": "Học viên cần cam kết học tập toàn thời gian.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] ('phù hợp hơn với người có thể cam kết học tập toàn thời gian trong 12 tuần'), [4] ('triển khai theo hình thức toàn thời gian (full-time)') và [5] ('tương đương một công việc toàn thời gian') đều xác nhận điều này."
+            }
+          ],
+          "supported": 2,
+          "total": 2
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã nêu rõ thời gian kéo dài của chương trình (12 tuần) và thời gian học viên cần dành ra (cam kết học tập toàn thời gian), đáp ứng đúng trọng tâm cả hai ý của câu hỏi."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.8,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "thời gian cụ thể mỗi tuần/ngày (sáng 9:00-13:00, chiều 14:00-18:00, tối và cuối tuần làm dự án nhóm)"
+          ],
+          "reason": "Thiếu thông tin chi tiết về thời gian học cụ thể trong ngày/tuần nhưng các ý chính về thời lượng 12 tuần và hình thức toàn thời gian đều có."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "M02",
+      "faithfulness": {
+        "score": 0.8333333333333334,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Lộ trình 12 tuần của chương trình AI Thực Chiến được tổ chức theo mô hình 3+3+6.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ: 'Chương trình được mô tả theo mô hình 3+3+6'."
+            },
+            {
+              "claim": "Ba tuần đầu tiên của lộ trình là học kiến thức nền tảng chung.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ: '- Ba tuần đầu: học kiến thức nền tảng chung.'"
+            },
+            {
+              "claim": "Ba tuần tiếp theo của lộ trình là học chuyên sâu theo track và xây dựng dự án.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ: '- Ba tuần tiếp theo: học chuyên sâu theo track và xây dựng dự án.'"
+            },
+            {
+              "claim": "Sáu tuần cuối cùng của lộ trình là làm việc toàn thời gian tại doanh nghiệp.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ: '- Sáu tuần cuối: làm việc toàn thời gian tại doanh nghiệp.'"
+            },
+            {
+              "claim": "Giai đoạn cuối đưa học viên vào môi trường doanh nghiệp để giải quyết bài toán thực tế dưới sự hướng dẫn của mentor.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ: 'Giai đoạn cuối đưa học viên vào môi trường doanh nghiệp để giải quyết bài toán thực tế dưới sự hướng dẫn của mentor.'"
+            },
+            {
+              "claim": "Thông tin về lộ trình được lấy từ nguồn không chính thức.",
+              "supported": false,
+              "reason": "Ngữ cảnh có nhắc đến một số thông tin mang tính tham khảo từ cộng đồng hoặc cần xác nhận, nhưng không có mệnh đề nào trong ngữ cảnh nói chung chung rằng 'Thông tin về lộ trình được lấy từ nguồn không chính thức'."
+            }
+          ],
+          "supported": 5,
+          "total": 6
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã nêu đầy đủ các giai đoạn trong lộ trình 12 tuần (3 tuần nền tảng, 3 tuần chuyên sâu, 6 tuần thực tập) và có đề cập đến nguồn thông tin theo yêu cầu."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.5,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Link nguồn: sổ tay học viên và trang thông tin của VinUni (vinuni.edu.vn), cùng tổng hợp phản hồi cộng đồng trên Facebook."
+          ],
+          "reason": "Thiếu hoàn toàn thông tin về link nguồn / nguồn tài liệu theo yêu cầu của đáp án chuẩn."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "M03",
+      "faithfulness": {
+        "score": 0.8571428571428571,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Trong ba tuần đầu của chương trình AI Thực Chiến, thời gian học là từ khoảng 9:00 đến 18:00.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu: 'Ba tuần đầu có thể học từ khoảng 9:00 đến 18:00.'"
+            },
+            {
+              "claim": "Trong ba tuần chuyên sâu của chương trình AI Thực Chiến, thời gian học trên lớp là từ khoảng 9:00 đến 13:00.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu: 'Ba tuần chuyên sâu có thể học trên lớp từ khoảng 9:00 đến 13:00.'"
+            },
+            {
+              "claim": "Trong ba tuần chuyên sâu của chương trình AI Thực Chiến, buổi chiều dành cho tự học, làm bài lab hoặc phát triển dự án nhóm.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu: 'Buổi chiều của giai đoạn chuyên sâu thường dành cho tự học, làm bài lab hoặc phát triển dự án nhóm.'"
+            },
+            {
+              "claim": "Trong sáu tuần tại doanh nghiệp của chương trình AI Thực Chiến, lịch học tuân theo lịch của đơn vị tiếp nhận.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu: 'Sáu tuần tại doanh nghiệp tuân theo lịch của đơn vị tiếp nhận.'"
+            },
+            {
+              "claim": "Trong sáu tuần tại doanh nghiệp, đơn vị tiếp nhận thường yêu cầu học viên check-in trong khoảng 8:30-9:00 và làm việc đủ thời gian của một ngày làm việc.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu: 'Một số doanh nghiệp yêu cầu học viên check-in trong khoảng 8:30-9:00 và làm việc đủ thời lượng của một ngày làm việc.'"
+            },
+            {
+              "claim": "Thông tin về lịch học hằng ngày được lấy từ phản hồi của cộng đồng học viên trên Facebook.",
+              "supported": false,
+              "reason": "Ngữ cảnh [1] chỉ nói là 'Theo lịch được một số học viên chia sẻ' và 'lịch tham khảo từ cộng đồng', không nhắc đến cụ thể là 'trên Facebook'."
+            },
+            {
+              "claim": "Thông tin về lịch học hằng ngày không phải là nguồn chính thức.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu: 'Đây chỉ là lịch tham khảo từ cộng đồng. Thời khóa biểu chính xác phải lấy từ email, sổ tay học viên và doanh nghiệp tiếp nhận.'"
+            }
+          ],
+          "supported": 6,
+          "total": 7
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã đáp ứng đầy đủ cả hai ý của câu hỏi: cung cấp chi tiết lịch học hằng ngày và nêu rõ nguồn lấy thông tin."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.8,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Nguồn chính thức từ sổ tay học viên và email"
+          ],
+          "reason": "Câu trả lời nêu thiếu lịch học chi tiết từ sổ tay học viên (sáng 9:00-13:00, chiều 14:00-18:00, tối và cuối tuần làm dự án) và bỏ sót việc nguồn chính thức phải lấy từ sổ tay học viên/email, chỉ nhận diện nguồn Facebook."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "M05",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Chương trình AI Thực Chiến có thời gian học tổng cộng là 12 tuần.",
+              "supported": true,
+              "reason": "Ngữ cảnh [5] nhắc đến 'Lộ trình 12 tuần'."
+            },
+            {
+              "claim": "Chương trình AI Thực Chiến được chia thành 3 giai đoạn.",
+              "supported": true,
+              "reason": "Ngữ cảnh [5] mô tả chương trình theo mô hình 3+3+6 gồm 3 giai đoạn."
+            },
+            {
+              "claim": "Chương trình AI Thực Chiến có 3 tuần học kiến thức nền tảng.",
+              "supported": true,
+              "reason": "Ngữ cảnh [5] nêu rõ 'Ba tuần đầu: học kiến thức nền tảng chung'."
+            },
+            {
+              "claim": "Chương trình AI Thực Chiến có 3 tuần học chuyên sâu.",
+              "supported": true,
+              "reason": "Ngữ cảnh [5] nêu rõ 'Ba tuần tiếp theo: học chuyên sâu theo track và xây dựng dự án'."
+            },
+            {
+              "claim": "Chương trình AI Thực Chiến có 6 tuần thực tập tại doanh nghiệp.",
+              "supported": true,
+              "reason": "Ngữ cảnh [5] nêu rõ 'Sáu tuần cuối: làm việc toàn thời gian tại doanh nghiệp'."
+            },
+            {
+              "claim": "Hệ thống không thể kiểm tra trạng thái hồ sơ cá nhân của mã HS999.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] nêu rõ câu này nằm ngoài phạm vi hỗ trợ (vd. tra cứu hồ sơ cá nhân) và đưa ra câu hỏi soạn sẵn."
+            },
+            {
+              "claim": "Số Hotline liên hệ là 0979.489.846.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] ghi rõ hotline: 0979.489.846."
+            },
+            {
+              "claim": "Nhân viên tư vấn là Ms. Phương Thảo.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] ghi rõ tuyen_sinh: Ms. Phương Thảo."
+            },
+            {
+              "claim": "Số điện thoại của Ms. Phương Thảo là 0388.339.478.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] ghi rõ số điện thoại của Ms. Phương Thảo là 0388.339.478."
+            },
+            {
+              "claim": "Email liên hệ là AIthucchien@vinuni.edu.vn.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] ghi rõ email: AIthucchien@vinuni.edu.vn."
+            }
+          ],
+          "supported": 10,
+          "total": 10
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã đề cập đầy đủ đến cả hai ý được hỏi: thời gian học của chương trình và trạng thái hồ sơ mã HS999 (hướng dẫn cách liên hệ để kiểm tra vì hệ thống không hỗ trợ trực tiếp)."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 1.0,
+        "detail": {
+          "wrong": [],
+          "missing": [],
+          "reason": "Câu trả lời đã đáp ứng đầy đủ các ý chính của đáp án chuẩn: thời gian học 12 tuần, và thông báo không tra cứu được trạng thái hồ sơ qua kênh này kèm theo thông tin liên hệ (hotline và email) chính xác."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "M06",
+      "faithfulness": {
+        "score": 0.6,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Người trả lời đã chuyển câu hỏi về thời gian học đến bộ phận tuyển sinh để xác nhận sự khác biệt giữa trang chính thức và nhóm Facebook.",
+              "supported": false,
+              "reason": "Ngữ cảnh chỉ cung cấp câu hỏi soạn sẵn để gửi nhân viên chứ không nói người trả lời đã thực sự chuyển câu hỏi đi."
+            },
+            {
+              "claim": "Bộ phận tuyển sinh sẽ cho biết nên tin bên nào nếu có sự khác biệt về thông tin thời gian học.",
+              "supported": false,
+              "reason": "Ngữ cảnh cung cấp câu hỏi mẫu để hỏi bộ phận tuyển sinh nhưng không xác nhận bộ phận tuyển sinh sẽ trả lời như vậy."
+            },
+            {
+              "claim": "Số điện thoại hotline của bộ phận tuyển sinh là 0979.489.846.",
+              "supported": true,
+              "reason": "Ngữ cảnh ghi rõ hotline: 0979.489.846."
+            },
+            {
+              "claim": "Số điện thoại của Ms. Phương Thảo là 0388.339.478.",
+              "supported": true,
+              "reason": "Ngữ cảnh ghi rõ tuyen_sinh: Ms. Phương Thảo — 0388.339.478."
+            },
+            {
+              "claim": "Địa chỉ email liên hệ của bộ phận tuyển sinh là AIthucchien@vinuni.edu.vn.",
+              "supported": true,
+              "reason": "Ngữ cảnh ghi rõ email: AIthucchien@vinuni.edu.vn."
+            }
+          ],
+          "supported": 3,
+          "total": 5
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 0.0,
+        "detail": {
+          "reason": "Câu trả lời né tránh việc cung cấp thông tin hoặc đưa ra nhận định trực tiếp, thay vào đó lại chuyển câu hỏi cho bộ phận khác và cung cấp thông tin liên hệ."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.0,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Có khác nhau. Sổ tay chính thức ghi buổi sáng 9:00-13:00 và buổi chiều 14:00-18:00, trong khi chia sẻ cộng đồng Facebook nói 3 tuần đầu học khoảng 9:00-18:00.",
+            "Khi hai nguồn mâu thuẫn thì phải ưu tiên thông tin chính thức mới nhất từ VinUni và Vingroup, và xác nhận lại với ban tổ chức."
+          ],
+          "reason": "Câu trả lời của người dùng không cung cấp thông tin so sánh thời gian học giữa hai nguồn và không đưa ra kết luận nên tin bên nào theo đáp án chuẩn, mà chỉ đóng vai trò chuyển tiếp câu hỏi và cung cấp thông tin liên hệ."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "M07",
+      "faithfulness": {
+        "score": 0.6666666666666666,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Track AI Applications tập trung vào việc xây dựng ứng dụng và giải pháp AI.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ: 'Track AI Applications tập trung vào việc xây dựng ứng dụng và giải pháp AI.'"
+            },
+            {
+              "claim": "Track AI Applications phù hợp với những người thích lập trình và trực tiếp xây dựng giải pháp.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ: 'Track này thường phù hợp với người thích lập trình và trực tiếp xây dựng giải pháp.'"
+            },
+            {
+              "claim": "Thông tin về track AI Engineer không có trong ngữ cảnh hiện tại.",
+              "supported": false,
+              "reason": "Ngữ cảnh [1] có nhắc đến 'AI Engineer' trong phần tên track (AI Applications hoặc AI Engineer)."
+            }
+          ],
+          "supported": 2,
+          "total": 3
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 0.5,
+        "detail": {
+          "reason": "Câu trả lời đã trả lời được một phần (về track AI Applications và ai nên chọn nó), nhưng bỏ qua phần lớn trọng tâm còn lại của câu hỏi là làm rõ sự khác biệt với track AI Engineer và ai nên chọn track AI Engineer do bị thiếu ngữ cảnh."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.3,
+        "detail": {
+          "wrong": [
+            "Nói rằng track AI Engineer không có trong ngữ cảnh nên không thể so sánh",
+            "Khuyên liên hệ bộ phận tuyển sinh để biết ai nên chọn track AI Engineer"
+          ],
+          "missing": [
+            "Nêu được AI Applications và AI Engineer thực chất là cùng một track, chỉ khác tên gọi",
+            "Nêu các nội dung tập trung của track: AI Agent, RAG, ReAct Agent, hệ thống Multi-Agent, tích hợp mô hình vào ứng dụng",
+            "Đưa ra đầy đủ định hướng chọn track theo các nhóm: AI Applications, AI Products, AI Infrastructure"
+          ],
+          "reason": "Câu trả lời chỉ đúng một phần nhỏ về track AI Applications, còn lại từ chối trả lời và đưa ra thông tin sai lệch rằng không có thông tin về AI Engineer trong khi đáp án chuẩn đã nêu rõ hai track này thực chất là một."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "N01",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Học viên được nghỉ tối đa 04 buổi trong toàn khóa.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ: 'Học viên được phép nghỉ tối đa 04 buổi (sáng hoặc chiều) trong toàn bộ thời gian học tập tại VinUni'."
+            },
+            {
+              "claim": "Học viên không được nghỉ 02 buổi liên tiếp trong cùng một tuần.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ: 'và không được nghỉ 02 buổi liên tiếp trong cùng một tuần.'"
+            }
+          ],
+          "supported": 2,
+          "total": 2
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã đi thẳng vào trọng tâm là số buổi học viên được nghỉ tối đa trong toàn khóa (04 buổi)."
+        },
+        "error": "",
+        "cached": true
+      },
+      "answer_correctness": {
+        "score": 0.85,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Thiếu thông tin chi tiết về giai đoạn (giai đoạn 1 và giai đoạn 2 tại VinUni)",
+            "Thiếu thông tin về việc vượt quá phải được Giám đốc Chương trình phê duyệt trước khi nghỉ"
+          ],
+          "reason": "Câu trả lời đã nêu đúng ý chính về số buổi nghỉ tối đa (04 buổi) và quy định không nghỉ 2 buổi liên tiếp trong tuần, nhưng thiếu các chi tiết phụ về phạm vi thời gian/địa điểm và quy trình xin phép khi vượt quá."
+        },
+        "error": "",
+        "cached": true
+      }
+    },
+    {
+      "id": "N02",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Không có đủ dữ kiện trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu hỏi về việc bảo lưu kết quả học tập.",
+              "supported": true,
+              "reason": "Ngữ cảnh [9] nêu rõ 'Mình chưa tìm thấy dữ kiện đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu này chính xác' liên quan đến câu hỏi về bảo lưu kết quả học tập sang khóa sau."
+            },
+            {
+              "claim": "Người dùng có thể liên hệ với bộ phận tuyển sinh qua số hotline 0979.489.846 để được hỗ trợ.",
+              "supported": true,
+              "reason": "Ngữ cảnh [9] ghi nhận kênh liên hệ tuyển sinh có hotline: 0979.489.846."
+            },
+            {
+              "claim": "Người dùng có thể liên hệ với Ms. Phương Thảo qua số điện thoại 0388.339.478.",
+              "supported": true,
+              "reason": "Ngữ cảnh [9] nêu rõ Ms. Phương Thảo — 0388.339.478."
+            },
+            {
+              "claim": "Địa chỉ email liên hệ của bộ phận tuyển sinh là AIthucchien@vinuni.edu.vn.",
+              "supported": true,
+              "reason": "Ngữ cảnh [9] ghi nhận email liên hệ: AIthucchien@vinuni.edu.vn."
+            }
+          ],
+          "supported": 4,
+          "total": 4
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 0.0,
+        "detail": {
+          "reason": "Câu trả lời né tránh việc trả lời trực tiếp câu hỏi (thừa nhận không có dữ kiện và hướng dẫn liên hệ bộ phận tuyển sinh), do đó không đáp ứng được trọng tâm của câu hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 0.0,
+        "detail": {
+          "wrong": [
+            "Khẳng định chưa tìm thấy dữ kiện đủ căn cứ để trả lời"
+          ],
+          "missing": [
+            "Theo sổ tay học viên chính thức, chương trình không áp dụng chính sách bảo lưu do tính chất toàn thời gian trong 12 tuần",
+            "Bảo lưu chỉ được xem xét trong trường hợp khẩn cấp hoặc bất khả kháng, phải gửi đề xuất bằng văn bản và được Chương trình phê duyệt trước",
+            "Chia sẻ trên cộng đồng Facebook cho rằng 'có thể được bảo lưu' nhưng đó không phải nguồn chính thức và chưa thống nhất"
+          ],
+          "reason": "Câu trả lời hoàn toàn né tránh việc cung cấp thông tin theo đáp án chuẩn (chính sách bảo lưu của chương trình), thay vào đó lại đi hướng dẫn liên hệ bộ phận tuyển sinh."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N03",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Học viên không phải đóng học phí.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] và [3] đều nêu rõ học viên được tài trợ/miễn 100% học phí."
+            },
+            {
+              "claim": "Học viên được hỗ trợ 8 triệu đồng/tháng.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1], [3] và [4] đều nêu rõ học viên nhận trợ cấp/hỗ trợ 8 triệu đồng/tháng trong thời gian tham gia chương trình."
+            }
+          ],
+          "supported": 2,
+          "total": 2
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã đáp ứng đầy đủ và trực tiếp cả hai ý của câu hỏi: có phải đóng học phí không và có được hỗ trợ tiền hằng tháng không."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 0.8,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Điều kiện nhận trợ cấp (chuyên cần, hoàn thành yêu cầu học tập, tuân thủ cam kết đã ký)"
+          ],
+          "reason": "Câu trả lời đã nêu đúng ý chính là miễn học phí và hỗ trợ 8 triệu đồng/tháng, tuy nhiên còn thiếu chi tiết về các điều kiện để nhận được khoản trợ cấp này."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N04",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Tài liệu tuyển sinh chính thức và chia sẻ cộng đồng chưa có dữ kiện đủ căn cứ để trả lời thời gian học cụ thể trong buổi sáng và buổi chiều.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] có nêu 'Mình chưa tìm thấy dữ kiện đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu này chính xác' và 'Câu hỏi soạn sẵn để gửi nhân viên: \"Buổi sáng và buổi chiều học từ mấy giờ đến mấy giờ?\"'."
+            },
+            {
+              "claim": "Hotline tuyển sinh là 0979.489.846.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] ghi rõ hotline: 0979.489.846."
+            },
+            {
+              "claim": "Ms. Phương Thảo phụ trách tuyển sinh theo số điện thoại 0388.339.478.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] ghi rõ tuyen_sinh: Ms. Phương Thảo — 0388.339.478."
+            },
+            {
+              "claim": "Email tuyển sinh là AIthucchien@vinuni.edu.vn.",
+              "supported": true,
+              "reason": "Ngữ cảnh [8] ghi rõ email: AIthucchien@vinuni.edu.vn."
+            }
+          ],
+          "supported": 4,
+          "total": 4
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 0.0,
+        "detail": {
+          "reason": "Câu hỏi yêu cầu biết thời gian học buổi sáng và buổi chiều, nhưng câu trả lời lại từ chối trả lời do không có dữ kiện và chỉ cung cấp thông tin liên hệ."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 0.0,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Buổi sáng học từ 9:00 đến 13:00",
+            "Buổi chiều học từ 14:00 đến 18:00"
+          ],
+          "reason": "Câu trả lời không cung cấp thông tin về thời gian học buổi sáng và buổi chiều theo đáp án chuẩn, mà lại từ chối trả lời và cung cấp thông tin liên hệ."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N05",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Tài liệu tuyển sinh chính thức và chia sẻ cộng đồng chưa có đủ dữ kiện để trả lời chính xác câu hỏi về cấu hình máy tính cần chuẩn bị để học.",
+              "supported": true,
+              "reason": "Ngữ cảnh [10] nêu rõ: 'Mình chưa tìm thấy dữ kiện đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu này chính xác' đối với câu hỏi về cấu hình máy tính."
+            },
+            {
+              "claim": "Kênh liên hệ tuyển sinh có hotline là 0979.489.846.",
+              "supported": true,
+              "reason": "Ngữ cảnh [10] nêu rõ kênh liên hệ tuyển sinh có hotline: 0979.489.846."
+            },
+            {
+              "claim": "Ms. Phương Thảo phụ trách tuyển sinh qua số điện thoại 0388.339.478.",
+              "supported": true,
+              "reason": "Ngữ cảnh [10] nêu rõ tuyển sinh: Ms. Phương Thảo — 0388.339.478."
+            },
+            {
+              "claim": "Email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn.",
+              "supported": true,
+              "reason": "Ngữ cảnh [10] nêu rõ email liên hệ tuyển sinh là AIthucchien@vinuni.edu.vn."
+            }
+          ],
+          "supported": 4,
+          "total": 4
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 0.0,
+        "detail": {
+          "reason": "Câu trả lời né tránh việc trả lời cấu hình máy tính và yêu cầu liên hệ tuyển sinh, không đi thẳng vào trọng tâm câu hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 0.0,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "CPU Intel Core i7 hoặc Apple M2 trở lên",
+            "RAM tối thiểu 16GB",
+            "Ổ cứng ít nhất 256GB SSD",
+            "Hệ điều hành Windows 10/11, macOS hoặc Linux",
+            "Kết nối mạng ổn định"
+          ],
+          "reason": "Câu trả lời của người dùng từ chối trả lời và hướng dẫn liên hệ tuyển sinh, hoàn toàn không cung cấp thông tin về cấu hình máy tính theo đáp án chuẩn."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N06",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Học viên được chấm điểm dựa trên điểm bài thực hành labs.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm bài thực hành labs hàng ngày (tuần 1-6)'."
+            },
+            {
+              "claim": "Học viên được chấm điểm dựa trên điểm dự án build.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm quá trình và kết quả dự án #build (tuần 1-6)'."
+            },
+            {
+              "claim": "Học viên được chấm điểm dựa trên điểm thi giữa kỳ.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm thi giữa kỳ (ở tuần thứ 6)'."
+            },
+            {
+              "claim": "Học viên được chấm điểm dựa trên điểm thực chiến tại doanh nghiệp.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm quá trình thực chiến tại doanh nghiệp'."
+            },
+            {
+              "claim": "Học viên được chấm điểm dựa trên điểm chuyên cần cùng thái độ.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu rõ học viên sẽ được đánh giá dựa trên 'Điểm chuyên cần và thái độ'."
+            }
+          ],
+          "supported": 5,
+          "total": 5
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã liệt kê đầy đủ và trực tiếp các thành phần dùng để chấm điểm cho học viên theo đúng trọng tâm của câu hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 1.0,
+        "detail": {
+          "wrong": [],
+          "missing": [],
+          "reason": "Câu trả lời đã nêu đầy đủ các thành phần chấm điểm theo đúng ý của đáp án chuẩn (điểm thực hành lab, điểm dự án #build, điểm thi giữa kỳ, điểm thực chiến tại doanh nghiệp, điểm chuyên cần và thái độ), chỉ lược bỏ các chi tiết phụ về thời gian (tuần 1-6) nhưng vẫn đảm bảo đúng nội dung cốt lõi."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N07",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Quy trình tuyển sinh gồm 2 vòng.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ quy trình tuyển sinh gồm: Vòng 1 – Xét hồ sơ trực tuyến và Vòng 2 – Đánh giá năng lực đầu vào."
+            },
+            {
+              "claim": "Vòng 1 của quy trình tuyển sinh là xét hồ sơ trực tuyến.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ: 'Vòng 1 – Xét hồ sơ trực tuyến'."
+            },
+            {
+              "claim": "Vòng 2 của quy trình tuyển sinh là đánh giá năng lực đầu vào.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] nêu rõ: 'Vòng 2 – Đánh giá năng lực đầu vào'."
+            }
+          ],
+          "supported": 3,
+          "total": 3
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã nêu rõ số vòng của quy trình tuyển sinh (2 vòng) và liệt kê tên các vòng đó, đáp ứng đúng trọng tâm câu hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 0.6,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Chi tiết vòng 1 (CV, thông tin nền tảng học thuật – kỹ thuật, hồ sơ năng lực nếu có)",
+            "Chi tiết vòng 2 (tư duy logic, lập trình và dữ liệu cơ bản, xử lý tình huống thực tiễn)",
+            "Hành động sau đó (xếp lớp theo trình độ và phân công dự án)"
+          ],
+          "reason": "Câu trả lời nêu đúng số vòng (2 vòng) và tên cơ bản của 2 vòng, nhưng thiếu toàn bộ các chi tiết cụ thể bên trong của từng vòng và bước xử lý sau tuyển sinh."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N08",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Hồ sơ đăng ký cần nộp bao gồm CV.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ: 'Hồ sơ đăng ký: CV, thông tin nền tảng học thuật – kỹ thuật, portfolio (nếu có).'"
+            },
+            {
+              "claim": "Hồ sơ đăng ký cần nộp bao gồm thông tin nền tảng học thuật – kỹ thuật.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ: 'Hồ sơ đăng ký: CV, thông tin nền tảng học thuật – kỹ thuật, portfolio (nếu có).'"
+            },
+            {
+              "claim": "Hồ sơ đăng ký cần nộp bao gồm portfolio nếu có.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ: 'Hồ sơ đăng ký: CV, thông tin nền tảng học thuật – kỹ thuật, portfolio (nếu có).'"
+            },
+            {
+              "claim": "Hình thức nộp hồ sơ là trực tuyến qua link https://forms.gle/NoUJQc7Ei5CtYVKJ8.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu rõ: 'Hình thức nộp hồ sơ: Trực tuyến (online)' và 'Link đăng ký tuyển sinh: [Tại đây](https://forms.gle/NoUJQc7Ei5CtYVKJ8)'."
+            }
+          ],
+          "supported": 4,
+          "total": 4
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã nêu rõ các thành phần cần có trong hồ sơ đăng ký (CV, thông tin nền tảng học thuật – kỹ thuật, portfolio), đi thẳng vào trọng tâm câu hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 1.0,
+        "detail": {
+          "wrong": [],
+          "missing": [],
+          "reason": "Câu trả lời đã nêu đầy đủ các thành phần của hồ sơ đăng ký (CV, thông tin nền tảng học thuật – kỹ thuật, portfolio nếu có) và hình thức nộp (trực tuyến) giống với đáp án chuẩn. Việc bổ sung thêm link đăng ký không làm sai lệch thông tin."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N09",
+      "faithfulness": {
+        "score": 0.6666666666666666,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Chương trình thực chiến có các doanh nghiệp tham gia chủ yếu là các công ty công nghệ trực thuộc Tập đoàn Vingroup.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu rõ: 'các doanh nghiệp tham gia giai đoạn thực chiến chủ yếu là các công ty công nghệ trực thuộc Tập đoàn Vingroup'."
+            },
+            {
+              "claim": "Các công ty công nghệ trực thuộc Tập đoàn Vingroup tham gia chương trình thực chiến bao gồm VinSmartFuture, VinSOC, VinRobotics, VinMotion, và VinDynamics.",
+              "supported": true,
+              "reason": "Ngữ cảnh [3] nêu rõ: 'bao gồm: VinSmartFuture, VinSOC, VinRobotics, VinMotion, VinDynamics, v.v.'"
+            },
+            {
+              "claim": "Không có thông tin cụ thể về tất cả các công ty tham gia và địa điểm thực chiến.",
+              "supported": false,
+              "reason": "Ngữ cảnh có cung cấp thông tin về một số công ty tham gia và địa điểm thực chiến (như Hà Nội, TP. Hồ Chí Minh và các công ty thuộc Vingroup), do đó mệnh đề này mâu thuẫn với ngữ cảnh."
+            }
+          ],
+          "supported": 2,
+          "total": 3
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã nêu trực tiếp các công ty tham gia chương trình thực chiến (VinSmartFuture, VinSOC, VinRobotics, VinMotion, VinDynamics, v.v.), đúng với trọng tâm câu hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 0.8,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "Cơ sở ở cả Hà Nội và TP. Hồ Chí Minh",
+            "Danh sách thực tế thay đổi theo từng đợt và cần được ban tổ chức xác nhận"
+          ],
+          "reason": "Câu trả lời nêu đúng các công ty thuộc Tập đoàn Vingroup, nhưng thiếu thông tin về địa điểm (Hà Nội, TP.HCM) và việc danh sách thay đổi theo từng đợt cần ban tổ chức xác nhận."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N10",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Học phần nền tảng được tổ chức tại Trường Đại học VinUni.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] và [2] đều nêu rõ phần/học phần nền tảng được tổ chức tại Trường Đại học VinUni."
+            },
+            {
+              "claim": "Trường Đại học VinUni nằm ở Khu đô thị Vinhomes Ocean Park.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu: 'Trường Đại học VinUni, Khu đô thị Vinhomes Ocean Park'."
+            },
+            {
+              "claim": "Khu đô thị Vinhomes Ocean Park thuộc xã Gia Lâm, Hà Nội.",
+              "supported": true,
+              "reason": "Ngữ cảnh [2] nêu: 'Khu đô thị Vinhomes Ocean Park, xã Gia Lâm, Hà Nội'."
+            }
+          ],
+          "supported": 3,
+          "total": 3
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã nêu chính xác địa chỉ tổ chức học phần nền tảng đúng như trọng tâm câu hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 1.0,
+        "detail": {
+          "wrong": [],
+          "missing": [],
+          "reason": "Câu trả lời cung cấp đầy đủ thông tin về địa điểm học (Trường Đại học VinUni, Khu đô thị Vinhomes Ocean Park, Gia Lâm, Hà Nội) hoàn toàn trùng khớp với đáp án chuẩn, việc thêm từ 'xã' trước 'Gia Lâm' không làm sai lệch bản chất địa điểm."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N11",
+      "faithfulness": {
+        "score": 0.5,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Chương trình học kéo dài 12 tuần.",
+              "supported": true,
+              "reason": "Ngữ cảnh [4] nêu rõ: 'Chương trình được thiết kế trong 12 tuần'."
+            },
+            {
+              "claim": "Chương trình học kéo dài 3 tháng.",
+              "supported": false,
+              "reason": "Ngữ cảnh nói chương trình kéo dài 12 tuần, không nhắc trực tiếp đến việc kéo dài 3 tháng."
+            }
+          ],
+          "supported": 1,
+          "total": 2
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời trực tiếp đúng vào thời gian học (3 tháng) được hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 1.0,
+        "detail": {
+          "wrong": [],
+          "missing": [],
+          "reason": "Câu trả lời hoàn toàn trùng khớp về mặt nội dung với đáp án chuẩn (12 tuần, khoảng 3 tháng)."
+        },
+        "error": "",
+        "cached": false
+      }
+    },
+    {
+      "id": "N12",
+      "faithfulness": {
+        "score": 1.0,
+        "detail": {
+          "claims": [
+            {
+              "claim": "Điều kiện để được công nhận hoàn thành chương trình bao gồm đạt điểm tổng kết tối thiểu.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] quy định điều kiện đạt là 'Đạt điểm tổng kết từ mức đạt (Pass) trở lên'."
+            },
+            {
+              "claim": "Điều kiện để được công nhận hoàn thành chương trình bao gồm hoàn thành các thành phần đánh giá.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] quy định điều kiện đạt là 'Hoàn thành đầy đủ các thành phần đánh giá bắt buộc'."
+            },
+            {
+              "claim": "Điều kiện để được công nhận hoàn thành chương trình bao gồm tham gia đủ thời gian.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] quy định điều kiện đạt là 'Tham gia chương trình đủ thời lượng tối thiểu theo quy định'."
+            },
+            {
+              "claim": "Điều kiện để được công nhận hoàn thành chương trình bao gồm không vi phạm quy định.",
+              "supported": true,
+              "reason": "Ngữ cảnh [1] quy định điều kiện đạt là 'Không vi phạm nghiêm trọng các quy định về học thuật, kỷ luật hoặc đạo đức nghề nghiệp'."
+            }
+          ],
+          "supported": 4,
+          "total": 4
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_relevancy": {
+        "score": 1.0,
+        "detail": {
+          "reason": "Câu trả lời đã đi thẳng vào trọng tâm, nêu rõ các điều kiện để được công nhận hoàn thành chương trình theo đúng câu hỏi."
+        },
+        "error": "",
+        "cached": false
+      },
+      "answer_correctness": {
+        "score": 0.8,
+        "detail": {
+          "wrong": [],
+          "missing": [
+            "chi tiết về mức điểm tổng kết (Pass)",
+            "chi tiết về các thành phần đánh giá bắt buộc",
+            "chi tiết về thời lượng tối thiểu",
+            "chi tiết về vi phạm nghiêm trọng (học thuật, kỷ luật hoặc đạo đức nghề nghiệp)"
+          ],
+          "reason": "Câu trả lời đã nêu đủ các ý chính theo đáp án chuẩn nhưng diễn đạt quá ngắn gọn, thiếu các định lượng và chi tiết cụ thể (Pass, bắt buộc, tối thiểu, loại vi phạm)."
+        },
+        "error": "",
+        "cached": false
+      }
+    }
+  ]
+}
