@@ -21,12 +21,20 @@ class Chunk:
 class Retriever(Protocol):
     def retrieve(self, query: str, k: int = 5) -> list[Chunk]: ...
 
+    def get_chunk(self, chunk_id: str) -> Chunk | None:
+        """Tra ngược chunk đã thấy ở lượt trước theo id — tool `attach_source_link`
+        chỉ biết id do model trả về, không biết nội dung/nguồn gốc chunk."""
+        ...
+
 
 class NullRetriever:
     """Mặc định khi Chatbot không được cấp retriever — prompt tự bỏ mục Ngữ cảnh."""
 
     def retrieve(self, query: str, k: int = 5) -> list[Chunk]:
         return []
+
+    def get_chunk(self, chunk_id: str) -> Chunk | None:
+        return None
 
 
 @dataclass(frozen=True)

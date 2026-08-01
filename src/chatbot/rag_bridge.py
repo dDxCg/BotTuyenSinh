@@ -103,6 +103,9 @@ class ChromaRetriever:
         self.chunk_by_id.update({c.metadata["chunk_id"]: c for c in chunks if c.metadata.get("chunk_id")})
         return chunks
 
+    def get_chunk(self, chunk_id: str) -> Chunk | None:
+        return self.chunk_by_id.get(chunk_id)
+
     def best_score(self) -> float:
         results = self.last_payload.get("results") or []
         return float(results[0].get("cosine_similarity", 0.0)) if results else 0.0

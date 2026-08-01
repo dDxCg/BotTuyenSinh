@@ -1,4 +1,4 @@
-"""CLI chat với agent tư vấn tuyển sinh — RAG thật + 2 tool thật.
+"""CLI chat với agent tư vấn tuyển sinh — LangGraph, RAG thật + 2 tool thật (native tool-calling).
 
     uv run python -m src.chatbot [--trace] [--max-steps N] [--top-k K]
 
@@ -9,29 +9,38 @@ Cần: `.env` có OPENAI_API, model E5-large local, và ChromaDB đã embedding
 import argparse
 import sys
 import time
+import uuid
 
-from .admission_agent import build_admission_agent
-from .react import ReActAgent, ReActResult
+from langchain_core.messages import AIMessage, ToolMessage
+from langgraph.checkpoint.memory import InMemorySaver
+
+from .agent_tools import build_registry
+from .config import Settings
+from .graph import GraphState, build_graph, run_graph
+from .rag_bridge import ChromaRetriever
 
 HELP = "Gõ 'exit' để thoát, 'reset' để xoá lịch sử, 'stats' để xem số lượt embedding."
 
 
-def print_trace(agent: ReActAgent, result: ReActResult, elapsed: float) -> None:
-    retriever = agent.bot.retriever
+def print_trace(state: GraphState, elapsed: float, retriever: ChromaRetriever) -> None:
     cache = ""
     if hasattr(retriever, "cache_hits"):
         cache = f" · embedding {retriever.cache_misses} miss / {retriever.cache_hits} hit"
-    print(f"  {elapsed:.1f}s · {len(result.retrieved)} chunk{cache}")
+    print(f"  {elapsed:.1f}s · {len(state['retrieved'])} chunk{cache}")
 
-    for chunk in result.retrieved:
+    for chunk in state["retrieved"]:
         source_type = chunk.metadata.get("source_type", "?")
         print(f"      [{chunk.score:.3f}] {chunk.source} ({source_type})")
 
-    for index, step in enumerate(result.steps, 1):
-        print(f"  [{index}] Thought: {step.thought}")
-        if step.action:
-            print(f"      Action: {step.action} {step.action_input}")
-            print(f"      Observation: {step.observation[:300]}")
+    name_by_call_id: dict[str, str] = {}
+    for message in state["messages"]:
+        if isinstance(message, AIMessage):
+            for call in message.tool_calls or []:
+                name_by_call_id[call["id"]] = call["name"]
+                print(f"      Action: {call['name']} {call['args']}")
+        elif isinstance(message, ToolMessage):
+            name = name_by_call_id.get(message.tool_call_id, "?")
+            print(f"      Observation [{name}]: {message.content[:300]}")
 
 
 def main() -> None:
@@ -40,21 +49,26 @@ def main() -> None:
         sys.stdout.reconfigure(encoding="utf-8")
 
     parser = argparse.ArgumentParser(prog="chatbot")
-    parser.add_argument("--trace", action="store_true", help="in Thought/Action/Observation")
-    parser.add_argument("--max-steps", type=int, default=6)
+    parser.add_argument("--trace", action="store_true", help="in tool call/observation")
+    parser.add_argument("--max-steps", type=int, default=6, help="giới hạn số vòng agent<->tools")
     parser.add_argument("--top-k", type=int, default=5, help="số chunk mỗi lần truy xuất")
     args = parser.parse_args()
 
     try:
-        agent = build_admission_agent(max_steps=args.max_steps, top_k=args.top_k)
+        settings = Settings.from_env()
     except RuntimeError as exc:  # thiếu cấu hình .env
         print(f"Lỗi cấu hình: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc
 
-    bot = agent.bot
-    print(f"{bot.settings.model} @ {bot.settings.base_url}")
-    print(f"Tool: {', '.join(agent.registry.names())}")
+    retriever = ChromaRetriever()
+    graph = build_graph(settings=settings, retriever=retriever, top_k=args.top_k, checkpointer=InMemorySaver())
+    tool_names = ", ".join(build_registry(retriever).names())
+
+    print(f"{settings.model} @ {settings.base_url}")
+    print(f"Tool: {tool_names}")
     print(f"{HELP}\n")
+
+    thread_id = str(uuid.uuid4())
 
     while True:
         try:
@@ -67,11 +81,10 @@ def main() -> None:
         if user in {"exit", "quit"}:
             break
         if user == "reset":
-            agent.reset()
+            thread_id = str(uuid.uuid4())  # thread mới = checkpoint cũ không còn được tham chiếu tới
             print("Đã xoá lịch sử.\n")
             continue
         if user == "stats":
-            retriever = agent.bot.retriever
             print(
                 f"Embedding local: {retriever.cache_misses} lượt encode, "
                 f"{retriever.cache_hits} lượt dùng cache.\n"
@@ -80,8 +93,8 @@ def main() -> None:
 
         started = time.perf_counter()
         try:
-            result = agent.run(user)
-        except Exception as exc:  # lỗi mạng/ChromaDB không được làm chết phiên chat
+            state = run_graph(graph, user, thread_id=thread_id, recursion_limit=args.max_steps * 2 + 8)
+        except Exception as exc:  # lỗi mạng/ChromaDB/vượt giới hạn vòng lặp không được làm chết phiên chat
             print(f"Lỗi: {type(exc).__name__}: {exc}")
             print(
                 "Kiểm tra: model local đã tải chưa (`python -m src.rag.download_model`) "
@@ -91,10 +104,8 @@ def main() -> None:
         elapsed = time.perf_counter() - started
 
         if args.trace:
-            print_trace(agent, result, elapsed)
-        if result.stopped_early:
-            print("  (hết số bước cho phép)")
-        print(f"Bot: {result.answer}\n")
+            print_trace(state, elapsed, retriever)
+        print(f"Bot: {state['final_answer']}\n")
 
 
 if __name__ == "__main__":

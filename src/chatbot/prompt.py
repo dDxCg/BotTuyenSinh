@@ -25,6 +25,12 @@ class ToolSignature:
     signature: str
 
 
+def render_admission_policy(threshold: float = 0.7) -> str:
+    """Chính sách domain (khi nào bắt buộc gọi `contact_support`), nội dung ở
+    `prompts/admission_policy.md` — tách khỏi code để sửa chính sách không cần đụng .py."""
+    return _env.get_template("admission_policy.md").render(threshold=threshold)
+
+
 def render_system_prompt(
     tool_signatures: Sequence[Any] | None = None,
     retrieved: Sequence[Any] | None = None,

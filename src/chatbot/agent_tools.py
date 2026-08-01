@@ -8,8 +8,7 @@ kết quả retrieval gần nhất.
 Chunk đến từ RAG đổ sẵn vào system prompt (`prefetch_rag`), không qua tool.
 """
 
-from .rag_bridge import ChromaRetriever
-from .types import Tool, ToolRegistry
+from .types import Retriever, Tool, ToolRegistry
 
 try:  # chạy dạng `src.chatbot` (test) hoặc `chatbot` với src trên sys.path (team)
     from ..tools.attach_source_link import ChunkRef, attach_source_link
@@ -19,7 +18,7 @@ except ImportError:  # pragma: no cover - phụ thuộc cách nạp package
     from tools.contact_support import contact_support  # type: ignore[no-redef]
 
 
-def make_attach_source_link(retriever: ChromaRetriever) -> Tool:
+def make_attach_source_link(retriever: Retriever) -> Tool:
     def attach_source_link_tool(chunk_ids: list[str] | str) -> str:
         if isinstance(chunk_ids, str):  # model hay truyền một id trần
             chunk_ids = [chunk_ids]
@@ -27,7 +26,7 @@ def make_attach_source_link(retriever: ChromaRetriever) -> Tool:
         refs: list[ChunkRef] = []
         unknown: list[str] = []
         for chunk_id in chunk_ids:
-            chunk = retriever.chunk_by_id.get(chunk_id)
+            chunk = retriever.get_chunk(chunk_id)
             source_url = (chunk.metadata.get("source_link") or "") if chunk else ""
             source_type = (chunk.metadata.get("source_type") or "") if chunk else ""
             if not chunk or not source_url or not source_type:
@@ -91,7 +90,7 @@ def make_contact_support() -> Tool:
     )
 
 
-def build_registry(retriever: ChromaRetriever) -> ToolRegistry:
+def build_registry(retriever: Retriever) -> ToolRegistry:
     """Bộ tool đầy đủ của agent tư vấn tuyển sinh."""
     return ToolRegistry(
         [

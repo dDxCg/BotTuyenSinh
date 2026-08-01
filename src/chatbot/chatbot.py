@@ -79,6 +79,20 @@ class Chatbot:
         )
         return response.choices[0].message.content or ""
 
+    def complete_with_tools(self, messages: list[dict[str, Any]], tools: list[dict[str, Any]]) -> Any:
+        """Một lượt gọi model với native function-calling (`tools=`).
+
+        Trả nguyên `ChatCompletionMessage` (có `.content` và `.tool_calls`) —
+        dùng bởi `src/chatbot/graph.py`, thay cho regex ReAct parsing."""
+        response = self.client.chat.completions.create(
+            model=self.settings.model,
+            messages=messages,
+            tools=tools or None,
+            temperature=self.settings.temperature,
+            max_tokens=self.settings.max_tokens,
+        )
+        return response.choices[0].message
+
     def chat(self, user_message: str) -> str:
         reply = self.complete(self._messages(user_message))
         self.remember(user_message, reply)
