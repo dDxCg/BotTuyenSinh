@@ -1,6 +1,6 @@
 """Lớp lọc rẻ/nhanh trước khi retrieval: chặn câu hỏi ngoài phạm vi hoặc nhạy cảm bằng regex.
 
-Tách khỏi `demo_service.py` để dùng chung giữa luồng demo cũ và graph mới
+Tách khỏi `service.py` để dùng chung giữa luồng service cũ và graph mới
 (`src/chatbot/graph.py`) — một chỗ duy nhất, không nhân bản logic lần 3.
 """
 

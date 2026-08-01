@@ -3,7 +3,7 @@
 Thay cho:
 - `admission_agent.build_admission_agent()` + `react.py`: ReAct vòng lặp tự viết,
   regex-parse `Thought:`/`Action:`/`Final Answer:`.
-- `demo_service.DemoService.chat()`: regex-gate + 1 lượt gọi LLM không tool-calling,
+- `service.Service.chat()`: regex-gate + 1 lượt gọi LLM không tool-calling,
   dùng thật ở production nhưng khác hoàn toàn luồng ReAct.
 
 Graph:
@@ -239,7 +239,7 @@ def build_graph(
     checkpointer: Any = None,
 ) -> Any:
     """Graph hợp nhất, thay cho `build_admission_agent()` (ReAct) và
-    `DemoService.chat()` (regex-gate + single-shot).
+    `Service.chat()` (regex-gate + single-shot).
 
     `llm_call`/`retriever` cho phép tiêm fake trong test — không cần OpenAI/Chroma thật.
     """

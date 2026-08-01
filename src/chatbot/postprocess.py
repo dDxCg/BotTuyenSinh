@@ -1,6 +1,6 @@
 """Xử lý sau khi có câu trả lời thô từ LLM: ưu tiên nguồn, đính link, dọn câu trả lời.
 
-Tách khỏi `demo_service.py` để dùng chung giữa luồng demo cũ và graph mới
+Tách khỏi `service.py` để dùng chung giữa luồng service cũ và graph mới
 (`src/chatbot/graph.py`) — một chỗ duy nhất, không nhân bản logic lần 3.
 """
 
@@ -42,7 +42,11 @@ def _contact_markdown(reason: str, question: str) -> str:
 
 
 def _source_type(chunk: Chunk) -> str:
-    return "community_facebook" if chunk.metadata.get("loai_nguon") == "facebook" else "official_web"
+    """Đọc lại `source_type` đã tính 1 lần duy nhất ở `rag_bridge.payload_to_chunks()`
+    (map `loai_nguon` -> `source_type`) — không tính lại ở đây để tránh 2 nơi định
+    nghĩa cùng 1 mapping (từng là bug: `rag_bridge.SOURCE_TYPE_BY_LOAI_NGUON` và
+    ternary riêng ở đây có thể lệch nhau khi thêm loại nguồn mới)."""
+    return str(chunk.metadata.get("source_type") or "official_web")
 
 
 def _prioritize_sources(chunks: list[Chunk]) -> list[Chunk]:

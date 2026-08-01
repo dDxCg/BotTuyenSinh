@@ -10,10 +10,13 @@ import unicodedata
 from collections import OrderedDict
 from typing import Any, Callable
 
+from src.rag.settings import RagSettings
+
 from .types import Chunk
 
 # Ngưỡng chốt trong docs/design-agent-tools.md §4: dưới mức này coi là không có căn cứ.
-NO_GROUNDING_THRESHOLD = 0.7
+# Nguồn sự thật duy nhất — `src/tools/contact_support.py` import lại từ đây, không tự định nghĩa.
+NO_GROUNDING_THRESHOLD = RagSettings.from_env().no_grounding_threshold
 
 # docs/rag-system.md §5.1 dùng `loai_nguon`; tool dùng `source_type`.
 SOURCE_TYPE_BY_LOAI_NGUON = {

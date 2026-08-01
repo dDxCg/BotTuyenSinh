@@ -1,4 +1,4 @@
-"""Regex guardrail — dùng chung giữa DemoService (cũ) và graph (mới)."""
+"""Regex guardrail — dùng chung giữa Service (cũ) và graph (mới)."""
 
 import pytest
 

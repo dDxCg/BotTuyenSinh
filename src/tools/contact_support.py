@@ -6,10 +6,14 @@ Thiết kế: docs/design-agent-tools.md §2.
 from dataclasses import dataclass, field
 from typing import Literal
 
+from src.rag.settings import RagSettings
+
 Reason = Literal["no_grounding", "out_of_scope", "conflicting_sources", "personal_data_request"]
 
 # Similarity score dưới ngưỡng này coi là "không có căn cứ" — chốt cùng team 2026-07-30.
-NO_GROUNDING_THRESHOLD = 0.7
+# Nguồn sự thật duy nhất ở `src/rag/settings.py`; `src/chatbot/rag_bridge.py` import lại từ đó
+# (không import thẳng từ đây để tránh 2 package tools/chatbot phụ thuộc chéo nhau).
+NO_GROUNDING_THRESHOLD = RagSettings.from_env().no_grounding_threshold
 
 # Nguồn: data/web/_clean/thong-tin-tuyen-sinh-chuong-trinh-dao-tao-nhan-tai-ai-thuc-chien-khoa-co-ban.md
 CONTACT_CHANNELS = {

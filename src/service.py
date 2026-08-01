@@ -24,7 +24,7 @@ from src.tools.contact_support import NO_GROUNDING_THRESHOLD
 
 
 @dataclass(frozen=True)
-class DemoReply:
+class Reply:
     answer: str
     sources: list[dict]
     suggestions: list[str]
@@ -33,7 +33,7 @@ class DemoReply:
     path: str
 
 
-class DemoService:
+class Service:
     def __init__(
         self,
         retriever: Retriever | None = None,
@@ -60,7 +60,7 @@ class DemoService:
                 self._locks[session_id] = threading.Lock()
             return bot, self._locks[session_id]
 
-    def chat(self, session_id: str, question: str) -> DemoReply:
+    def chat(self, session_id: str, question: str) -> Reply:
         question = question.strip()
         if not question:
             raise ValueError("Câu hỏi không được để trống")
@@ -71,7 +71,7 @@ class DemoService:
             if restricted_reason:
                 if restricted_reason == "unrelated":
                     bot.remember(question, UNRELATED_REPLY)
-                    return DemoReply(
+                    return Reply(
                         UNRELATED_REPLY,
                         [],
                         DEFAULT_SUGGESTIONS,
@@ -81,7 +81,7 @@ class DemoService:
                     )
                 answer = _contact_markdown(restricted_reason, question)
                 bot.remember(question, answer)
-                return DemoReply(
+                return Reply(
                     answer, [], DEFAULT_SUGGESTIONS, False, None, "contact_support"
                 )
 
@@ -91,14 +91,14 @@ class DemoService:
             if not chunks or top_score is None or top_score < NO_GROUNDING_THRESHOLD:
                 answer = _contact_markdown("no_grounding", question)
                 bot.remember(question, answer)
-                return DemoReply(
+                return Reply(
                     answer, [], DEFAULT_SUGGESTIONS, False, top_score, "contact_support"
                 )
 
             answer = bot.chat_with_retrieved(question, chunks)
             answer = _clean_answer(answer)
             if _is_refusal_answer(answer):
-                return DemoReply(
+                return Reply(
                     answer=answer,
                     sources=[],
                     suggestions=DEFAULT_SUGGESTIONS,
@@ -107,7 +107,7 @@ class DemoService:
                     path="out_of_scope",
                 )
             cited_chunks = _cited_chunks(answer, chunks)
-            return DemoReply(
+            return Reply(
                 answer=answer,
                 sources=_attachments(cited_chunks),
                 suggestions=DEFAULT_SUGGESTIONS,
@@ -122,8 +122,8 @@ class DemoService:
             self._locks.pop(session_id, None)
 
 
-def reply_dict(reply: DemoReply) -> dict:
+def reply_dict(reply: Reply) -> dict:
     return asdict(reply)
 
 
-__all__ = ["DemoReply", "DemoService", "classify_restricted", "reply_dict"]
+__all__ = ["Reply", "Service", "classify_restricted", "reply_dict"]
