@@ -18,7 +18,7 @@ from src.chatbot.postprocess import (
     _is_refusal_answer,
     _prioritize_sources,
 )
-from src.chatbot.rag_bridge import ChromaRetriever
+from src.chatbot.rag_bridge import PgVectorRetriever
 from src.chatbot.types import Retriever
 from src.tools.contact_support import NO_GROUNDING_THRESHOLD
 
@@ -40,7 +40,7 @@ class Service:
         settings: Settings | None = None,
         bot_factory: Callable[[], Chatbot] | None = None,
     ) -> None:
-        self.retriever = retriever or ChromaRetriever()
+        self.retriever = retriever or PgVectorRetriever()
         self.settings = settings
         self.bot_factory = bot_factory
         self._sessions: dict[str, Chatbot] = {}

@@ -1,4 +1,4 @@
-"""Nối `src/rag/retrieval.py` (ChromaDB) vào contract `Retriever` của chatbot.
+"""Nối `src/rag/pg_retrieval.py` (pgvector/Neon) vào contract `Retriever` của chatbot.
 
 `retrieval.retrieve()` trả JSON theo docs/rag-system.md §8.2. Lớp này đổi nó
 thành `Chunk`, giữ nguyên `chunk_id` + `source_link` + `loai_nguon` trong
@@ -26,9 +26,9 @@ SOURCE_TYPE_BY_LOAI_NGUON = {
 
 
 def _load_retrieve() -> Callable[..., dict[str, Any]]:
-    """Import muộn để chỉ nạp Chroma và model local khi thật sự retrieval."""
+    """Import muộn để chỉ nạp Postgres/model embedding khi thật sự retrieval."""
 
-    from src.rag.retrieval import retrieve
+    from src.rag.pg_retrieval import retrieve
 
     return retrieve
 
@@ -58,8 +58,8 @@ def cache_key(query: str, k: int) -> tuple[str, int]:
     return re.sub(r"[\s\W_]+", " ", text).strip(), k
 
 
-class ChromaRetriever:
-    """Retriever thật, đọc ChromaDB đã embedding sẵn.
+class PgVectorRetriever:
+    """Retriever thật, đọc Postgres/pgvector (Neon) đã embedding sẵn.
 
     Nhớ kết quả lượt gần nhất (`chunk_by_id`) để `attach_source_link` đổi
     `chunk_ids` do model đưa thành nguồn — model chỉ biết id, không biết URL.

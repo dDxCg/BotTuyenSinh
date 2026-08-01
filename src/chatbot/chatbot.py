@@ -3,7 +3,7 @@
 from collections.abc import Iterator, Sequence
 from typing import Any
 
-from openai import OpenAI
+from src.llm_client import chat_client
 
 from .config import Settings
 from .prompt import ToolSignature, render_system_prompt
@@ -26,11 +26,11 @@ class Chatbot:
         self.context = context
         self.top_k = top_k
         self.grounding_threshold = grounding_threshold
-        self.client = OpenAI(
-            api_key=self.settings.api_key,
-            base_url=self.settings.base_url,
-            timeout=self.settings.timeout_seconds,
-            max_retries=self.settings.max_retries,
+        self.client = chat_client(
+            self.settings.api_key,
+            self.settings.base_url,
+            self.settings.timeout_seconds,
+            self.settings.max_retries,
         )
         self.history: list[dict[str, str]] = []
         self.last_retrieved: list[Chunk] = []

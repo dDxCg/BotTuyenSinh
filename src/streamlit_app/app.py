@@ -1,7 +1,7 @@
 """Entry point Streamlit — landing page full-screen (header + banner VinUni) + chat bubble nổi.
 
 Chạy:
-    uv run streamlit run streamlit/app.py
+    uv run streamlit run src/streamlit_app/app.py
 
 Cần backend FastAPI chạy trước (`uv run python -m src.app`), mặc định gọi tới
 http://127.0.0.1:8000 — đổi qua biến môi trường API_BASE_URL nếu backend ở nơi khác.

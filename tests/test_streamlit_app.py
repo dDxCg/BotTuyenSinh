@@ -12,7 +12,7 @@ import pytest
 from streamlit.testing.v1 import AppTest
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-STREAMLIT_APP_DIR = PROJECT_ROOT / "streamlit"
+STREAMLIT_APP_DIR = PROJECT_ROOT / "src" / "streamlit_app"
 APP_FILE = STREAMLIT_APP_DIR / "app.py"
 
 sys.path.insert(0, str(STREAMLIT_APP_DIR))

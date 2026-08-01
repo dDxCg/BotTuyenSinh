@@ -46,7 +46,7 @@ from .postprocess import (
     _prioritize_sources,
 )
 from .prompt import render_admission_policy, render_system_prompt
-from .rag_bridge import NO_GROUNDING_THRESHOLD, ChromaRetriever
+from .rag_bridge import NO_GROUNDING_THRESHOLD, PgVectorRetriever
 from .types import Chunk, Retriever, ToolRegistry
 
 try:  # chạy dạng `src.chatbot` (test) hoặc `chatbot` với src trên sys.path (team)
@@ -243,7 +243,7 @@ def build_graph(
 
     `llm_call`/`retriever` cho phép tiêm fake trong test — không cần OpenAI/Chroma thật.
     """
-    retriever = retriever or ChromaRetriever()
+    retriever = retriever or PgVectorRetriever()
     registry = build_registry(retriever)
     tools = _to_openai_tools()
     call = llm_call or _default_llm_call(Chatbot(settings=settings, retriever=retriever))

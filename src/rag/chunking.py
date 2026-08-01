@@ -1,17 +1,3 @@
-"""Chunk tài liệu Markdown theo cấu trúc để dùng cho hệ thống RAG.
-
-Mặc định script đọc:
-
-- ``data/Data_FaceBook_ckean/**/*.md``
-- ``data/web/_clean/**/*.md``
-
-và ghi kết quả dễ kiểm tra vào ``src/rag/chunks.json``.
-
-Chạy từ thư mục gốc dự án:
-
-    python src/rag/chunking.py
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -25,10 +11,8 @@ from typing import Iterable, Sequence
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_FACEBOOK_DIR = PROJECT_ROOT / "data" / "Data_FaceBook_ckean"
 DEFAULT_WEB_DIR = PROJECT_ROOT / "data" / "web" / "_clean"
-DEFAULT_OUTPUT = PROJECT_ROOT / "src" / "rag" / "chunks.json"
-FACEBOOK_DOCUMENT_NAME = "feedback_nguoi_dung_tren_Facebook"
+DEFAULT_OUTPUT = PROJECT_ROOT / "data" / "out" / "chunks.json"
 
 SOURCE_RE = re.compile(
     r"^\s*<!--\s*source\s*:\s*(?P<link>https?://\S+?)\s*-->\s*$",
@@ -375,9 +359,6 @@ def chunk_document(
     lines = text.splitlines()
     source_link = extract_source_link(lines, source_file)
     source_path = relative_source_path(source_file)
-    document_name = (
-        FACEBOOK_DOCUMENT_NAME if source_type == "facebook" else source_file.name
-    )
 
     chunks: list[dict[str, object]] = []
     document_chunk_index = 0
@@ -389,7 +370,6 @@ def chunk_document(
                 "muc_lon": section.major,
                 "muc_nho": section.minor,
                 "muc_con": section.subsection,
-                "ten_tai_lieu": document_name,
                 "source_link": source_link,
                 "loai_nguon": source_type,
                 "source_file": source_path,
@@ -419,7 +399,6 @@ def markdown_files(directory: Path) -> Iterable[Path]:
 
 
 def build_chunks(
-    facebook_dir: Path = DEFAULT_FACEBOOK_DIR,
     web_dir: Path = DEFAULT_WEB_DIR,
     max_chars: int = 1800,
 ) -> list[dict[str, object]]:
@@ -429,8 +408,6 @@ def build_chunks(
         raise ValueError("max_chars phải từ 400 trở lên")
 
     chunks: list[dict[str, object]] = []
-    for source_file in markdown_files(facebook_dir):
-        chunks.extend(chunk_document(source_file, "facebook", max_chars))
     for source_file in markdown_files(web_dir):
         chunks.extend(chunk_document(source_file, "web", max_chars))
 
@@ -466,12 +443,6 @@ def save_chunks(chunks: Sequence[dict[str, object]], output_file: Path) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Chunk dữ liệu Facebook/Web theo cấu trúc tài liệu."
-    )
-    parser.add_argument(
-        "--facebook-dir",
-        type=Path,
-        default=DEFAULT_FACEBOOK_DIR,
-        help=f"Thư mục Facebook clean (mặc định: {DEFAULT_FACEBOOK_DIR})",
     )
     parser.add_argument(
         "--web-dir",

@@ -2,8 +2,8 @@
 
     uv run python -m src.chatbot [--trace] [--max-steps N] [--top-k K]
 
-Cần: `.env` có OPENAI_API, model E5-large local, và ChromaDB đã embedding
-(`python src/rag/embedding.py`).
+Cần: `.env` có OPENAI_API, DATABASE_URL (Postgres/Neon + pgvector) đã embedding
+(`python -m src.rag.pg_store`).
 """
 
 import argparse
@@ -17,12 +17,12 @@ from langgraph.checkpoint.memory import InMemorySaver
 from .agent_tools import build_registry
 from .config import Settings
 from .graph import GraphState, build_graph, run_graph
-from .rag_bridge import ChromaRetriever
+from .rag_bridge import PgVectorRetriever
 
 HELP = "Gõ 'exit' để thoát, 'reset' để xoá lịch sử, 'stats' để xem số lượt embedding."
 
 
-def print_trace(state: GraphState, elapsed: float, retriever: ChromaRetriever) -> None:
+def print_trace(state: GraphState, elapsed: float, retriever: PgVectorRetriever) -> None:
     cache = ""
     if hasattr(retriever, "cache_hits"):
         cache = f" · embedding {retriever.cache_misses} miss / {retriever.cache_hits} hit"
@@ -60,7 +60,7 @@ def main() -> None:
         print(f"Lỗi cấu hình: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc
 
-    retriever = ChromaRetriever()
+    retriever = PgVectorRetriever()
     graph = build_graph(settings=settings, retriever=retriever, top_k=args.top_k, checkpointer=InMemorySaver())
     tool_names = ", ".join(build_registry(retriever).names())
 
@@ -86,7 +86,7 @@ def main() -> None:
             continue
         if user == "stats":
             print(
-                f"Embedding local: {retriever.cache_misses} lượt encode, "
+                f"Embedding: {retriever.cache_misses} lượt encode, "
                 f"{retriever.cache_hits} lượt dùng cache.\n"
             )
             continue
@@ -94,12 +94,9 @@ def main() -> None:
         started = time.perf_counter()
         try:
             state = run_graph(graph, user, thread_id=thread_id, recursion_limit=args.max_steps * 2 + 8)
-        except Exception as exc:  # lỗi mạng/ChromaDB/vượt giới hạn vòng lặp không được làm chết phiên chat
+        except Exception as exc:  # lỗi mạng/DB/vượt giới hạn vòng lặp không được làm chết phiên chat
             print(f"Lỗi: {type(exc).__name__}: {exc}")
-            print(
-                "Kiểm tra: model local đã tải chưa (`python -m src.rag.download_model`) "
-                "và ChromaDB đã build chưa (`python src/rag/embedding.py`).\n"
-            )
+            print("Kiểm tra: pgvector đã build chưa (`python -m src.rag.pg_store`).\n")
             continue
         elapsed = time.perf_counter() - started
 

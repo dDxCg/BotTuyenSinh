@@ -10,7 +10,6 @@ from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from src.service import Reply, Service
-from src.rag.embedding import warmup_local_model
 
 
 class ChatRequest(BaseModel):
@@ -24,9 +23,6 @@ class ResetRequest(BaseModel):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Đang nạp multilingual-e5-large từ máy local...", flush=True)
-    warmup_local_model()
-    print("Đã nạp local embedding model.", flush=True)
     app.state.service = Service()
     yield
 
@@ -54,7 +50,7 @@ def chat(request: ChatRequest, service: ServiceDep) -> Reply:
         return service.chat(request.session_id, request.message)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    except Exception as exc:  # lỗi hạ tầng (LLM/RAG) không được làm lộ stacktrace cho client
+    except Exception as exc:  
         print(f"API error: {type(exc).__name__}: {exc}", flush=True)
         raise HTTPException(
             status_code=500, detail="Chatbot đang gặp lỗi tạm thời. Vui lòng thử lại."

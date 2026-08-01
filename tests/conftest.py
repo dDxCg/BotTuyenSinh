@@ -1,4 +1,4 @@
-"""Fixtures dùng chung: fake retriever + fake LLM, không gọi Chroma/OpenAI thật."""
+"""Fixtures dùng chung: fake retriever + fake LLM, không gọi Postgres/OpenAI thật."""
 
 import json
 from dataclasses import dataclass, field
@@ -6,7 +6,7 @@ from typing import Any, Callable
 
 import pytest
 
-from src.chatbot.rag_bridge import ChromaRetriever
+from src.chatbot.rag_bridge import PgVectorRetriever
 
 
 def make_fake_payload(
@@ -16,7 +16,7 @@ def make_fake_payload(
     source_link: str = "https://vinuni.edu.vn/vi/thong-tin-tuyen-sinh-chuong-trinh-dao-tao-nhan-tai-ai-thuc-chien-khoa-co-ban/",
     loai_nguon: str = "web",
 ) -> dict[str, Any]:
-    """Payload đúng shape `src/rag/retrieval.py` trả về (docs/rag-system.md §8.2)."""
+    """Payload đúng shape `src/rag/pg_retrieval.py` trả về (docs/rag-system.md §8.2)."""
     return {
         "id": chunk_id,
         "content": content,
@@ -31,14 +31,14 @@ def make_fake_payload(
     }
 
 
-def make_fake_retriever(results: list[dict[str, Any]]) -> ChromaRetriever:
-    """`ChromaRetriever` thật, chỉ đổi nguồn dữ liệu qua `retrieve_fn` (đã hỗ trợ sẵn
-    trong `src/chatbot/rag_bridge.py` để test không cần nạp Chroma/E5 local)."""
+def make_fake_retriever(results: list[dict[str, Any]]) -> PgVectorRetriever:
+    """`PgVectorRetriever` thật, chỉ đổi nguồn dữ liệu qua `retrieve_fn` (đã hỗ trợ sẵn
+    trong `src/chatbot/rag_bridge.py` để test không cần nạp Postgres/E5 local)."""
 
     def fake_retrieve_fn(query: str, top_k: int = 5) -> dict[str, Any]:
         return {"results": results[:top_k]}
 
-    return ChromaRetriever(retrieve_fn=fake_retrieve_fn)
+    return PgVectorRetriever(retrieve_fn=fake_retrieve_fn)
 
 
 @dataclass
