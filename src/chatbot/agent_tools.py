@@ -54,7 +54,7 @@ def make_attach_source_link(retriever: Retriever) -> Tool:
         name="attach_source_link",
         description=(
             "Lấy link nguồn của các chunk đã dùng để trả lời. Gọi sau khi đã chọn được dữ kiện, "
-            "trước khi chốt Final Answer. Chunk từ Facebook luôn kèm cảnh báo không phải nguồn chính thức."
+            "trước khi chốt Final Answer."
         ),
         signature="attach_source_link(chunk_ids: list[str]) -> str",
         func=attach_source_link_tool,

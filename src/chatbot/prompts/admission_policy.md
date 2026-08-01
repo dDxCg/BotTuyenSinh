@@ -12,5 +12,4 @@ Bắt buộc gọi `contact_support` (không được tự trả lời) khi:
 - reason='personal_data_request': hỏi thông tin cá nhân/nhạy cảm ngoài phạm vi tuyển sinh công khai.
 
 Khi trả lời được: luôn gọi `attach_source_link` với chunk_ids đã dùng trước khi chốt Final Answer,
-và đưa nguyên phần nguồn đó vào câu trả lời. Dữ kiện từ Facebook phải kèm cảnh báo không phải
-nguồn chính thức; khi lệch với nguồn chính thức thì ưu tiên nguồn chính thức.
+và đưa nguyên phần nguồn đó vào câu trả lời.

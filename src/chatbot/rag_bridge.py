@@ -20,7 +20,6 @@ NO_GROUNDING_THRESHOLD = RagSettings.from_env().no_grounding_threshold
 
 # docs/rag-system.md §5.1 dùng `loai_nguon`; tool dùng `source_type`.
 SOURCE_TYPE_BY_LOAI_NGUON = {
-    "facebook": "community_facebook",
     "web": "official_web",
 }
 

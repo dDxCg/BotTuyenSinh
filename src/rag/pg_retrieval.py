@@ -18,7 +18,7 @@ try:
 except ImportError:  # pragma: no cover - chạy trực tiếp không qua package
     import embedding  # type: ignore[no-redef]
 
-from src.db_client import DbConfigError, connect, vector_literal
+from src.db_client import DBHandler, DbConfigError, vector_literal
 
 RAG_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = RAG_DIR.parents[1]
@@ -57,31 +57,25 @@ def retrieve(
     table = table_name or os.getenv("PG_TABLE", "").strip() or config.table_name
 
     vector = query_embedding(question, config)
-    conn = connect()
-    try:
-        with conn.cursor() as cur:
-            cur.execute(f"SELECT DISTINCT embedding_model FROM {table}")
-            stored_models = {row[0] for row in cur.fetchall()}
-            if not stored_models:
-                raise RetrievalError(f"Bảng '{table}' chưa có record")
-            if stored_models != {config.model}:
-                raise RetrievalError(
-                    f"Bảng '{table}' dùng model {stored_models}, nhưng cấu hình hiện "
-                    f"tại là '{config.model}'"
-                )
-
-            cur.execute(
-                f"""
-                SELECT id, content, metadata, 1 - (embedding <=> %s::vector) AS cosine_similarity
-                FROM {table}
-                ORDER BY embedding <=> %s::vector
-                LIMIT %s
-                """,
-                (vector_literal(vector), vector_literal(vector), top_k),
+    with DBHandler() as db:
+        stored_models = {row[0] for row in db.execute(f"SELECT DISTINCT embedding_model FROM {table}")}
+        if not stored_models:
+            raise RetrievalError(f"Bảng '{table}' chưa có record")
+        if stored_models != {config.model}:
+            raise RetrievalError(
+                f"Bảng '{table}' dùng model {stored_models}, nhưng cấu hình hiện "
+                f"tại là '{config.model}'"
             )
-            rows = cur.fetchall()
-    finally:
-        conn.close()
+
+        rows = db.execute(
+            f"""
+            SELECT id, content, metadata, 1 - (embedding <=> %s::vector) AS cosine_similarity
+            FROM {table}
+            ORDER BY embedding <=> %s::vector
+            LIMIT %s
+            """,
+            (vector_literal(vector), vector_literal(vector), top_k),
+        )
 
     results = [
         {

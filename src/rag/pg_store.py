@@ -17,7 +17,7 @@ try:
 except ImportError:  # pragma: no cover - chạy trực tiếp không qua package
     import embedding  # type: ignore[no-redef]
 
-from src.db_client import DbConfigError, connect, vector_literal
+from src.db_client import DBHandler, DbConfigError, vector_literal
 
 RAG_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = RAG_DIR.parents[1]
@@ -28,23 +28,22 @@ class PgStoreError(RuntimeError):
     """Lỗi schema Postgres."""
 
 
-def ensure_schema(conn, table: str, dimension: int, recreate: bool) -> None:
-    with conn.cursor() as cur:
-        cur.execute("CREATE EXTENSION IF NOT EXISTS vector")
-        if recreate:
-            cur.execute(f"DROP TABLE IF EXISTS {table}")
-        cur.execute(
-            f"""
-            CREATE TABLE IF NOT EXISTS {table} (
-                id TEXT PRIMARY KEY,
-                content TEXT NOT NULL,
-                metadata JSONB NOT NULL,
-                embedding_model TEXT NOT NULL,
-                embedding VECTOR({dimension}) NOT NULL
-            )
-            """
+def ensure_schema(db: DBHandler, table: str, dimension: int, recreate: bool) -> None:
+    db.execute("CREATE EXTENSION IF NOT EXISTS vector")
+    if recreate:
+        db.execute(f"DROP TABLE IF EXISTS {table}")
+    db.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {table} (
+            id TEXT PRIMARY KEY,
+            content TEXT NOT NULL,
+            metadata JSONB NOT NULL,
+            embedding_model TEXT NOT NULL,
+            embedding VECTOR({dimension}) NOT NULL
         )
-    conn.commit()
+        """
+    )
+    db.commit()
 
 
 def build_pgvector_database(
@@ -52,14 +51,11 @@ def build_pgvector_database(
     config: "embedding.EmbeddingConfig",
     recreate: bool = False,
 ) -> int:
-    conn = connect()
-    try:
-        ensure_schema(conn, config.table_name, config.dimension, recreate=recreate)
-        with conn.cursor() as cur:
-            cur.execute(
-                f"SELECT DISTINCT embedding_model FROM {config.table_name} LIMIT 2"
-            )
-            stored_models = {row[0] for row in cur.fetchall()}
+    with DBHandler() as db:
+        ensure_schema(db, config.table_name, config.dimension, recreate=recreate)
+
+        rows = db.execute(f"SELECT DISTINCT embedding_model FROM {config.table_name} LIMIT 2")
+        stored_models = {row[0] for row in rows}
         if stored_models and stored_models != {config.model}:
             raise PgStoreError(
                 f"Bảng '{config.table_name}' đang chứa vector model {stored_models}, "
@@ -70,34 +66,29 @@ def build_pgvector_database(
         for batch_index, batch in enumerate(embedding.batches(chunks, config.batch_size), start=1):
             documents = [str(chunk["content"]) for chunk in batch]
             vectors = embedding.embed_documents(documents, config=config)
-            with conn.cursor() as cur:
-                for chunk, vector in zip(batch, vectors):
-                    cur.execute(
-                        f"""
-                        INSERT INTO {config.table_name} (id, content, metadata, embedding_model, embedding)
-                        VALUES (%s, %s, %s, %s, %s::vector)
-                        ON CONFLICT (id) DO UPDATE SET
-                            content = EXCLUDED.content,
-                            metadata = EXCLUDED.metadata,
-                            embedding_model = EXCLUDED.embedding_model,
-                            embedding = EXCLUDED.embedding
-                        """,
-                        (
-                            str(chunk["id"]),
-                            str(chunk["content"]),
-                            json.dumps(chunk["metadata"], ensure_ascii=False),
-                            config.model,
-                            vector_literal(vector),
-                        ),
-                    )
-            conn.commit()
+            for chunk, vector in zip(batch, vectors):
+                db.execute(
+                    f"""
+                    INSERT INTO {config.table_name} (id, content, metadata, embedding_model, embedding)
+                    VALUES (%s, %s, %s, %s, %s::vector)
+                    ON CONFLICT (id) DO UPDATE SET
+                        content = EXCLUDED.content,
+                        metadata = EXCLUDED.metadata,
+                        embedding_model = EXCLUDED.embedding_model,
+                        embedding = EXCLUDED.embedding
+                    """,
+                    (
+                        str(chunk["id"]),
+                        str(chunk["content"]),
+                        json.dumps(chunk["metadata"], ensure_ascii=False),
+                        config.model,
+                        vector_literal(vector),
+                    ),
+                )
+            db.commit()
             print(f"Batch {batch_index}/{total_batches}: stored {len(batch)} chunks")
 
-        with conn.cursor() as cur:
-            cur.execute(f"SELECT COUNT(*) FROM {config.table_name}")
-            return cur.fetchone()[0]
-    finally:
-        conn.close()
+        return db.execute(f"SELECT COUNT(*) FROM {config.table_name}")[0][0]
 
 
 def parse_args() -> argparse.Namespace:

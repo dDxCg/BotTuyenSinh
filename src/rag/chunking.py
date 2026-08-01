@@ -402,7 +402,7 @@ def build_chunks(
     web_dir: Path = DEFAULT_WEB_DIR,
     max_chars: int = 1800,
 ) -> list[dict[str, object]]:
-    """Chunk toàn bộ Facebook và Web clean."""
+    """Chunk toàn bộ Web clean."""
 
     if max_chars < 400:
         raise ValueError("max_chars phải từ 400 trở lên")
@@ -442,7 +442,7 @@ def save_chunks(chunks: Sequence[dict[str, object]], output_file: Path) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Chunk dữ liệu Facebook/Web theo cấu trúc tài liệu."
+        description="Chunk dữ liệu Web theo cấu trúc tài liệu."
     )
     parser.add_argument(
         "--web-dir",
@@ -469,11 +469,7 @@ def main() -> None:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     args = parse_args()
-    chunks = build_chunks(
-        facebook_dir=args.facebook_dir,
-        web_dir=args.web_dir,
-        max_chars=args.max_chars,
-    )
+    chunks = build_chunks(web_dir=args.web_dir, max_chars=args.max_chars)
     save_chunks(chunks, args.output)
     print(f"Đã ghi {len(chunks)} chunks vào {args.output.resolve()}")
 
