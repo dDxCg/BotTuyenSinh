@@ -5,6 +5,7 @@ import uuid
 
 from langchain_core.messages import AIMessage, ToolMessage
 from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
 
 from .agent_tools import build_registry
 from .config import Settings
@@ -43,7 +44,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="chatbot")
     parser.add_argument("--trace", action="store_true", help="in tool call/observation")
     parser.add_argument("--max-steps", type=int, default=6, help="giới hạn số vòng agent<->tools")
-    parser.add_argument("--top-k", type=int, default=5, help="số chunk mỗi lần truy xuất")
+    parser.add_argument("--top-k", type=int, default=None, help="số chunk mỗi lần truy xuất (mặc định TOP_K trong .env)")
     args = parser.parse_args()
 
     try:
@@ -53,7 +54,13 @@ def main() -> None:
         raise SystemExit(1) from exc
 
     retriever = PgVectorRetriever()
-    graph = build_graph(settings=settings, retriever=retriever, top_k=args.top_k, checkpointer=InMemorySaver())
+    serde = JsonPlusSerializer(allowed_msgpack_modules=[("src.chatbot.types", "Chunk")])
+    graph = build_graph(
+        settings=settings,
+        retriever=retriever,
+        top_k=args.top_k if args.top_k is not None else settings.top_k,
+        checkpointer=InMemorySaver(serde=serde),
+    )
     tool_names = ", ".join(build_registry(retriever).names())
 
     print(f"{settings.model} @ {settings.base_url}")

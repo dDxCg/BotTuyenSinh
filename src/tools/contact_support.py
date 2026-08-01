@@ -16,7 +16,7 @@ CONTACT_CHANNELS = {
 }
 
 _REASON_MESSAGES: dict[Reason, str] = {
-    "no_grounding": "Mình chưa tìm thấy dữ kiện đủ căn cứ trong tài liệu tuyển sinh chính thức và chia sẻ cộng đồng để trả lời câu này chính xác.",
+    "no_grounding": "Mình chưa tìm thấy dữ kiện đủ căn cứ trong tài liệu tuyển sinh chính thức để trả lời câu này chính xác.",
     "out_of_scope": "Câu này nằm ngoài phạm vi mình được hỗ trợ (vd. tra cứu hồ sơ cá nhân, tư vấn nên nộp hay không) — mình không thể tự trả lời thay.",
     "conflicting_sources": "Mình tìm thấy hai dữ kiện khác nhau về việc này và không có căn cứ để chọn bên nào đúng hơn.",
     "personal_data_request": "Mình không xử lý thông tin hồ sơ/cá nhân qua kênh chat này.",
@@ -52,7 +52,7 @@ CONTACT_SUPPORT_SCHEMA = {
     "name": "contact_support",
     "description": (
         "Chuyển câu hỏi của người dùng cho nhân viên tuyển sinh khi agent không có căn cứ trong tài liệu "
-        "chính thức/cộng đồng để trả lời, hoặc câu hỏi ngoài phạm vi agent được phép trả lời "
+        "chính thức để trả lời, hoặc câu hỏi ngoài phạm vi agent được phép trả lời "
         "(vd. tra hồ sơ cá nhân, xin lời khuyên nên nộp hay không)."
     ),
     "input_schema": {

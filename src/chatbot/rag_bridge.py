@@ -11,7 +11,7 @@ from .types import Chunk
 NO_GROUNDING_THRESHOLD = RagSettings.from_env().no_grounding_threshold
 
 
-SOURCE_TYPE_BY_LOAI_NGUON = {
+SOURCE_TYPE_BY_KIND = {
     "web": "official_web",
 }
 
@@ -27,13 +27,13 @@ def payload_to_chunks(payload: dict[str, Any]) -> list[Chunk]:
     chunks: list[Chunk] = []
     for item in payload.get("results", []):
         metadata = dict(item.get("metadata") or {})
-        loai_nguon = metadata.get("loai_nguon", "")
+        source_kind = metadata.get("source_kind", "")
         metadata["chunk_id"] = item.get("id", "")
-        metadata["source_type"] = SOURCE_TYPE_BY_LOAI_NGUON.get(loai_nguon, loai_nguon)
+        metadata["source_type"] = SOURCE_TYPE_BY_KIND.get(source_kind, source_kind)
         chunks.append(
             Chunk(
                 text=item.get("content", ""),
-                source=metadata.get("ten_tai_lieu") or metadata.get("source_file", "unknown"),
+                source=metadata.get("document_name") or metadata.get("source_file", "unknown"),
                 score=float(item.get("cosine_similarity", 0.0)),
                 metadata=metadata,
             )

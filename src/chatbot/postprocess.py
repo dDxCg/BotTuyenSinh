@@ -75,14 +75,14 @@ def _attachments(chunks: list[Chunk]) -> list[dict]:
         if not attachment:
             continue
         source = {
-            "muc_lon": str(chunk.metadata.get("muc_lon") or ""),
-            "muc_nho": str(chunk.metadata.get("muc_nho") or ""),
+            "section_major": str(chunk.metadata.get("section_major") or ""),
+            "section_minor": str(chunk.metadata.get("section_minor") or ""),
             "source_link": attachment["source_url"],
             "source_type": attachment["source_type"],
             "label_hien_thi": attachment["label_hien_thi"],
             "warning": attachment.get("warning", ""),
         }
-        key = (source["muc_lon"], source["muc_nho"], source["source_link"])
+        key = (source["section_major"], source["section_minor"], source["source_link"])
         if key not in seen2:
             seen2.add(key)
             sources.append(source)

@@ -15,14 +15,14 @@ class Chatbot:
         tool_signatures: Sequence[Any] | None = None,
         retriever: Retriever | None = None,
         context: str = "",
-        top_k: int = 5,
+        top_k: int | None = None,
         grounding_threshold: float = 0.7,
     ) -> None:
         self.settings = settings or Settings.from_env()
         self.tool_signatures: list[Any] = list(tool_signatures or [])
         self.retriever: Retriever = retriever or NullRetriever()
         self.context = context
-        self.top_k = top_k
+        self.top_k = top_k if top_k is not None else self.settings.top_k
         self.grounding_threshold = grounding_threshold
         self.client = chat_client(
             self.settings.api_key,

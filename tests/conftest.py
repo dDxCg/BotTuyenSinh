@@ -14,7 +14,7 @@ def make_fake_payload(
     content: str,
     score: float,
     source_link: str = "https://vinuni.edu.vn/vi/thong-tin-tuyen-sinh-chuong-trinh-dao-tao-nhan-tai-ai-thuc-chien-khoa-co-ban/",
-    loai_nguon: str = "web",
+    source_kind: str = "web",
 ) -> dict[str, Any]:
     """Payload đúng shape `src/rag/pg_retrieval.py` trả về (docs/rag-system.md §8.2)."""
     return {
@@ -22,11 +22,11 @@ def make_fake_payload(
         "content": content,
         "cosine_similarity": score,
         "metadata": {
-            "loai_nguon": loai_nguon,
+            "source_kind": source_kind,
             "source_link": source_link,
-            "ten_tai_lieu": "Thông tin tuyển sinh",
-            "muc_lon": "Điều kiện",
-            "muc_nho": "",
+            "document_name": "Thông tin tuyển sinh",
+            "section_major": "Điều kiện",
+            "section_minor": "",
         },
     }
 

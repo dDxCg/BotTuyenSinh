@@ -233,6 +233,10 @@ def split_by_words(text: str, limit: int) -> list[str]:
     return parts
 
 
+def split_into_sentences(text: str) -> list[str]:
+    return [s.strip() for s in SENTENCE_BOUNDARY_RE.split(text) if s.strip()]
+
+
 def split_oversized_block(block: str, limit: int) -> list[str]:
 
     if len(block) <= limit:
@@ -245,11 +249,7 @@ def split_oversized_block(block: str, limit: int) -> list[str]:
             parts.extend(split_oversized_block(line, limit))
         return parts
 
-    sentences = [
-        sentence.strip()
-        for sentence in SENTENCE_BOUNDARY_RE.split(block)
-        if sentence.strip()
-    ]
+    sentences = split_into_sentences(block)
     if len(sentences) > 1:
         parts = []
         current = sentences[0]
@@ -278,6 +278,30 @@ def section_prefix(section: Section) -> str:
     )
 
 
+def pack_units_to_chunks(units: Sequence[str], prefix: str, separator: str, body_limit: int) -> list[str]:
+    """Đóng gói các đơn vị (block hoặc câu) liền kề tới `body_limit`, gắn `prefix` breadcrumb."""
+
+    chunks: list[str] = []
+    current: list[str] = []
+    current_length = 0
+
+    for unit in units:
+        added_length = len(unit) + (2 if current else 0)
+        if current and current_length + added_length > body_limit:
+            body = "\n\n".join(current)
+            chunks.append(f"{prefix}{separator}{body}".strip())
+            current = [unit]
+            current_length = len(unit)
+        else:
+            current.append(unit)
+            current_length += added_length
+
+    if current:
+        body = "\n\n".join(current)
+        chunks.append(f"{prefix}{separator}{body}".strip())
+    return chunks
+
+
 def split_section(section: Section, max_chars: int) -> list[str]:
 
     prefix = section_prefix(section)
@@ -286,26 +310,23 @@ def split_section(section: Section, max_chars: int) -> list[str]:
     blocks: list[str] = []
     for block in lines_to_blocks(section.lines):
         blocks.extend(split_oversized_block(block, body_limit))
+    return pack_units_to_chunks(blocks, prefix, separator, body_limit)
 
-    chunks: list[str] = []
-    current: list[str] = []
-    current_length = 0
 
-    for block in blocks:
-        added_length = len(block) + (2 if current else 0)
-        if current and current_length + added_length > body_limit:
-            body = "\n\n".join(current)
-            chunks.append(f"{prefix}{separator}{body}".strip())
-            current = [block]
-            current_length = len(block)
+def split_section_by_sentences(section: Section, max_chars: int) -> list[str]:
+    """Chunk theo câu thay vì theo block/paragraph — đơn vị cắt là câu."""
+
+    prefix = section_prefix(section)
+    separator = "\n\n" if prefix else ""
+    body_limit = max(200, max_chars - len(prefix) - len(separator))
+    text = "\n".join(line for line in section.lines if line.strip())
+    sentences: list[str] = []
+    for sentence in split_into_sentences(text):
+        if len(sentence) <= body_limit:
+            sentences.append(sentence)
         else:
-            current.append(block)
-            current_length += added_length
-
-    if current:
-        body = "\n\n".join(current)
-        chunks.append(f"{prefix}{separator}{body}".strip())
-    return chunks
+            sentences.extend(split_by_words(sentence, body_limit))
+    return pack_units_to_chunks(sentences, prefix, separator, body_limit)
 
 
 def relative_source_path(path: Path) -> str:
@@ -335,10 +356,28 @@ def make_chunk_id(
     return f"chunk_{digest}"
 
 
+STRATEGIES = ("structure", "sentence", "semantic")
+
+
+def split_section_dispatch(section: Section, max_chars: int, strategy: str) -> list[str]:
+    if strategy == "structure":
+        return split_section(section, max_chars)
+    if strategy == "sentence":
+        return split_section_by_sentences(section, max_chars)
+    if strategy == "semantic":
+        try:
+            from .semantic_chunking import split_section_semantic
+        except ImportError:  # pragma: no cover - chạy trực tiếp không qua package
+            from semantic_chunking import split_section_semantic  # type: ignore[no-redef]
+        return split_section_semantic(section, max_chars)
+    raise ValueError(f"strategy không hợp lệ: {strategy}, phải là 1 trong {STRATEGIES}")
+
+
 def chunk_document(
     source_file: Path,
     source_type: str,
     max_chars: int,
+    strategy: str = "structure",
 ) -> list[dict[str, object]]:
 
     text = source_file.read_text(encoding="utf-8-sig")
@@ -350,14 +389,14 @@ def chunk_document(
     document_chunk_index = 0
     for section in parse_sections(lines):
         for part_index, content in enumerate(
-            split_section(section, max_chars=max_chars), start=1
+            split_section_dispatch(section, max_chars, strategy), start=1
         ):
             metadata = {
-                "muc_lon": section.major,
-                "muc_nho": section.minor,
-                "muc_con": section.subsection,
+                "section_major": section.major,
+                "section_minor": section.minor,
+                "section_subsection": section.subsection,
                 "source_link": source_link,
-                "loai_nguon": source_type,
+                "source_kind": source_type,
                 "source_file": source_path,
                 "chunk_index": document_chunk_index,
                 "part_index": part_index,
@@ -387,14 +426,17 @@ def markdown_files(directory: Path) -> Iterable[Path]:
 def build_chunks(
     web_dir: Path = DEFAULT_WEB_DIR,
     max_chars: int = 1800,
+    strategy: str = "structure",
 ) -> list[dict[str, object]]:
 
     if max_chars < 400:
         raise ValueError("max_chars phải từ 400 trở lên")
+    if strategy not in STRATEGIES:
+        raise ValueError(f"strategy không hợp lệ: {strategy}, phải là 1 trong {STRATEGIES}")
 
     chunks: list[dict[str, object]] = []
     for source_file in markdown_files(web_dir):
-        chunks.extend(chunk_document(source_file, "web", max_chars))
+        chunks.extend(chunk_document(source_file, "web", max_chars, strategy=strategy))
 
     for global_index, chunk in enumerate(chunks):
         metadata = chunk["metadata"]
@@ -407,7 +449,7 @@ def save_chunks(chunks: Sequence[dict[str, object]], output_file: Path) -> None:
 
     document_names = sorted(
         {
-            str(chunk["metadata"]["ten_tai_lieu"])
+            str(chunk["metadata"]["source_file"])
             for chunk in chunks
             if isinstance(chunk.get("metadata"), dict)
         }
@@ -446,6 +488,12 @@ def parse_args() -> argparse.Namespace:
         default=1800,
         help="Số ký tự tối đa gần đúng cho mỗi chunk (mặc định: 1800)",
     )
+    parser.add_argument(
+        "--strategy",
+        choices=STRATEGIES,
+        default="structure",
+        help="Cách chunk: structure (mặc định), sentence, hoặc semantic",
+    )
     return parser.parse_args()
 
 
@@ -453,7 +501,7 @@ def main() -> None:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     args = parse_args()
-    chunks = build_chunks(web_dir=args.web_dir, max_chars=args.max_chars)
+    chunks = build_chunks(web_dir=args.web_dir, max_chars=args.max_chars, strategy=args.strategy)
     save_chunks(chunks, args.output)
     print(f"Đã ghi {len(chunks)} chunks vào {args.output.resolve()}")
 

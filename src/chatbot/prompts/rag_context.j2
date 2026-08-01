@@ -1,0 +1,13 @@
+## Ngữ cảnh truy xuất (RAG) cho câu hỏi hiện tại
+{% for chunk in retrieved %}
+[id={{ chunk.metadata.get("chunk_id", "?") }} | score={{ "%.3f"|format(chunk.score) }} | nguồn={{ chunk.source }} ({{ chunk.metadata.get("source_type", "?") }})]
+
+{{ chunk.text }}
+
+{% endfor %}
+{% if grounded %}
+>>> Đủ căn cứ. Trả lời bằng dữ kiện trên, rồi gọi `attach_source_link` với id của các chunk đã dùng.
+{% else %}
+>>> KHÔNG đủ căn cứ: score cao nhất {{ "%.3f"|format(best_score) }} < {{ "%.2f"|format(threshold) }}.
+Gọi `contact_support` với reason='no_grounding'. Cấm trả lời bằng kiến thức nền.
+{% endif %}

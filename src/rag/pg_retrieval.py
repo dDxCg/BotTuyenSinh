@@ -17,7 +17,7 @@ from src.db_client import DBHandler, DbConfigError, vector_literal
 RAG_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = RAG_DIR.parents[1]
 DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
-DEFAULT_TOP_K = 5
+DEFAULT_TOP_K = 3
 
 
 class RetrievalError(RuntimeError):
@@ -36,17 +36,19 @@ def query_embedding(question: str, config: "embedding.EmbeddingConfig") -> list[
 
 def retrieve(
     question: str,
-    top_k: int = DEFAULT_TOP_K,
+    top_k: int | None = None,
     env_file: Path = DEFAULT_ENV_FILE,
     table_name: str | None = None,
 ) -> dict[str, Any]:
     question = question.strip()
     if not question:
         raise RetrievalError("Câu hỏi không được để trống")
+
+    embedding.load_env_file(env_file)
+    top_k = top_k if top_k is not None else int(os.getenv("TOP_K", str(DEFAULT_TOP_K)))
     if top_k < 1:
         raise RetrievalError("top_k phải lớn hơn 0")
 
-    embedding.load_env_file(env_file)
     config = embedding.load_config(env_file)
     table = table_name or os.getenv("PG_TABLE", "").strip() or config.table_name
 
@@ -92,7 +94,7 @@ def retrieve(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Tìm top chunks qua pgvector.")
     parser.add_argument("question", nargs="?")
-    parser.add_argument("--top-k", type=int, default=DEFAULT_TOP_K)
+    parser.add_argument("--top-k", type=int, default=None, help="mặc định lấy từ TOP_K trong .env")
     parser.add_argument("--env-file", type=Path, default=DEFAULT_ENV_FILE)
     parser.add_argument("--table", default=None)
     parser.add_argument("--compact", action="store_true")

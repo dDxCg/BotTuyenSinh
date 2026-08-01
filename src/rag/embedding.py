@@ -16,10 +16,8 @@ from src.llm_client import embedding_client
 RAG_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = RAG_DIR.parents[1]
 DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
-DEFAULT_CHUNKS_FILE = RAG_DIR / "chunks.json"
-DEFAULT_TABLE_NAME = "ai_thuc_chien_chunks"
-MODEL_ID = "text-embedding-3-small"
-EMBEDDING_DIMENSION = 1536
+DEFAULT_CHUNKS_FILE = PROJECT_ROOT / "data" / "chunks.json"
+
 
 
 class EmbeddingError(RuntimeError):
@@ -73,7 +71,9 @@ def embed_texts(
     for start in range(0, len(cleaned), batch_size):
         batch = cleaned[start : start + batch_size]
         try:
-            response = client.embeddings.create(model=config.model, input=batch)
+            response = client.embeddings.create(
+                model=config.model, input=batch, dimensions=config.dimension
+            )
         except Exception as exc:
             raise EmbeddingError(f"Không tạo được embedding qua OpenAI API: {exc}") from exc
         result.extend([list(item.embedding) for item in response.data])
@@ -96,8 +96,15 @@ def load_env_file(env_file: Path = DEFAULT_ENV_FILE) -> None:
     load_dotenv(env_file, override=False)
 
 
-def positive_int_env(name: str, default: int) -> int:
-    raw_value = os.getenv(name, str(default)).strip()
+def required_str_env(name: str) -> str:
+    value = os.getenv(name, "").strip()
+    if not value:
+        raise ConfigurationError(f"Thiếu biến môi trường {name}")
+    return value
+
+
+def positive_int_env(name: str) -> int:
+    raw_value = required_str_env(name)
     try:
         value = int(raw_value)
     except ValueError as exc:
@@ -109,13 +116,11 @@ def positive_int_env(name: str, default: int) -> int:
 
 def load_config(env_file: Path = DEFAULT_ENV_FILE) -> EmbeddingConfig:
     load_env_file(env_file)
-    model = os.getenv("EMBEDDING_MODEL", MODEL_ID).strip() or MODEL_ID
-    dimension = positive_int_env("EMBEDDING_DIMENSION", EMBEDDING_DIMENSION)
     return EmbeddingConfig(
-        model=model,
-        dimension=dimension,
-        batch_size=positive_int_env("EMBEDDING_BATCH_SIZE", 8),
-        table_name=os.getenv("PG_TABLE", DEFAULT_TABLE_NAME).strip() or DEFAULT_TABLE_NAME,
+        model=required_str_env("EMBEDDING_MODEL"),
+        dimension=positive_int_env("EMBEDDING_DIMENSION"),
+        batch_size=positive_int_env("EMBEDDING_BATCH_SIZE"),
+        table_name=required_str_env("PG_TABLE"),
     )
 
 

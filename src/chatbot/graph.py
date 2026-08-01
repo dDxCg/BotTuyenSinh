@@ -28,9 +28,10 @@ from .postprocess import (
     _is_refusal_answer,
     _prioritize_sources,
 )
-from .prompt import render_admission_policy, render_system_prompt
+from .prompt import render_admission_policy, render_rag_context, render_system_prompt
 from .rag_bridge import NO_GROUNDING_THRESHOLD, PgVectorRetriever
 from .types import Chunk, Retriever, ToolRegistry
+from src.logger import logger
 
 try:
     from ..tools.attach_source_link import ATTACH_SOURCE_LINK_SCHEMA
@@ -40,7 +41,7 @@ except ImportError:
     from tools.contact_support import CONTACT_SUPPORT_SCHEMA
 
 
-MAX_CONSECUTIVE_SAME_TOOL = 3
+MAX_CONSECUTIVE_SAME_TOOL = 2
 
 LLMCall = Callable[[list[dict[str, Any]], list[dict[str, Any]]], Any]
 """Nhận (messages OpenAI-format, tools OpenAI-format) -> object có `.content`/`.tool_calls`
@@ -58,6 +59,8 @@ class GraphState(TypedDict):
     sources: list[dict]
     path: str
     recent_tools: list[str]
+    turn_active: bool
+    force_finalize: bool
 
 
 def _to_openai_tools() -> list[dict[str, Any]]:
@@ -94,7 +97,9 @@ def _default_llm_call(bot: Chatbot) -> LLMCall:
 
 def make_guardrail_node() -> Callable[[GraphState], dict]:
     def guardrail(state: GraphState) -> dict:
-        return {"restricted_reason": classify_restricted(state["question"])}
+        reason = classify_restricted(state["question"])
+        logger.debug("[guardrail] question=%r restricted_reason=%r", state["question"], reason)
+        return {"restricted_reason": reason}
 
     return guardrail
 
@@ -106,6 +111,7 @@ def route_after_guardrail(state: GraphState) -> str:
 def make_respond_restricted_node() -> Callable[[GraphState], dict]:
     def respond_restricted(state: GraphState) -> dict:
         reason = state["restricted_reason"]
+        logger.debug("[respond_restricted] reason=%r", reason)
         if reason == "unrelated":
             return {"final_answer": UNRELATED_REPLY, "sources": [], "path": "out_of_scope"}
         answer = _contact_markdown(reason, state["question"])
@@ -118,7 +124,16 @@ def make_retrieve_node(retriever: Retriever, top_k: int = 5) -> Callable[[GraphS
     def retrieve(state: GraphState) -> dict:
         chunks = _prioritize_sources(retriever.retrieve(state["question"], k=top_k))
         best_score = max((c.score for c in chunks), default=0.0)
-        return {"retrieved": chunks, "best_score": best_score}
+        logger.debug(
+            "[retrieve] question=%r top_k=%d best_score=%.3f chunks=%s",
+            state["question"],
+            top_k,
+            best_score,
+            [(c.metadata.get("chunk_id", c.source), round(c.score, 3)) for c in chunks],
+        )
+        for chunk in chunks:
+            logger.debug("[retrieve] chunk %s: %s", chunk.metadata.get("chunk_id", chunk.source), chunk.text)
+        return {"retrieved": chunks, "best_score": best_score, "turn_active": True}
 
     return retrieve
 
@@ -126,6 +141,12 @@ def make_retrieve_node(retriever: Retriever, top_k: int = 5) -> Callable[[GraphS
 def make_grounding_node(threshold: float = NO_GROUNDING_THRESHOLD) -> Callable[[GraphState], dict]:
     def grounding_decision(state: GraphState) -> dict:
         grounded = bool(state["retrieved"]) and state["best_score"] >= threshold
+        logger.debug(
+            "[grounding_decision] best_score=%.3f threshold=%.3f grounded=%s",
+            state["best_score"],
+            threshold,
+            grounded,
+        )
         return {"grounded": grounded}
 
     return grounding_decision
@@ -137,6 +158,7 @@ def route_after_grounding(state: GraphState) -> str:
 
 def make_respond_no_grounding_node() -> Callable[[GraphState], dict]:
     def respond_no_grounding(state: GraphState) -> dict:
+        logger.debug("[respond_no_grounding] best_score=%.3f", state["best_score"])
         answer = _contact_markdown("no_grounding", state["question"])
         return {"final_answer": answer, "sources": [], "path": "contact_support"}
 
@@ -147,26 +169,30 @@ def make_agent_node(
     llm_call: LLMCall, tools: list[dict[str, Any]], policy_text: str, threshold: float
 ) -> Callable[[GraphState], dict]:
     def agent(state: GraphState) -> dict:
+        new_messages: list[BaseMessage] = []
         if not state["messages"]:
-
-
             system = render_system_prompt(
                 tool_signatures=[],
-                retrieved=state["retrieved"],
                 context=policy_text,
                 react=False,
                 threshold=threshold,
             )
-            messages: list[BaseMessage] = [
-                SystemMessage(content=system),
-                HumanMessage(content=state["question"]),
-            ]
-        else:
-            messages = state["messages"]
+            new_messages.append(SystemMessage(content=system))
 
-        raw = llm_call(convert_to_openai_messages(messages), tools)
+        if state.get("turn_active"):
+            rag_context = render_rag_context(retrieved=state["retrieved"], threshold=threshold)
+            new_messages.append(SystemMessage(content=rag_context))
+            new_messages.append(HumanMessage(content=state["question"]))
+
+        history = state["messages"] + new_messages
+        openai_messages = convert_to_openai_messages(history)
+        logger.debug("[agent] prompt sent (%d messages): %s", len(openai_messages), openai_messages)
+        raw = llm_call(openai_messages, tools)
         ai_message = AIMessage(content=raw.content or "", tool_calls=_raw_tool_calls_to_lc(raw))
-        return {"messages": [ai_message]}
+        logger.debug(
+            "[agent] response content=%r tool_calls=%s", ai_message.content, ai_message.tool_calls
+        )
+        return {"messages": [*new_messages, ai_message], "turn_active": False}
 
     return agent
 
@@ -181,27 +207,57 @@ def make_tools_node(registry: ToolRegistry) -> Callable[[GraphState], dict]:
         last = state["messages"][-1]
         tool_messages: list[BaseMessage] = []
         recent = list(state.get("recent_tools", []))
+        force_finalize = False
         for call in last.tool_calls:
             name = call["name"]
             recent.append(name)
             observation = registry.call(name, call["args"])
+            logger.debug("[tools] call=%s args=%s observation=%s", name, call["args"], observation)
             if len(recent) >= MAX_CONSECUTIVE_SAME_TOOL and len(set(recent[-MAX_CONSECUTIVE_SAME_TOOL:])) == 1:
+                force_finalize = True
                 observation += (
                     f"\n[Cảnh báo] Đã gọi '{name}' {MAX_CONSECUTIVE_SAME_TOOL} lần liên tiếp bất kể tham số. "
                     "Dừng lại, chốt câu trả lời từ những gì đã có."
                 )
             tool_messages.append(ToolMessage(content=observation, tool_call_id=call["id"]))
-        return {"messages": tool_messages, "recent_tools": recent}
+        if force_finalize:
+            logger.debug("[tools] force_finalize=True (lặp tool quá %d lần)", MAX_CONSECUTIVE_SAME_TOOL)
+        return {"messages": tool_messages, "recent_tools": recent, "force_finalize": force_finalize}
 
     return tools_node
 
 
+def route_after_tools(state: GraphState) -> str:
+    return "finalize" if state.get("force_finalize") else "agent"
+
+
+def _last_ai_content(messages: list[BaseMessage]) -> str:
+    for message in reversed(messages):
+        if isinstance(message, AIMessage) and message.content:
+            return message.content
+    return ""
+
+
 def make_finalize_node() -> Callable[[GraphState], dict]:
     def finalize(state: GraphState) -> dict:
-        answer = _clean_answer(state["messages"][-1].content or "")
+        if state.get("force_finalize"):
+            answer = _clean_answer(_last_ai_content(state["messages"]))
+            if not answer:
+                answer = _contact_markdown("no_grounding", state["question"])
+                logger.debug("[finalize] force_finalize không có AI content, fallback contact_support")
+                return {"final_answer": answer, "sources": [], "path": "contact_support"}
+        else:
+            answer = _clean_answer(state["messages"][-1].content or "")
+
         if _is_refusal_answer(answer):
+            logger.debug("[finalize] refusal answer=%r", answer)
             return {"final_answer": answer, "sources": [], "path": "out_of_scope"}
         cited = _cited_chunks(answer, state["retrieved"])
+        logger.debug(
+            "[finalize] answer=%r cited_chunks=%s",
+            answer,
+            [c.metadata.get("chunk_id", c.source) for c in cited],
+        )
         return {"final_answer": answer, "sources": _attachments(cited), "path": "agent+tool_calling"}
 
     return finalize
@@ -211,10 +267,12 @@ def build_graph(
     settings: Settings | None = None,
     retriever: Retriever | None = None,
     llm_call: LLMCall | None = None,
-    top_k: int = 5,
+    top_k: int | None = None,
     threshold: float = NO_GROUNDING_THRESHOLD,
     checkpointer: Any = None,
 ) -> Any:
+    settings = settings or Settings.from_env()
+    top_k = top_k if top_k is not None else settings.top_k
     retriever = retriever or PgVectorRetriever()
     registry = build_registry(retriever)
     tools = _to_openai_tools()
@@ -246,7 +304,7 @@ def build_graph(
     )
     graph.add_edge("respond_no_grounding", END)
     graph.add_conditional_edges("agent", route_after_agent, {"tools": "tools", "finalize": "finalize"})
-    graph.add_edge("tools", "agent")
+    graph.add_conditional_edges("tools", route_after_tools, {"agent": "agent", "finalize": "finalize"})
     graph.add_edge("finalize", END)
 
     return graph.compile(checkpointer=checkpointer)
@@ -264,6 +322,8 @@ def initial_state(question: str) -> GraphState:
         "sources": [],
         "path": "",
         "recent_tools": [],
+        "turn_active": False,
+        "force_finalize": False,
     }
 
 

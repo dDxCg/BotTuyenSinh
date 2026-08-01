@@ -19,15 +19,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--web-dir", type=Path, default=chunking.DEFAULT_WEB_DIR)
     parser.add_argument("--max-chars", type=int, default=1800)
     parser.add_argument(
+        "--strategy",
+        choices=chunking.STRATEGIES,
+        default="structure",
+        help="Cách chunk: structure (mặc định), sentence, hoặc semantic",
+    )
+    parser.add_argument(
         "--recreate", action="store_true", help="Xoá bảng cũ trước khi embedding lại."
     )
     return parser.parse_args()
 
 
-def run(env_file: Path, web_dir: Path, max_chars: int, recreate: bool) -> None:
+def run(env_file: Path, web_dir: Path, max_chars: int, strategy: str, recreate: bool) -> None:
     embedding.load_env_file(env_file)
 
-    chunks = chunking.build_chunks(web_dir=web_dir, max_chars=max_chars)
+    chunks = chunking.build_chunks(web_dir=web_dir, max_chars=max_chars, strategy=strategy)
     chunks_file = embedding.resolve_project_path(
         os.getenv("CHUNKS_FILE", ""), embedding.DEFAULT_CHUNKS_FILE
     )
@@ -47,6 +53,7 @@ def main() -> None:
         env_file=args.env_file,
         web_dir=args.web_dir,
         max_chars=args.max_chars,
+        strategy=args.strategy,
         recreate=args.recreate,
     )
 

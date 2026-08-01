@@ -18,6 +18,7 @@ class Settings:
     max_tokens: int
     timeout_seconds: float = 60.0
     max_retries: int = 2
+    top_k: int = 3
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -32,4 +33,5 @@ class Settings:
             max_tokens=int(os.getenv("OPENAI_MAX_TOKENS", "1024")),
             timeout_seconds=float(os.getenv("OPENAI_TIMEOUT_SECONDS", "60")),
             max_retries=int(os.getenv("OPENAI_MAX_RETRIES", "2")),
+            top_k=int(os.getenv("TOP_K", "3")),
         )

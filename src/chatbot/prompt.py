@@ -28,6 +28,18 @@ def render_admission_policy(threshold: float = 0.7) -> str:
     return _env.get_template("admission_policy.md").render(threshold=threshold)
 
 
+def render_rag_context(retrieved: Sequence[Any] | None = None, threshold: float = 0.7) -> str:
+
+    chunks = list(retrieved or [])
+    best_score = max((c.score for c in chunks), default=0.0)
+    return _env.get_template("rag_context.j2").render(
+        retrieved=chunks,
+        best_score=best_score,
+        threshold=threshold,
+        grounded=best_score >= threshold,
+    )
+
+
 def render_system_prompt(
     tool_signatures: Sequence[Any] | None = None,
     retrieved: Sequence[Any] | None = None,
