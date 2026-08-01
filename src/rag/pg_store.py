@@ -1,8 +1,3 @@
-"""Build/upsert vector vào Postgres + pgvector (Neon) — thay ChromaDB.
-
-Chạy: `python -m src.rag.pg_store [--recreate]`
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -14,8 +9,8 @@ from typing import Any, Sequence
 
 try:
     from . import embedding
-except ImportError:  # pragma: no cover - chạy trực tiếp không qua package
-    import embedding  # type: ignore[no-redef]
+except ImportError:
+    import embedding
 
 from src.db_client import DBHandler, DbConfigError, vector_literal
 
@@ -25,7 +20,7 @@ DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
 
 
 class PgStoreError(RuntimeError):
-    """Lỗi schema Postgres."""
+    pass
 
 
 def ensure_schema(db: DBHandler, table: str, dimension: int, recreate: bool) -> None:

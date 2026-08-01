@@ -1,8 +1,3 @@
-"""Tool 1 — chuyển câu hỏi cho nhân viên tuyển sinh khi agent không có căn cứ để trả lời.
-
-Thiết kế: docs/design-agent-tools.md §2.
-"""
-
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -10,12 +5,10 @@ from src.rag.settings import RagSettings
 
 Reason = Literal["no_grounding", "out_of_scope", "conflicting_sources", "personal_data_request"]
 
-# Similarity score dưới ngưỡng này coi là "không có căn cứ" — chốt cùng team 2026-07-30.
-# Nguồn sự thật duy nhất ở `src/rag/settings.py`; `src/chatbot/rag_bridge.py` import lại từ đó
-# (không import thẳng từ đây để tránh 2 package tools/chatbot phụ thuộc chéo nhau).
+
 NO_GROUNDING_THRESHOLD = RagSettings.from_env().no_grounding_threshold
 
-# Nguồn: data/web/_clean/thong-tin-tuyen-sinh-chuong-trinh-dao-tao-nhan-tai-ai-thuc-chien-khoa-co-ban.md
+
 CONTACT_CHANNELS = {
     "hotline": "0979.489.846",
     "tuyen_sinh": "Ms. Phương Thảo — 0388.339.478",
@@ -43,7 +36,6 @@ def contact_support(
     user_question: str,
     partial_context: str | None = None,
 ) -> ContactSupportResult:
-    """Không đoán, không tự trả lời — luôn trả kênh liên hệ + câu hỏi soạn sẵn cho user chỉnh trước khi gửi."""
     conflicting_facts: list[str] = []
     if reason == "conflicting_sources" and partial_context:
         conflicting_facts = [line.strip() for line in partial_context.splitlines() if line.strip()]

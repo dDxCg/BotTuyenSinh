@@ -1,10 +1,3 @@
-"""Client HTTP gọi backend FastAPI (`src/app.py`).
-
-Streamlit chạy tiến trình riêng (port 8501), không import `src.service`/
-`src.chatbot` trực tiếp — tránh nạp E5 local/Chroma vào process UI. Mọi giao
-tiếp với backend đi qua HTTP, giống một frontend thật sẽ làm.
-"""
-
 from __future__ import annotations
 
 import os
@@ -27,7 +20,7 @@ class ChatReply:
 
 
 class ApiError(RuntimeError):
-    """Backend trả lỗi (4xx/5xx) hoặc không kết nối được — hiển thị thẳng cho user."""
+    pass
 
 
 def _error_detail(response: requests.Response) -> str:
@@ -36,7 +29,7 @@ def _error_detail(response: requests.Response) -> str:
     except ValueError:
         return f"HTTP {response.status_code}"
     detail = payload.get("detail")
-    if isinstance(detail, list):  # lỗi validate 422 của FastAPI/Pydantic là 1 list
+    if isinstance(detail, list):
         detail = "; ".join(str(item.get("msg", item)) for item in detail)
     return str(detail or f"HTTP {response.status_code}")
 

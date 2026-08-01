@@ -1,10 +1,3 @@
-"""Chat bubble nổi góc dưới-phải, mở ra panel chat, resize 2 mức (compact/large).
-
-Vị trí "nổi" dựng bằng CSS `position: fixed` nhắm vào class do Streamlit tự sinh
-cho container có `key=...` (`.st-key-<key>`) — pattern chính thức của Streamlit
-để style 1 container cụ thể mà không đụng phần còn lại của trang.
-"""
-
 from __future__ import annotations
 
 import uuid
@@ -13,8 +6,7 @@ import streamlit as st
 
 from api_client import ApiClient, ApiError
 
-# Cùng bảng màu/bo góc với prototype.html (root CSS vars: --brand-blue, --brand-red,
-# --r-sm/--r-md/--r-lg, --font) — chat widget đồng bộ nhìn với header/banner WP.
+
 WP_NAVY = "#134d8b"
 WP_RED = "#c83538"
 WP_FONT = "'Montserrat','Segoe UI',sans-serif"

@@ -23,14 +23,13 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
 )
 
-# Bỏ ở tầng HTML: mega-menu, lang switcher, sidebar, footer, script/style.
+
 EXCLUDED_TAGS = [
     "nav", "header", "footer", "aside", "form",
     "script", "style", "noscript", "svg", "iframe",
 ]
 
-# vinuni.edu.vn có Cloudflare: UA mặc định của crawl4ai (Linux/Chrome 116) bị chặn
-# từ request thứ 2. Cần stealth + UA thật + simulate_user.
+
 BROWSER_CONFIG = BrowserConfig(headless=True, enable_stealth=True, user_agent=USER_AGENT)
 
 HTML_CONFIG = CrawlerRunConfig(
@@ -38,7 +37,7 @@ HTML_CONFIG = CrawlerRunConfig(
     cache_mode=CacheMode.BYPASS,
     simulate_user=True,
     magic=True,
-    # networkidle timeout vì trang có analytics polling — dùng domcontentloaded + chờ cố định.
+
     wait_until="domcontentloaded",
     delay_before_return_html=3.0,
     verbose=False,
@@ -61,7 +60,6 @@ def slugify(url: str) -> str:
 
 
 def clean_markdown(md: str) -> str:
-    """Bỏ phần rác còn sót sau khi excluded_tags đã cắt nav/footer."""
     kept = []
     for line in md.splitlines():
         stripped = line.strip()
@@ -78,8 +76,6 @@ def clean_markdown(md: str) -> str:
 
 
 def despace(text: str) -> str:
-    """PDF thiết kế có letter-tracking: pypdf trả về từng ký tự cách nhau 1 space,
-    ranh giới từ là 2 space. Gộp lại theo quy ước đó."""
     out = []
     for line in text.splitlines():
         tokens = [t for t in line.split(" ") if t]
@@ -130,8 +126,7 @@ async def main():
     pdf_urls = [u for u in sources if urlparse(u).path.lower().endswith(".pdf")]
     html_urls = [u for u in sources if u not in pdf_urls]
 
-    # Mỗi URL một browser session riêng: dùng lại session cho request thứ 2 thì
-    # Cloudflare bắn JS challenge.
+
     for i, url in enumerate(html_urls):
         if i:
             await asyncio.sleep(DELAY_SECONDS)

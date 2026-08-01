@@ -40,7 +40,6 @@ SENTENCE_BOUNDARY_RE = re.compile(r"(?<=[.!?…])\s+")
 
 @dataclass(frozen=True)
 class Heading:
-    """Một tiêu đề đã được chuẩn hóa về cấp cấu trúc."""
 
     level: int
     title: str
@@ -49,7 +48,6 @@ class Heading:
 
 @dataclass
 class Section:
-    """Nội dung thuộc một nhánh trong cây đề mục."""
 
     major: str | None = None
     minor: str | None = None
@@ -58,7 +56,6 @@ class Section:
 
 
 def extract_source_link(lines: Sequence[str], source_file: Path) -> str:
-    """Lấy source từ phần đầu tài liệu và báo lỗi nếu tài liệu thiếu source."""
 
     for line in lines[:20]:
         match = SOURCE_RE.match(line)
@@ -72,7 +69,6 @@ def extract_source_link(lines: Sequence[str], source_file: Path) -> str:
 
 
 def clean_heading_title(value: str) -> str:
-    """Bỏ Markdown trang trí nhưng giữ nguyên nội dung tiêu đề."""
 
     value = value.strip()
     for opening, closing in (("_**", "**_"), ("**", "**"), ("__", "__")):
@@ -83,7 +79,6 @@ def clean_heading_title(value: str) -> str:
 
 
 def numbered_heading(line: str) -> tuple[str, str, str] | None:
-    """Đọc tiêu đề dạng ``**I. ...**`` hoặc ``**1. ...:** nội dung``."""
 
     match = EMPHASIZED_NUMBERED_HEADING_RE.match(line)
     if not match:
@@ -97,7 +92,6 @@ def numbered_heading(line: str) -> tuple[str, str, str] | None:
 
 
 def contains_roman_sections(lines: Sequence[str]) -> bool:
-    """Xác định tài liệu dùng phân cấp I → 1 → 1.1."""
 
     for line in lines:
         parsed = numbered_heading(line)
@@ -107,7 +101,6 @@ def contains_roman_sections(lines: Sequence[str]) -> bool:
 
 
 def parse_heading(line: str, roman_schema: bool) -> Heading | None:
-    """Chuyển một dòng tiêu đề thành cấp 1 (lớn), 2 (nhỏ), hoặc 3 (con)."""
 
     logical = numbered_heading(line)
     if logical:
@@ -125,11 +118,11 @@ def parse_heading(line: str, roman_schema: bool) -> Heading | None:
     markdown_level = len(markdown.group("marks"))
     raw_title = clean_heading_title(markdown.group("title"))
 
-    # H1 là tên tài liệu, không phải đề mục nội dung.
+
     if markdown_level == 1:
         return Heading(level=0, title=raw_title)
 
-    # Khi tài liệu có I/II/III, ưu tiên số thứ tự ngữ nghĩa.
+
     numbered = NUMBERED_TITLE_RE.match(raw_title)
     if roman_schema and numbered:
         label = numbered.group("label")
@@ -139,7 +132,7 @@ def parse_heading(line: str, roman_schema: bool) -> Heading | None:
             level = 2 if "." not in label else 3
         return Heading(level=level, title=raw_title)
 
-    # Với FAQ và handbook, cấp Markdown phản ánh đúng cấu trúc tài liệu.
+
     return Heading(level=min(markdown_level - 1, 3), title=raw_title)
 
 
@@ -148,7 +141,6 @@ def section_has_content(section: Section) -> bool:
 
 
 def parse_sections(lines: Sequence[str]) -> list[Section]:
-    """Tách tài liệu thành các section lá, giữ context của đề mục cha."""
 
     roman_schema = contains_roman_sections(lines)
     sections: list[Section] = []
@@ -174,7 +166,7 @@ def parse_sections(lines: Sequence[str]) -> list[Section]:
             continue
 
         if heading.level == 0:
-            # Tên tài liệu đã nằm trong metadata; tránh lặp ở mọi chunk.
+
             continue
 
         flush()
@@ -196,7 +188,6 @@ def parse_sections(lines: Sequence[str]) -> list[Section]:
 
 
 def lines_to_blocks(lines: Sequence[str]) -> list[str]:
-    """Gom đoạn văn; giữ từng gạch đầu dòng thành đơn vị không bị cắt."""
 
     blocks: list[str] = []
     current: list[str] = []
@@ -224,7 +215,6 @@ def lines_to_blocks(lines: Sequence[str]) -> list[str]:
 
 
 def split_by_words(text: str, limit: int) -> list[str]:
-    """Phương án cuối cho đoạn đơn lẻ dài hơn giới hạn."""
 
     words = text.split()
     if not words:
@@ -244,7 +234,6 @@ def split_by_words(text: str, limit: int) -> list[str]:
 
 
 def split_oversized_block(block: str, limit: int) -> list[str]:
-    """Cắt block lớn theo dòng, câu, rồi mới tới từ."""
 
     if len(block) <= limit:
         return [block]
@@ -278,7 +267,6 @@ def split_oversized_block(block: str, limit: int) -> list[str]:
 
 
 def section_prefix(section: Section) -> str:
-    """Tạo breadcrumb ngắn để embedding vẫn mang ngữ cảnh đề mục."""
 
     headings = [
         (1, section.major),
@@ -291,7 +279,6 @@ def section_prefix(section: Section) -> str:
 
 
 def split_section(section: Section, max_chars: int) -> list[str]:
-    """Tách section theo block, không vượt max_chars khi có thể."""
 
     prefix = section_prefix(section)
     separator = "\n\n" if prefix else ""
@@ -353,7 +340,6 @@ def chunk_document(
     source_type: str,
     max_chars: int,
 ) -> list[dict[str, object]]:
-    """Chunk một file và thêm metadata truy xuất nguồn."""
 
     text = source_file.read_text(encoding="utf-8-sig")
     lines = text.splitlines()
@@ -402,7 +388,6 @@ def build_chunks(
     web_dir: Path = DEFAULT_WEB_DIR,
     max_chars: int = 1800,
 ) -> list[dict[str, object]]:
-    """Chunk toàn bộ Web clean."""
 
     if max_chars < 400:
         raise ValueError("max_chars phải từ 400 trở lên")
@@ -419,7 +404,6 @@ def build_chunks(
 
 
 def save_chunks(chunks: Sequence[dict[str, object]], output_file: Path) -> None:
-    """Ghi JSON UTF-8, tiếng Việt không bị escape."""
 
     document_names = sorted(
         {

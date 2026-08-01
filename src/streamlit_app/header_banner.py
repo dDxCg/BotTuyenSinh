@@ -1,16 +1,3 @@
-"""Header + banner mượn từ bản scrape WP (`prototype.html`) — toàn bộ landing page.
-
-Chỉ lấy: logo VinUni (trích base64 từ `prototype.html`'s `--logo-src`, lưu thành
-file thật) + nav menu (nhãn giống WP, không có page đích thật — `href="#"` chấp
-nhận được vì chỉ để trông giống bản gốc, không cam kết điều hướng) + ảnh banner
-phủ kín màn hình.
-
-Asset ảnh (`vinuni_banner.webp`, `vinuni_logo_white.webp`) nằm trong
-`streamlit/assets/` — tự chứa trong thư mục app, không phụ thuộc cây thư mục
-nào khác. Base64-encode ngay tại đây, không phụ thuộc FastAPI static server
-đang chạy hay không.
-"""
-
 from __future__ import annotations
 
 import base64
@@ -22,10 +9,9 @@ ASSETS_DIR = Path(__file__).resolve().parent / "assets"
 LOGO_FILE = ASSETS_DIR / "vinuni_logo_white.webp"
 BANNER_FILE = ASSETS_DIR / "vinuni_banner.webp"
 
-DISCLAIMER_TEXT = "⚠️ Đây là bản demo minh hoạ — KHÔNG phải website chính thức của VinUni."
+DISCLAIMER_TEXT = "Đây là bản demo minh hoạ — KHÔNG phải website chính thức của VinUni."
 
-# Nhãn y hệt nav chính của prototype.html (dòng ~1350-1355) — không có trang đích
-# thật, giữ lại làm cảnh nhìn giống bản gốc; click không điều hướng đi đâu cả.
+
 NAV_ITEMS = ["Đào tạo", "Nghiên cứu", "Hợp tác", "Tuyển sinh", "Đời sống sinh viên", "Về VinUni"]
 
 

@@ -1,11 +1,3 @@
-"""CLI chat với agent tư vấn tuyển sinh — LangGraph, RAG thật + 2 tool thật (native tool-calling).
-
-    uv run python -m src.chatbot [--trace] [--max-steps N] [--top-k K]
-
-Cần: `.env` có OPENAI_API, DATABASE_URL (Postgres/Neon + pgvector) đã embedding
-(`python -m src.rag.pg_store`).
-"""
-
 import argparse
 import sys
 import time
@@ -44,7 +36,7 @@ def print_trace(state: GraphState, elapsed: float, retriever: PgVectorRetriever)
 
 
 def main() -> None:
-    # Console Windows mặc định cp1252, không in được tiếng Việt.
+
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
 
@@ -56,7 +48,7 @@ def main() -> None:
 
     try:
         settings = Settings.from_env()
-    except RuntimeError as exc:  # thiếu cấu hình .env
+    except RuntimeError as exc:
         print(f"Lỗi cấu hình: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc
 
@@ -81,7 +73,7 @@ def main() -> None:
         if user in {"exit", "quit"}:
             break
         if user == "reset":
-            thread_id = str(uuid.uuid4())  # thread mới = checkpoint cũ không còn được tham chiếu tới
+            thread_id = str(uuid.uuid4())
             print("Đã xoá lịch sử.\n")
             continue
         if user == "stats":
@@ -94,7 +86,7 @@ def main() -> None:
         started = time.perf_counter()
         try:
             state = run_graph(graph, user, thread_id=thread_id, recursion_limit=args.max_steps * 2 + 8)
-        except Exception as exc:  # lỗi mạng/DB/vượt giới hạn vòng lặp không được làm chết phiên chat
+        except Exception as exc:
             print(f"Lỗi: {type(exc).__name__}: {exc}")
             print("Kiểm tra: pgvector đã build chưa (`python -m src.rag.pg_store`).\n")
             continue

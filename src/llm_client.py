@@ -1,7 +1,3 @@
-"""1 nơi duy nhất tạo OpenAI client (OpenRouter) — chatbot và embedding dùng chung,
-tránh mỗi module tự đọc key/base_url/.env riêng.
-"""
-
 from __future__ import annotations
 
 import os
@@ -16,7 +12,7 @@ load_dotenv(ROOT / ".env")
 
 
 class LlmConfigError(RuntimeError):
-    """Thiếu API key trong .env."""
+    pass
 
 
 def chat_client(
@@ -27,7 +23,7 @@ def chat_client(
 
 @lru_cache(maxsize=1)
 def embedding_client() -> OpenAI:
-    # Trống thì dùng chung key/endpoint OpenRouter với chat (OPENAI_API/OPENAI_BASE_URL).
+
     api_key = os.getenv("EMBEDDING_API_KEY", "").strip() or os.getenv("OPENAI_API", "").strip()
     if not api_key:
         raise LlmConfigError("Thiếu EMBEDDING_API_KEY hoặc OPENAI_API trong .env")

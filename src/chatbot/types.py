@@ -1,8 +1,3 @@
-"""Contract giữa chatbot và hai tầng ngoài (RAG, tools).
-
-Đổi retriever hay tool chỉ cần thoả contract ở đây.
-"""
-
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Any, Protocol
@@ -10,7 +5,7 @@ from typing import Any, Protocol
 
 @dataclass(frozen=True)
 class Chunk:
-    """Một đoạn ngữ cảnh trả về từ retriever."""
+
 
     text: str
     source: str = "unknown"
@@ -22,13 +17,12 @@ class Retriever(Protocol):
     def retrieve(self, query: str, k: int = 5) -> list[Chunk]: ...
 
     def get_chunk(self, chunk_id: str) -> Chunk | None:
-        """Tra ngược chunk đã thấy ở lượt trước theo id — tool `attach_source_link`
-        chỉ biết id do model trả về, không biết nội dung/nguồn gốc chunk."""
+
         ...
 
 
 class NullRetriever:
-    """Mặc định khi Chatbot không được cấp retriever — prompt tự bỏ mục Ngữ cảnh."""
+
 
     def retrieve(self, query: str, k: int = 5) -> list[Chunk]:
         return []
@@ -56,7 +50,7 @@ class ToolRegistry:
         self._tools[tool.name] = tool
 
     def tool(self, name: str, description: str, signature: str) -> Callable:
-        """Decorator: đăng ký hàm thành tool."""
+
 
         def wrap(func: Callable[..., Any]) -> Callable[..., Any]:
             self.register(Tool(name, description, signature, func))
@@ -71,7 +65,7 @@ class ToolRegistry:
         return list(self._tools)
 
     def signatures(self) -> list[Tool]:
-        """Danh sách đổ vào system prompt (có .name/.description/.signature)."""
+
         return list(self._tools.values())
 
     def call(self, name: str, args: dict[str, Any]) -> str:
@@ -80,7 +74,7 @@ class ToolRegistry:
             return f"Lỗi: không có tool tên '{name}'. Tool khả dụng: {', '.join(self.names()) or 'không có'}."
         try:
             return str(tool(**args))
-        except Exception as exc:  # tool lỗi -> feedback lại cho model tự sửa
+        except Exception as exc:
             return f"Lỗi khi chạy '{name}': {type(exc).__name__}: {exc}"
 
     def __len__(self) -> int:

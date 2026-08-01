@@ -1,20 +1,3 @@
-"""Agent tuyển sinh dựng trên LangGraph — hợp nhất 2 luồng cũ thành 1 graph.
-
-Thay cho:
-- `admission_agent.build_admission_agent()` + `react.py`: ReAct vòng lặp tự viết,
-  regex-parse `Thought:`/`Action:`/`Final Answer:`.
-- `service.Service.chat()`: regex-gate + 1 lượt gọi LLM không tool-calling,
-  dùng thật ở production nhưng khác hoàn toàn luồng ReAct.
-
-Graph:
-    câu hỏi -> guardrail -> retrieve -> grounding_decision -> agent (native tool-calling)
-                  |                           |                  <-> tools
-                  v                           v                  -> finalize
-            respond_restricted          respond_no_grounding
-
-Xem docs/plan/langgraph-langfuse-migration.md mục 3.
-"""
-
 from __future__ import annotations
 
 import json
@@ -37,7 +20,7 @@ from .chatbot import Chatbot
 from .config import Settings
 from .guardrail import UNRELATED_REPLY, classify_restricted
 from .postprocess import (
-    DEFAULT_SUGGESTIONS,  # noqa: F401 - re-export tiện cho caller (giữ nguyên gợi ý mặc định)
+    DEFAULT_SUGGESTIONS,
     _attachments,
     _cited_chunks,
     _clean_answer,
@@ -49,16 +32,14 @@ from .prompt import render_admission_policy, render_system_prompt
 from .rag_bridge import NO_GROUNDING_THRESHOLD, PgVectorRetriever
 from .types import Chunk, Retriever, ToolRegistry
 
-try:  # chạy dạng `src.chatbot` (test) hoặc `chatbot` với src trên sys.path (team)
+try:
     from ..tools.attach_source_link import ATTACH_SOURCE_LINK_SCHEMA
     from ..tools.contact_support import CONTACT_SUPPORT_SCHEMA
-except ImportError:  # pragma: no cover - phụ thuộc cách nạp package
-    from tools.attach_source_link import ATTACH_SOURCE_LINK_SCHEMA  # type: ignore[no-redef]
-    from tools.contact_support import CONTACT_SUPPORT_SCHEMA  # type: ignore[no-redef]
+except ImportError:
+    from tools.attach_source_link import ATTACH_SOURCE_LINK_SCHEMA
+    from tools.contact_support import CONTACT_SUPPORT_SCHEMA
 
-# Anti-loop guard: gọi cùng 1 tool >= N lần liên tiếp (bất kể args) coi là bế tắc —
-# thay guard cũ ở react.py:127-134 vốn chỉ chặn khi args giống hệt nhau, nên model
-# đổi nhẹ tham số là lách được (bug M07/N09/M04 trong eval/report-agent.md).
+
 MAX_CONSECUTIVE_SAME_TOOL = 3
 
 LLMCall = Callable[[list[dict[str, Any]], list[dict[str, Any]]], Any]
@@ -80,8 +61,6 @@ class GraphState(TypedDict):
 
 
 def _to_openai_tools() -> list[dict[str, Any]]:
-    """Đổi schema kiểu Anthropic (`input_schema`) đã có sẵn trong `src/tools/*.py`
-    sang format `tools=` của OpenAI — chưa từng được dùng thật trước graph này."""
     return [
         {
             "type": "function",
@@ -96,7 +75,6 @@ def _to_openai_tools() -> list[dict[str, Any]]:
 
 
 def _raw_tool_calls_to_lc(raw: Any) -> list[dict[str, Any]]:
-    """Đổi `.tool_calls` của OpenAI SDK response thành format `AIMessage.tool_calls`."""
     calls: list[dict[str, Any]] = []
     for tool_call in getattr(raw, "tool_calls", None) or []:
         try:
@@ -170,9 +148,8 @@ def make_agent_node(
 ) -> Callable[[GraphState], dict]:
     def agent(state: GraphState) -> dict:
         if not state["messages"]:
-            # Lượt đầu: dựng system prompt, chunk RAG đổ sẵn (không qua tool tìm kiếm).
-            # tool_signatures=[] vì schema thật đi qua `tools=` — nhét thêm text mô tả
-            # tool vào prompt chỉ gây nhiễu/xung đột với native tool-calling.
+
+
             system = render_system_prompt(
                 tool_signatures=[],
                 retrieved=state["retrieved"],
@@ -238,11 +215,6 @@ def build_graph(
     threshold: float = NO_GROUNDING_THRESHOLD,
     checkpointer: Any = None,
 ) -> Any:
-    """Graph hợp nhất, thay cho `build_admission_agent()` (ReAct) và
-    `Service.chat()` (regex-gate + single-shot).
-
-    `llm_call`/`retriever` cho phép tiêm fake trong test — không cần OpenAI/Chroma thật.
-    """
     retriever = retriever or PgVectorRetriever()
     registry = build_registry(retriever)
     tools = _to_openai_tools()
@@ -296,7 +268,6 @@ def initial_state(question: str) -> GraphState:
 
 
 def run_graph(graph: Any, question: str, thread_id: str = "default", recursion_limit: int = 25) -> GraphState:
-    """Chạy 1 lượt hỏi-đáp, trả state cuối (`final_answer`/`sources`/`path`)."""
     config = {"configurable": {"thread_id": thread_id}, "recursion_limit": recursion_limit}
     return graph.invoke(initial_state(question), config=config)
 

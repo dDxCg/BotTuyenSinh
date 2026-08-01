@@ -1,5 +1,3 @@
-"""Chatbot cơ bản — OpenRouter qua OpenAI SDK."""
-
 from collections.abc import Iterator, Sequence
 from typing import Any
 
@@ -46,8 +44,7 @@ class Chatbot:
         max_steps: int = 6,
         prefetch: bool = True,
     ) -> str:
-        """`prefetch=False` bỏ hẳn lượt retrieve ở đây — dành cho agent có tool
-        tự truy vấn, tránh embedding cùng một câu hỏi hai lần."""
+
         return render_system_prompt(
             tool_signatures=self.tool_signatures,
             retrieved=self.retrieve(query) if prefetch else [],
@@ -69,7 +66,7 @@ class Chatbot:
         messages: list[dict[str, str]],
         stop: list[str] | None = None,
     ) -> str:
-        """Một lượt gọi model, không đụng history — ReAct agent dùng lại."""
+
         response = self.client.chat.completions.create(
             model=self.settings.model,
             messages=messages,
@@ -80,10 +77,7 @@ class Chatbot:
         return response.choices[0].message.content or ""
 
     def complete_with_tools(self, messages: list[dict[str, Any]], tools: list[dict[str, Any]]) -> Any:
-        """Một lượt gọi model với native function-calling (`tools=`).
 
-        Trả nguyên `ChatCompletionMessage` (có `.content` và `.tool_calls`) —
-        dùng bởi `src/chatbot/graph.py`, thay cho regex ReAct parsing."""
         response = self.client.chat.completions.create(
             model=self.settings.model,
             messages=messages,
@@ -99,7 +93,7 @@ class Chatbot:
         return reply
 
     def chat_with_retrieved(self, user_message: str, retrieved: Sequence[Chunk]) -> str:
-        """Trả lời bằng kết quả đã retrieve, tránh gọi embedding lần hai."""
+
         self.last_retrieved = list(retrieved)
         system = render_system_prompt(
             tool_signatures=self.tool_signatures,
@@ -138,7 +132,7 @@ class Chatbot:
         ]
 
     def _remember(self, user_message: str, reply: str) -> None:
-        """Tương thích ngược; code mới dùng API công khai ``remember``."""
+
         self.remember(user_message, reply)
 
     def reset(self) -> None:

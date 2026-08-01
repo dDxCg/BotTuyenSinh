@@ -1,9 +1,3 @@
-"""Top-k chunks bằng pgvector (Postgres/Neon) — thay ChromaDB.
-
-Trả JSON cùng shape với bản Chroma cũ (docs/rag-system.md §8.2) nên
-`rag_bridge.payload_to_chunks()` không cần đổi.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -15,8 +9,8 @@ from typing import Any
 
 try:
     from . import embedding
-except ImportError:  # pragma: no cover - chạy trực tiếp không qua package
-    import embedding  # type: ignore[no-redef]
+except ImportError:
+    import embedding
 
 from src.db_client import DBHandler, DbConfigError, vector_literal
 
@@ -27,7 +21,7 @@ DEFAULT_TOP_K = 5
 
 
 class RetrievalError(RuntimeError):
-    """Dữ liệu hoặc cấu hình retrieval không hợp lệ."""
+    pass
 
 
 def clean_metadata(metadata: dict[str, Any] | None) -> dict[str, Any]:

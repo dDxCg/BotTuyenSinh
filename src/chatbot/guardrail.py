@@ -1,15 +1,7 @@
-"""Lớp lọc rẻ/nhanh trước khi retrieval: chặn câu hỏi ngoài phạm vi hoặc nhạy cảm bằng regex.
-
-Tách khỏi `service.py` để dùng chung giữa luồng service cũ và graph mới
-(`src/chatbot/graph.py`) — một chỗ duy nhất, không nhân bản logic lần 3.
-"""
-
 import re
 import unicodedata
 
-# Gate bảo thủ: chỉ chặn câu chắc chắn không liên quan. Mọi câu còn mơ hồ hoặc
-# có khả năng liên quan đều phải đi qua retrieval; RAG/LLM quyết định có đủ căn
-# cứ để trả lời hay không.
+
 UNRELATED_PATTERNS = (
     r"^\s*\d+(?:\s*[+\-*/x:]\s*\d+)+\s*\??$",
     r"con ga.{0,30}qua trung|qua trung.{0,30}con ga",
@@ -36,11 +28,6 @@ def _plain(value: str) -> str:
 
 
 def classify_restricted(question: str) -> str | None:
-    """Chỉ chặn ranh giới chính sách và câu chắc chắn không liên quan.
-
-    Trả về `"personal_data_request"` / `"out_of_scope"` / `"unrelated"` hoặc
-    `None` nếu câu hỏi phải đi tiếp qua retrieval.
-    """
     text = _plain(question)
     personal = (
         r"(trang thai|ket qua|diem).{0,20}(ho so|cua (toi|em|minh))",

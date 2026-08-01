@@ -7,3 +7,4 @@ models/
 .pytest_cache/
 docs/plan/
 data/
+CLAUDE.md

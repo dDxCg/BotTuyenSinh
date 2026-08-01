@@ -1,7 +1,3 @@
-"""Config RAG dùng chung giữa `src/chatbot` và `src/tools` — tách khỏi `chatbot/config.py`
-(vốn chỉ lo cấu hình LLM) để 2 phía không phải định nghĩa lại cùng một hằng số.
-"""
-
 import os
 from dataclasses import dataclass
 from pathlib import Path

@@ -1,5 +1,3 @@
-"""Render system prompt từ template Jinja."""
-
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Sequence
@@ -18,7 +16,7 @@ _env = Environment(
 
 @dataclass(frozen=True)
 class ToolSignature:
-    """Chữ ký tool đổ vào system prompt."""
+
 
     name: str
     description: str
@@ -26,8 +24,7 @@ class ToolSignature:
 
 
 def render_admission_policy(threshold: float = 0.7) -> str:
-    """Chính sách domain (khi nào bắt buộc gọi `contact_support`), nội dung ở
-    `prompts/admission_policy.md` — tách khỏi code để sửa chính sách không cần đụng .py."""
+
     return _env.get_template("admission_policy.md").render(threshold=threshold)
 
 
@@ -40,13 +37,7 @@ def render_system_prompt(
     threshold: float = 0.7,
     template: str = "system.j2",
 ) -> str:
-    """Đổ tool signature + chunk RAG + giao thức ReAct vào system prompt.
 
-    `tool_signatures`: object có .name/.description/.signature (ToolSignature hoặc Tool).
-    `retrieved`: object có .text/.source/.score/.metadata (chatbot.types.Chunk).
-    Kết luận đủ/không đủ căn cứ tính ngay tại đây theo `threshold`, để model
-    không phải tự đoán — chunk đứng đầu đã là chunk điểm cao nhất.
-    """
     chunks = list(retrieved or [])
     best_score = max((c.score for c in chunks), default=0.0)
     return _env.get_template(template).render(

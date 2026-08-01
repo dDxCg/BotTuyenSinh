@@ -1,15 +1,9 @@
-"""Tool 2 — đính kèm link nguồn gốc của (các) chunk đã dùng để trả lời.
-
-Thiết kế: docs/design-agent-tools.md §3. Nguồn phải là metadata cứng gắn lúc
-ingest (source_type/source_url theo từng file gốc) — không suy ra ở tầng model.
-"""
-
 from dataclasses import dataclass
 from typing import Literal
 
 SourceType = Literal["official_web"]
 
-# Nhãn hiển thị cho user theo URL nguồn — cập nhật khi có bản mới từ VinUni/Vingroup.
+
 DISPLAY_LABELS: dict[str, str] = {
     "https://vinuni.edu.vn/vi/thong-tin-tuyen-sinh-chuong-trinh-dao-tao-nhan-tai-ai-thuc-chien-khoa-co-ban/": (
         "Thông tin tuyển sinh chính thức — VinUni"
@@ -22,7 +16,6 @@ DISPLAY_LABELS: dict[str, str] = {
 
 
 def _display_label(source_url: str) -> str:
-    """Chấp nhận metadata cũ có/không có dấu gạch chéo cuối URL."""
     return (
         DISPLAY_LABELS.get(source_url)
         or DISPLAY_LABELS.get(source_url.rstrip("/"))
@@ -33,7 +26,6 @@ def _display_label(source_url: str) -> str:
 
 @dataclass
 class ChunkRef:
-    """Chunk đã có metadata nguồn gắn sẵn từ lúc ingest."""
 
     chunk_id: str
     source_type: SourceType
@@ -41,7 +33,6 @@ class ChunkRef:
 
 
 def attach_source_link(chunk_refs: list[ChunkRef]) -> list[dict]:
-    """Format nguồn cho từng chunk đã dùng để trả lời."""
     attachments = []
     for chunk in chunk_refs:
         label = _display_label(chunk.source_url)

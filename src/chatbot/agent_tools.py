@@ -1,26 +1,16 @@
-"""Bọc 2 tool thật ở `src/tools/` thành `Tool` cho vòng ReAct.
-
-Khe hở phải vá ở đây: `attach_source_link()` nhận `ChunkRef` (có sẵn source_url),
-nhưng schema trong docs/design-agent-tools.md §3 hứa với model là
-`chunk_ids: list[str]`. Model chỉ biết id, nên tầng này tra ngược id -> nguồn từ
-kết quả retrieval gần nhất.
-
-Chunk đến từ RAG đổ sẵn vào system prompt (`prefetch_rag`), không qua tool.
-"""
-
 from .types import Retriever, Tool, ToolRegistry
 
-try:  # chạy dạng `src.chatbot` (test) hoặc `chatbot` với src trên sys.path (team)
+try:
     from ..tools.attach_source_link import ChunkRef, attach_source_link
     from ..tools.contact_support import contact_support
-except ImportError:  # pragma: no cover - phụ thuộc cách nạp package
-    from tools.attach_source_link import ChunkRef, attach_source_link  # type: ignore[no-redef]
-    from tools.contact_support import contact_support  # type: ignore[no-redef]
+except ImportError:
+    from tools.attach_source_link import ChunkRef, attach_source_link
+    from tools.contact_support import contact_support
 
 
 def make_attach_source_link(retriever: Retriever) -> Tool:
     def attach_source_link_tool(chunk_ids: list[str] | str) -> str:
-        if isinstance(chunk_ids, str):  # model hay truyền một id trần
+        if isinstance(chunk_ids, str):
             chunk_ids = [chunk_ids]
 
         refs: list[ChunkRef] = []
@@ -67,7 +57,7 @@ def make_contact_support() -> Tool:
         user_question: str,
         partial_context: str | None = None,
     ) -> str:
-        result = contact_support(reason, user_question, partial_context)  # type: ignore[arg-type]
+        result = contact_support(reason, user_question, partial_context)
         channels = "\n".join(f"- {key}: {value}" for key, value in result.contact_channels.items())
         parts = [result.message, "Kênh liên hệ tuyển sinh:", channels]
         if result.conflicting_facts:
@@ -91,7 +81,6 @@ def make_contact_support() -> Tool:
 
 
 def build_registry(retriever: Retriever) -> ToolRegistry:
-    """Bộ tool đầy đủ của agent tư vấn tuyển sinh."""
     return ToolRegistry(
         [
             make_attach_source_link(retriever),

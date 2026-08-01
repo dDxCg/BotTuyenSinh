@@ -1,5 +1,3 @@
-"""Service nối chatbot, RAG và hai tool production cho web demo."""
-
 from __future__ import annotations
 
 import threading

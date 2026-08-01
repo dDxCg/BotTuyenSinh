@@ -1,7 +1,3 @@
-"""1 nơi duy nhất kết nối Postgres (Neon/pgvector) — pg_store.py và pg_retrieval.py
-dùng chung, tránh mỗi module tự đọc DATABASE_URL/tự connect riêng.
-"""
-
 from __future__ import annotations
 
 import os
@@ -15,7 +11,7 @@ load_dotenv(ROOT / ".env")
 
 
 class DbConfigError(RuntimeError):
-    """Thiếu DATABASE_URL trong .env."""
+    pass
 
 
 def connection_string() -> str:
@@ -36,9 +32,6 @@ def vector_literal(vector: Sequence[float]) -> str:
 
 
 class DBHandler:
-    """Bọc 1 connection Postgres — commit khi thành công, rollback khi lỗi
-    (thay vì mỗi chỗ gọi tự mở/đóng connection và không rollback tường minh)."""
-
     def __init__(self, dsn: str | None = None) -> None:
         self._dsn = dsn or connection_string()
         self._conn: Any = None
@@ -50,7 +43,6 @@ class DBHandler:
         return self
 
     def execute(self, query: str, params: Sequence[Any] | None = None) -> list[tuple] | None:
-        """Chạy 1 câu SQL. Có SELECT thì trả rows, không thì trả None."""
         with self._conn.cursor() as cur:
             cur.execute(query, params)
             if cur.description is None:
@@ -79,7 +71,6 @@ class DBHandler:
 
 
 def test_connection() -> bool:
-    """Kết nối thật tới DATABASE_URL, chạy `SELECT 1` để xác nhận DB sống. In lỗi thay vì raise."""
 
     try:
         with DBHandler() as db:

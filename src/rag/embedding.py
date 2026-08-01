@@ -1,7 +1,3 @@
-"""Sinh vector cho ``chunks.json`` qua OpenAI-compatible embedding API (OpenRouter) —
-lưu trữ (pgvector/Neon) nằm ở `pg_store.py`.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -27,11 +23,11 @@ EMBEDDING_DIMENSION = 1536
 
 
 class EmbeddingError(RuntimeError):
-    """Thiếu cấu hình hoặc không tạo được vector hợp lệ."""
+    pass
 
 
 class ConfigurationError(ValueError):
-    """Cấu hình .env thiếu hoặc không hợp lệ."""
+    pass
 
 
 @dataclass(frozen=True)
@@ -96,7 +92,6 @@ def embed_query(question: str, *, config: "EmbeddingConfig | None" = None) -> li
 
 
 def load_env_file(env_file: Path = DEFAULT_ENV_FILE) -> None:
-    """Đọc `.env` qua python-dotenv, không ghi đè biến môi trường đã được thiết lập."""
 
     load_dotenv(env_file, override=False)
 
@@ -132,7 +127,6 @@ def resolve_project_path(value: str | Path, default: Path) -> Path:
 
 
 def load_chunks(chunks_file: Path) -> list[dict[str, Any]]:
-    """Đọc và kiểm tra schema do chunking.py tạo."""
 
     if not chunks_file.exists():
         raise FileNotFoundError(f"Không tìm thấy chunks JSON: {chunks_file}")
@@ -179,8 +173,6 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    """Build DB thật (encode + upsert pgvector) nằm ở `pg_store.py` — dùng
-    `python -m src.rag.pg_store`. Ở đây chỉ validate chunks.json."""
 
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")

@@ -1,20 +1,14 @@
-"""Xử lý sau khi có câu trả lời thô từ LLM: ưu tiên nguồn, đính link, dọn câu trả lời.
-
-Tách khỏi `service.py` để dùng chung giữa luồng service cũ và graph mới
-(`src/chatbot/graph.py`) — một chỗ duy nhất, không nhân bản logic lần 3.
-"""
-
 import re
 
 from .guardrail import _plain
 from .types import Chunk
 
-try:  # chạy dạng `src.chatbot` (test) hoặc `chatbot` với src trên sys.path (team)
+try:
     from ..tools.attach_source_link import ChunkRef, attach_source_link
     from ..tools.contact_support import contact_support
-except ImportError:  # pragma: no cover - phụ thuộc cách nạp package
-    from tools.attach_source_link import ChunkRef, attach_source_link  # type: ignore[no-redef]
-    from tools.contact_support import contact_support  # type: ignore[no-redef]
+except ImportError:
+    from tools.attach_source_link import ChunkRef, attach_source_link
+    from tools.contact_support import contact_support
 
 DEFAULT_SUGGESTIONS = [
     "Lịch học thế nào?",
@@ -23,13 +17,12 @@ DEFAULT_SUGGESTIONS = [
     "Địa điểm học ở đâu?",
 ]
 
-# Nguồn chính thức được ưu tiên khi độ phù hợp gần tương đương nguồn cộng đồng.
-# Margin nhỏ giữ nguyên nguồn cộng đồng khi nó thực sự khớp tốt hơn rõ rệt.
+
 OFFICIAL_SOURCE_MARGIN = 0.03
 
 
 def _contact_markdown(reason: str, question: str) -> str:
-    result = contact_support(reason, question)  # type: ignore[arg-type]
+    result = contact_support(reason, question)
     channels = result.contact_channels
     return (
         f"{result.message}\n\n"
@@ -42,15 +35,10 @@ def _contact_markdown(reason: str, question: str) -> str:
 
 
 def _source_type(chunk: Chunk) -> str:
-    """Đọc lại `source_type` đã tính 1 lần duy nhất ở `rag_bridge.payload_to_chunks()`
-    (map `loai_nguon` -> `source_type`) — không tính lại ở đây để tránh 2 nơi định
-    nghĩa cùng 1 mapping (từng là bug: `rag_bridge.SOURCE_TYPE_BY_LOAI_NGUON` và
-    ternary riêng ở đây có thể lệch nhau khi thêm loại nguồn mới)."""
     return str(chunk.metadata.get("source_type") or "official_web")
 
 
 def _prioritize_sources(chunks: list[Chunk]) -> list[Chunk]:
-    """Ưu tiên nguồn chính thức nếu score nằm sát kết quả tốt nhất."""
     if not chunks:
         return []
     best_score = max(chunk.score for chunk in chunks)
@@ -107,7 +95,6 @@ def _cited_chunks(answer: str, chunks: list[Chunk]) -> list[Chunk]:
 
 
 def _clean_answer(answer: str) -> str:
-    """Citation nằm trong JSON sources, không rò mã nội bộ vào nội dung user."""
     answer = re.sub(r"\[(?:source|chunk_[A-Za-z0-9_-]+)\]", "", answer, flags=re.IGNORECASE)
     answer = re.sub(r"(?im)^\s*Nguồn\s*:\s*$", "", answer)
     answer = re.sub(r"[ \t]+\n", "\n", answer)
@@ -117,7 +104,6 @@ def _clean_answer(answer: str) -> str:
 
 
 def _is_refusal_answer(answer: str) -> bool:
-    """Nhận diện lời từ chối của LLM để không gắn nguồn RAG không liên quan."""
 
     text = _plain(answer)
     refusal_patterns = (

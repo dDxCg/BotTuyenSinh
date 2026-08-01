@@ -1,10 +1,3 @@
-"""Nối `src/rag/pg_retrieval.py` (pgvector/Neon) vào contract `Retriever` của chatbot.
-
-`retrieval.retrieve()` trả JSON theo docs/rag-system.md §8.2. Lớp này đổi nó
-thành `Chunk`, giữ nguyên `chunk_id` + `source_link` + `loai_nguon` trong
-metadata để tool `attach_source_link` truy ngược được nguồn.
-"""
-
 import re
 import unicodedata
 from collections import OrderedDict
@@ -14,18 +7,16 @@ from src.rag.settings import RagSettings
 
 from .types import Chunk
 
-# Ngưỡng chốt trong docs/design-agent-tools.md §4: dưới mức này coi là không có căn cứ.
-# Nguồn sự thật duy nhất — `src/tools/contact_support.py` import lại từ đây, không tự định nghĩa.
+
 NO_GROUNDING_THRESHOLD = RagSettings.from_env().no_grounding_threshold
 
-# docs/rag-system.md §5.1 dùng `loai_nguon`; tool dùng `source_type`.
+
 SOURCE_TYPE_BY_LOAI_NGUON = {
     "web": "official_web",
 }
 
 
 def _load_retrieve() -> Callable[..., dict[str, Any]]:
-    """Import muộn để chỉ nạp Postgres/model embedding khi thật sự retrieval."""
 
     from src.rag.pg_retrieval import retrieve
 
@@ -33,7 +24,6 @@ def _load_retrieve() -> Callable[..., dict[str, Any]]:
 
 
 def payload_to_chunks(payload: dict[str, Any]) -> list[Chunk]:
-    """Đổi JSON retrieval thành Chunk, giữ đủ metadata để trích nguồn."""
     chunks: list[Chunk] = []
     for item in payload.get("results", []):
         metadata = dict(item.get("metadata") or {})
@@ -52,19 +42,11 @@ def payload_to_chunks(payload: dict[str, Any]) -> list[Chunk]:
 
 
 def cache_key(query: str, k: int) -> tuple[str, int]:
-    """Chuẩn hoá query để câu hỏi chỉ khác dấu câu/hoa thường vẫn dùng chung vector."""
     text = unicodedata.normalize("NFC", query).casefold().strip()
     return re.sub(r"[\s\W_]+", " ", text).strip(), k
 
 
 class PgVectorRetriever:
-    """Retriever thật, đọc Postgres/pgvector (Neon) đã embedding sẵn.
-
-    Nhớ kết quả lượt gần nhất (`chunk_by_id`) để `attach_source_link` đổi
-    `chunk_ids` do model đưa thành nguồn — model chỉ biết id, không biết URL.
-
-    Có cache LRU để tránh encode lại câu hỏi lặp và giảm tải CPU/GPU local.
-    """
 
     def __init__(
         self,
@@ -101,7 +83,7 @@ class PgVectorRetriever:
         self.last_payload = self._fetch(query, k)
         chunks = payload_to_chunks(self.last_payload)
         self.last_chunks = chunks
-        # Tích luỹ qua nhiều lượt: model có thể trích chunk từ lần tìm trước.
+
         self.chunk_by_id.update({c.metadata["chunk_id"]: c for c in chunks if c.metadata.get("chunk_id")})
         return chunks
 
@@ -113,5 +95,4 @@ class PgVectorRetriever:
         return float(results[0].get("cosine_similarity", 0.0)) if results else 0.0
 
     def has_grounding(self) -> bool:
-        """Đủ căn cứ để agent tự trả lời, theo ngưỡng đã chốt."""
         return self.best_score() >= NO_GROUNDING_THRESHOLD

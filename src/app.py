@@ -1,5 +1,3 @@
-"""FastAPI app phục vụ API chat — UI thật ở `streamlit/` (tiến trình riêng, gọi qua HTTP)."""
-
 from __future__ import annotations
 
 import argparse
@@ -34,8 +32,6 @@ def get_service() -> Service:
     return app.state.service
 
 
-# Tên riêng, không trùng class `Service` — trùng tên sẽ shadow class vì file
-# này có `from __future__ import annotations` (annotation resolve muộn theo tên).
 ServiceDep = Annotated[Service, Depends(get_service)]
 
 
@@ -50,7 +46,7 @@ def chat(request: ChatRequest, service: ServiceDep) -> Reply:
         return service.chat(request.session_id, request.message)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    except Exception as exc:  
+    except Exception as exc:
         print(f"API error: {type(exc).__name__}: {exc}", flush=True)
         raise HTTPException(
             status_code=500, detail="Chatbot đang gặp lỗi tạm thời. Vui lòng thử lại."

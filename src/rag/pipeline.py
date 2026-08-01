@@ -1,8 +1,3 @@
-"""All-in-one: chunk markdown → embed → lưu pgvector. Gộp `chunking.py` + `pg_store.py`.
-
-Chạy: `python -m src.rag.pipeline [--web-dir DIR] [--max-chars N] [--recreate]`
-"""
-
 from __future__ import annotations
 
 import argparse
