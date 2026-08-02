@@ -3,11 +3,11 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass, field
 
-from httpx import URL
 import requests
 
 
-TIMEOUT_SECONDS = 60
+TIMEOUT_SECONDS = 90
+HEALTH_TIMEOUT_SECONDS = 100
 
 
 @dataclass
@@ -54,6 +54,13 @@ class ApiClient:
 
     def reset(self, session_id: str) -> None:
         self._post("/api/reset", {"session_id": session_id})
+
+    def wake_up(self) -> bool:
+        try:
+            response = requests.get(f"{self.base_url}/api/health", timeout=HEALTH_TIMEOUT_SECONDS)
+        except requests.RequestException:
+            return False
+        return response.status_code == 200
 
 
 __all__ = ["ApiClient", "ApiError", "ChatReply"]

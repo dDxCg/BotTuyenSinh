@@ -142,7 +142,14 @@ def render_chat_widget(client: ApiClient) -> None:
                 st.write(prompt)
             with st.chat_message("assistant"):
                 try:
-                    reply = client.chat(st.session_state.chat_session_id, prompt)
+                    with st.status("Đang xử lý...", expanded=False) as status:
+                        if not st.session_state.get("backend_awake"):
+                            status.update(label="Đánh thức backend (có thể mất ~1 phút lần đầu)...")
+                            client.wake_up()
+                            st.session_state.backend_awake = True
+                        status.update(label="Đang tìm câu trả lời...")
+                        reply = client.chat(st.session_state.chat_session_id, prompt)
+                        status.update(label="Xong", state="complete")
                     st.write(reply.answer)
                     if reply.sources:
                         with st.expander("Nguồn tham khảo"):
