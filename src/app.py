@@ -10,6 +10,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
+from src.db_client import DBHandler
 from src.service import Reply, Service
 
 
@@ -40,7 +41,12 @@ ServiceDep = Annotated[Service, Depends(get_service)]
 
 @app.get("/api/health")
 def health() -> dict:
-    return {"status": "ok"}
+    try:
+        with DBHandler() as db:
+            db.execute("SELECT 1")
+        return {"status": "ok", "db": "ok"}
+    except Exception as exc:
+        return {"status": "ok", "db": f"error: {exc}"}
 
 
 @app.post("/api/chat", response_model=Reply)
