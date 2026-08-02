@@ -24,17 +24,26 @@ flowchart LR
 flowchart TD
     Start([Question]) --> Guardrail{guardrail}
     Guardrail -->|restricted| RespondRestricted[respond_restricted]
-    Guardrail -->|ok| Retrieve[retrieve]
+    Guardrail -->|ok, HYDE_ENABLED=false| QuerySplit[query_split]
+    Guardrail -->|ok, HYDE_ENABLED=true| Hyde[hyde]
+    QuerySplit --> Retrieve[retrieve]
+    Hyde --> Retrieve
     Retrieve --> Grounding{grounding_decision}
     Grounding -->|not grounded| RespondNoGrounding[respond_no_grounding]
     Grounding -->|grounded| Agent[agent]
     Agent -->|tool_calls| Tools[tools]
-    Tools --> Agent
+    Tools -->|force_finalize| Finalize
+    Tools -->|otherwise| Agent
     Agent -->|done| Finalize[finalize]
     RespondRestricted --> End([Answer])
     RespondNoGrounding --> End
     Finalize --> End
 ```
+
+Node factory theo file (`src/chatbot/graph/nodes/`): mỗi node 1 file (`guardrail.py`, `query_split.py`,
+`hyde.py`, `retrieve.py`, `grounding.py`, `agent.py`, `tools.py`, `finalize.py`), nối lại trong
+`src/chatbot/graph/builder.py`. `query_split` và `hyde` loại trừ lẫn nhau trong 1 turn (bật HyDE
+thì bỏ qua split) — xem `docs/plan/hyde-and-semantic-query-split.md`.
 
 ## Tech stack
 
@@ -53,7 +62,7 @@ Install dependencies:
 uv sync
 ```
 
-Configure `.env` (copy from `.env.example`): `DATABASE_URL` (Neon), `OPENAI_API`/`OPENAI_BASE_URL` (chat), `EMBEDDING_API_KEY`/`EMBEDDING_MODEL` (embedding)
+Configure `.env` (copy from `.env.example`): `DATABASE_URL` (Neon), `OPENAI_API`/`OPENAI_BASE_URL` (chat), `EMBEDDING_API_KEY`/`EMBEDDING_MODEL` (embedding), `TOP_K` (số chunk/lần retrieve), `HYDE_ENABLED` (bật HyDE thay semantic query split, tốn thêm 1 LLM call/turn)
 
 Build RAG data (chunk + embed + store in pgvector, one command):
 ```

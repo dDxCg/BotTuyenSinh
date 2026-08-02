@@ -1,5 +1,6 @@
 """Gọi LLM tập trung cho agent — dùng chung bởi các node trong `graph/` và các tool
-sẽ thêm sau này (không phải client HTTP thô, đó là `src/llm_client.py`)."""
+sẽ thêm sau này. `AgentLLM` bọc `src/llm_client.py` (client OpenAI-compatible thô) thành
+1 `LLMCall` gọi được thẳng (`agent_llm(messages, tools)`), không cần hàm bọc thêm."""
 
 from __future__ import annotations
 
@@ -7,7 +8,9 @@ import json
 from collections.abc import Callable
 from typing import Any
 
-from .chatbot import Chatbot
+from src.llm_client import chat_client
+
+from .config import Settings
 
 try:
     from ..tools.attach_source_link import ATTACH_SOURCE_LINK_SCHEMA
@@ -19,6 +22,27 @@ except ImportError:
 LLMCall = Callable[[list[dict[str, Any]], list[dict[str, Any]]], Any]
 """Nhận (messages OpenAI-format, tools OpenAI-format) -> object có `.content`/`.tool_calls`
 (shape của `openai`'s `ChatCompletionMessage`) — tiêm fake vào đây để test không gọi API thật."""
+
+
+class AgentLLM:
+    def __init__(self, settings: Settings | None = None) -> None:
+        self.settings = settings or Settings.from_env()
+        self.client = chat_client(
+            self.settings.api_key,
+            self.settings.base_url,
+            self.settings.timeout_seconds,
+            self.settings.max_retries,
+        )
+
+    def __call__(self, messages: list[dict[str, Any]], tools: list[dict[str, Any]]) -> Any:
+        response = self.client.chat.completions.create(
+            model=self.settings.model,
+            messages=messages,
+            tools=tools or None,
+            temperature=self.settings.temperature,
+            max_tokens=self.settings.max_tokens,
+        )
+        return response.choices[0].message
 
 
 def to_openai_tools() -> list[dict[str, Any]]:
@@ -46,11 +70,67 @@ def raw_tool_calls_to_lc(raw: Any) -> list[dict[str, Any]]:
     return calls
 
 
-def default_llm_call(bot: Chatbot) -> LLMCall:
-    def call(messages: list[dict[str, Any]], tools: list[dict[str, Any]]) -> Any:
-        return bot.complete_with_tools(messages, tools)
+def generate_hypothetical_document(llm: AgentLLM, question: str) -> str:
+    """HyDE: sinh 1 đoạn văn giả định trả lời câu hỏi, dùng để embed thay câu hỏi gốc khi
+    retrieve — không cần tool schema nên gọi thẳng client, không qua `AgentLLM.__call__`."""
 
-    return call
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "Viết 1 đoạn văn ngắn (3-5 câu) trả lời câu hỏi sau như thể trích từ tài liệu "
+                "chính thức, dù không chắc đúng. Không thêm lời dẫn."
+            ),
+        },
+        {"role": "user", "content": question},
+    ]
+    response = llm.client.chat.completions.create(
+        model=llm.settings.model,
+        messages=messages,
+        temperature=llm.settings.temperature,
+        max_tokens=256,
+    )
+    return response.choices[0].message.content or ""
 
 
-__all__ = ["LLMCall", "default_llm_call", "raw_tool_calls_to_lc", "to_openai_tools"]
+def rewrite_query_candidates(llm: AgentLLM, question: str, candidates: list[str]) -> list[str]:
+    """Câu hỏi gộp bị regex tách thành nhiều candidate — candidate quá ngắn/cụt (vd "email")
+    thiếu ngữ cảnh khiến so sánh embedding sai lệch. Viết lại mỗi candidate thành 1 câu hỏi
+    độc lập, đầy đủ ngữ cảnh, trước khi embed để tách theo semantic."""
+
+    numbered = "\n".join(f"{i + 1}. {c}" for i, c in enumerate(candidates))
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "Câu hỏi gốc bị tách thành nhiều phần theo dấu câu. Viết lại MỖI phần thành 1 "
+                "câu hỏi độc lập, đầy đủ ngữ cảnh (không viết tắt, không cụt lủn 1-2 từ), giữ "
+                "đúng ý gốc. Trả về đúng 1 mảng JSON các chuỗi, cùng thứ tự, không thêm chữ nào khác."
+            ),
+        },
+        {"role": "user", "content": f"Câu hỏi gốc: {question}\n\nCác phần:\n{numbered}"},
+    ]
+    response = llm.client.chat.completions.create(
+        model=llm.settings.model,
+        messages=messages,
+        temperature=0.0,
+        max_tokens=512,
+    )
+    raw = response.choices[0].message.content or "[]"
+    try:
+        rewritten = json.loads(raw)
+    except json.JSONDecodeError:
+        return candidates
+    if isinstance(rewritten, list) and len(rewritten) == len(candidates):
+        return [str(item).strip() for item in rewritten]
+    return candidates
+
+
+__all__ = [
+    "AgentLLM",
+    "LLMCall",
+    "generate_hypothetical_document",
+    "raw_tool_calls_to_lc",
+    "rewrite_query_candidates",
+    "to_openai_tools",
+]

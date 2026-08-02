@@ -21,6 +21,8 @@ class GraphState(TypedDict):
     recent_tools: list[str]
     turn_active: bool
     force_finalize: bool
+    hyde_document: str
+    query_fragments: list[str]
 
 
 def initial_state(question: str) -> GraphState:
@@ -37,6 +39,8 @@ def initial_state(question: str) -> GraphState:
         "recent_tools": [],
         "turn_active": False,
         "force_finalize": False,
+        "hyde_document": "",
+        "query_fragments": [question],
     }
 
 

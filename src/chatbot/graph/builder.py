@@ -7,9 +7,8 @@ from langgraph.graph import END, StateGraph
 from src.rag.rag_bridge import NO_GROUNDING_THRESHOLD, PgVectorRetriever
 from src.rag.types import Retriever
 
-from ..chatbot import Chatbot
 from ..config import Settings
-from ..llm import LLMCall, default_llm_call, to_openai_tools
+from ..llm import AgentLLM, LLMCall, to_openai_tools
 from ..prompts import render_admission_policy
 from .nodes.agent import make_agent_node, route_after_agent
 from .nodes.finalize import make_finalize_node
@@ -23,6 +22,8 @@ from .nodes.guardrail import (
     make_respond_restricted_node,
     route_after_guardrail,
 )
+from .nodes.hyde import make_hyde_node
+from .nodes.query_split import make_query_split_node
 from .nodes.retrieve import make_retrieve_node
 from .nodes.tools import make_tools_node, route_after_tools
 from .state import GraphState
@@ -42,7 +43,7 @@ def build_graph(
     retriever = retriever or PgVectorRetriever()
     registry = build_registry(retriever)
     tools = to_openai_tools()
-    call = llm_call or default_llm_call(Chatbot(settings=settings))
+    call = llm_call or AgentLLM(settings=settings)
     policy_text = render_admission_policy(threshold=threshold)
 
     graph = StateGraph(GraphState)
@@ -55,11 +56,22 @@ def build_graph(
     graph.add_node("tools", make_tools_node(registry))
     graph.add_node("finalize", make_finalize_node())
 
+    # HyDE (+1 LLM call/turn) và semantic query split (chỉ embedding, rẻ) không kết hợp trong
+    # 1 turn — bật HyDE thì bỏ qua split (dùng thẳng hyde_document làm query duy nhất).
+    if settings.hyde_enabled:
+        graph.add_node("hyde", make_hyde_node(AgentLLM(settings=settings)))
+        graph.add_edge("hyde", "retrieve")
+        after_guardrail_node = "hyde"
+    else:
+        graph.add_node("query_split", make_query_split_node(AgentLLM(settings=settings)))
+        graph.add_edge("query_split", "retrieve")
+        after_guardrail_node = "query_split"
+
     graph.add_edge("__start__", "guardrail")
     graph.add_conditional_edges(
         "guardrail",
         route_after_guardrail,
-        {"respond_restricted": "respond_restricted", "retrieve": "retrieve"},
+        {"respond_restricted": "respond_restricted", "retrieve": after_guardrail_node},
     )
     graph.add_edge("respond_restricted", END)
     graph.add_edge("retrieve", "grounding_decision")

@@ -19,6 +19,7 @@ class Settings:
     timeout_seconds: float = 60.0
     max_retries: int = 2
     top_k: int = 3
+    hyde_enabled: bool = False
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -34,4 +35,5 @@ class Settings:
             timeout_seconds=float(os.getenv("OPENAI_TIMEOUT_SECONDS", "60")),
             max_retries=int(os.getenv("OPENAI_MAX_RETRIES", "2")),
             top_k=int(os.getenv("TOP_K", "3")),
+            hyde_enabled=os.getenv("HYDE_ENABLED", "false").strip().lower() == "true",
         )

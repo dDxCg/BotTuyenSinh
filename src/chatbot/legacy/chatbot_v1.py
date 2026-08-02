@@ -1,8 +1,7 @@
 """Bản Chatbot cũ (trước khi chuyển hẳn sang LangGraph agent trong `graph/`).
 
-Không còn được gọi ở đâu trong code sống (`graph/llm.py` chỉ dùng `Chatbot.complete_with_tools`
-ở `chatbot.py` rút gọn) — giữ lại đây để tham khảo khi cần đối chiếu hành vi cũ, không import
-vào code chạy thật.
+Không còn được gọi ở đâu trong code sống (agent giờ gọi LLM qua `AgentLLM` ở `chatbot/llm.py`)
+— giữ lại đây để tham khảo khi cần đối chiếu hành vi cũ, không import vào code chạy thật.
 """
 
 from collections.abc import Iterator, Sequence
