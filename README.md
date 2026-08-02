@@ -1,6 +1,9 @@
-# BotTuyenSinh — Admissions Information Assistant
+# BotTuyenSinh — Admissions Information Assistant (AI in Action - VinUni)
 
 Admissions chatbot using RAG (pgvector) + a LangGraph agent (native tool-calling via OpenRouter), served through FastAPI with a Streamlit UI.
+ 
+ **Live demo:**
+ https://bottuyensinh-xjudttlmmkbykvdcc8uyzg.streamlit.app/
 
 ## Architecture
 

@@ -3,9 +3,10 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass, field
 
+from httpx import URL
 import requests
 
-DEFAULT_BASE_URL = "http://127.0.0.1:8000"
+
 TIMEOUT_SECONDS = 60
 
 
@@ -35,8 +36,8 @@ def _error_detail(response: requests.Response) -> str:
 
 
 class ApiClient:
-    def __init__(self, base_url: str | None = None) -> None:
-        self.base_url = (base_url or os.getenv("API_BASE_URL", DEFAULT_BASE_URL)).rstrip("/")
+    def __init__(self) -> None:
+        self.base_url = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
 
     def _post(self, path: str, payload: dict) -> dict:
         try:
