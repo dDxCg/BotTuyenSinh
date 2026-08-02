@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import threading
+from collections.abc import Iterator
 from dataclasses import asdict, dataclass
 
 from langgraph.checkpoint.memory import InMemorySaver
@@ -8,6 +9,7 @@ from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
 
 from src.chatbot.config import Settings
 from src.chatbot.graph import build_graph, run_graph
+from src.chatbot.graph.runner import get_final_state, stream_graph_steps
 from src.chatbot.agent_guardrail import DEFAULT_SUGGESTIONS
 from src.rag.rag_bridge import PgVectorRetriever
 from src.rag.types import Retriever
@@ -58,6 +60,25 @@ class Service:
             state = run_graph(self.graph, question, thread_id=session_id)
 
         return Reply(
+            answer=state["final_answer"],
+            sources=state["sources"],
+            suggestions=DEFAULT_SUGGESTIONS,
+            grounded=state["grounded"],
+            top_score=state["best_score"] if state["retrieved"] else None,
+            path=state["path"],
+        )
+
+    def chat_stream(self, session_id: str, question: str) -> Iterator[str | Reply]:
+        question = question.strip()
+        if not question:
+            raise ValueError("Câu hỏi không được để trống")
+
+        with self._lock_for(session_id):
+            for node_name in stream_graph_steps(self.graph, question, thread_id=session_id):
+                yield node_name
+            state = get_final_state(self.graph, thread_id=session_id)
+
+        yield Reply(
             answer=state["final_answer"],
             sources=state["sources"],
             suggestions=DEFAULT_SUGGESTIONS,

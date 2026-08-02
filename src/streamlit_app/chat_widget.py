@@ -4,7 +4,21 @@ import uuid
 
 import streamlit as st
 
-from api_client import ApiClient, ApiError
+from api_client import ApiClient, ApiError, ChatReply
+
+STEP_LABELS = {
+    "guardrail": "Kiểm tra câu hỏi...",
+    "respond_restricted": "Chuẩn bị câu trả lời...",
+    "planner": "Lên kế hoạch truy vấn...",
+    "query_split": "Tách ý câu hỏi...",
+    "hyde": "Suy luận ngữ cảnh...",
+    "retrieve": "Tìm tài liệu liên quan...",
+    "grounding_decision": "Đánh giá độ liên quan...",
+    "respond_no_grounding": "Chuẩn bị câu trả lời...",
+    "agent": "Soạn câu trả lời...",
+    "tools": "Tra cứu thêm thông tin...",
+    "finalize": "Hoàn tất...",
+}
 
 
 WP_NAVY = "#134d8b"
@@ -142,14 +156,19 @@ def render_chat_widget(client: ApiClient) -> None:
                 st.write(prompt)
             with st.chat_message("assistant"):
                 try:
-                    with st.status("Đang xử lý...", expanded=False) as status:
+                    with st.status("Đang xử lý...", expanded=True) as status:
                         if not st.session_state.get("backend_awake"):
                             status.update(label="Đánh thức backend (có thể mất ~1 phút lần đầu)...")
                             client.wake_up()
                             st.session_state.backend_awake = True
-                        status.update(label="Đang tìm câu trả lời...")
-                        reply = client.chat(st.session_state.chat_session_id, prompt)
-                        status.update(label="Xong", state="complete")
+
+                        reply: ChatReply | None = None
+                        for item in client.chat_stream(st.session_state.chat_session_id, prompt):
+                            if isinstance(item, ChatReply):
+                                reply = item
+                            else:
+                                status.write(STEP_LABELS.get(item, item))
+                        status.update(label="Xong", state="complete", expanded=False)
                     st.write(reply.answer)
                     if reply.sources:
                         with st.expander("Nguồn tham khảo"):

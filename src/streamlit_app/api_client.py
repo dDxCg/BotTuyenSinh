@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 import os
+from collections.abc import Iterator
 from dataclasses import dataclass, field
 
 import requests
@@ -51,6 +53,35 @@ class ApiClient:
     def chat(self, session_id: str, message: str) -> ChatReply:
         data = self._post("/api/chat", {"session_id": session_id, "message": message})
         return ChatReply(**data)
+
+    def chat_stream(self, session_id: str, message: str) -> Iterator[str | ChatReply]:
+        try:
+            response = requests.post(
+                f"{self.base_url}/api/chat/stream",
+                json={"session_id": session_id, "message": message},
+                timeout=TIMEOUT_SECONDS,
+                stream=True,
+            )
+        except requests.RequestException as exc:
+            raise ApiError(f"Không kết nối được backend ({self.base_url}): {exc}") from exc
+
+        if response.status_code != 200:
+            raise ApiError(_error_detail(response))
+
+        event = ""
+        for raw_line in response.iter_lines(decode_unicode=True):
+            if raw_line is None or raw_line == "":
+                continue
+            if raw_line.startswith("event:"):
+                event = raw_line[len("event:"):].strip()
+            elif raw_line.startswith("data:"):
+                data = json.loads(raw_line[len("data:"):].strip())
+                if event == "step":
+                    yield data["node"]
+                elif event == "result":
+                    yield ChatReply(**data)
+                elif event == "error":
+                    raise ApiError(data.get("detail", "Lỗi backend"))
 
     def reset(self, session_id: str) -> None:
         self._post("/api/reset", {"session_id": session_id})

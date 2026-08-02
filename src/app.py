@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import argparse
+import json
 from contextlib import asynccontextmanager
+from dataclasses import asdict
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from src.service import Reply, Service
@@ -51,6 +54,28 @@ def chat(request: ChatRequest, service: ServiceDep) -> Reply:
         raise HTTPException(
             status_code=500, detail="Chatbot đang gặp lỗi tạm thời. Vui lòng thử lại."
         ) from exc
+
+
+@app.post("/api/chat/stream")
+def chat_stream(request: ChatRequest, service: ServiceDep) -> StreamingResponse:
+    def events():
+        try:
+            for item in service.chat_stream(request.session_id, request.message):
+                if isinstance(item, Reply):
+                    yield f"event: result\ndata: {json.dumps(asdict(item))}\n\n"
+                else:
+                    yield f"event: step\ndata: {json.dumps({'node': item})}\n\n"
+        except ValueError as exc:
+            yield f"event: error\ndata: {json.dumps({'detail': str(exc)})}\n\n"
+        except Exception as exc:
+            print(f"API error: {type(exc).__name__}: {exc}", flush=True)
+            yield (
+                "event: error\ndata: "
+                + json.dumps({"detail": "Chatbot đang gặp lỗi tạm thời. Vui lòng thử lại."})
+                + "\n\n"
+            )
+
+    return StreamingResponse(events(), media_type="text/event-stream")
 
 
 @app.post("/api/reset")
