@@ -92,6 +92,12 @@ def repeating_llm_call(response: FakeMessage) -> Callable[[list[dict], list[dict
     return call
 
 
+def no_plan_judge_call(question: str, available: tuple[str, ...]) -> list[str]:
+    """Planner giả: luôn trả plan rỗng (không chọn query_split/hyde) — test không gọi
+    JudgeLLM/embedding thật, hành vi y hệt trước khi có planner (retrieve thẳng câu hỏi gốc)."""
+    return []
+
+
 @pytest.fixture
 def fake_payload():
     return make_fake_payload

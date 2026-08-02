@@ -24,10 +24,10 @@ flowchart LR
 flowchart TD
     Start([Question]) --> Guardrail{guardrail}
     Guardrail -->|restricted| RespondRestricted[respond_restricted]
-    Guardrail -->|ok, HYDE_ENABLED=false| QuerySplit[query_split]
-    Guardrail -->|ok, HYDE_ENABLED=true| Hyde[hyde]
-    QuerySplit --> Retrieve[retrieve]
-    Hyde --> Retrieve
+    Guardrail -->|ok| Planner[planner]
+    Planner --> QuerySplit[query_split]
+    QuerySplit --> Hyde[hyde]
+    Hyde --> Retrieve[retrieve]
     Retrieve --> Grounding{grounding_decision}
     Grounding -->|not grounded| RespondNoGrounding[respond_no_grounding]
     Grounding -->|grounded| Agent[agent]
@@ -40,10 +40,13 @@ flowchart TD
     Finalize --> End
 ```
 
-Node factory theo file (`src/chatbot/graph/nodes/`): mỗi node 1 file (`guardrail.py`, `query_split.py`,
-`hyde.py`, `retrieve.py`, `grounding.py`, `agent.py`, `tools.py`, `finalize.py`), nối lại trong
-`src/chatbot/graph/builder.py`. `query_split` và `hyde` loại trừ lẫn nhau trong 1 turn (bật HyDE
-thì bỏ qua split) — xem `docs/plan/hyde-and-semantic-query-split.md`.
+Node factory theo file (`src/chatbot/graph/nodes/`): mỗi node 1 file (`guardrail.py`, `planner.py`,
+`query_split.py`, `hyde.py`, `retrieve.py`, `grounding.py`, `agent.py`, `tools.py`, `finalize.py`),
+nối lại trong `src/chatbot/graph/builder.py`. Graph shape cố định — `planner` (model rẻ riêng,
+`JUDGE_MODEL`) phân tích câu hỏi và quyết định `query_split`/`hyde` có chạy hay không qua
+`state["plan"]`; cả 2 node luôn có trong graph nhưng tự no-op nếu không được chọn. Thêm kỹ thuật
+mới sau này: thêm node vào cuối chuỗi + tên vào danh sách kỹ thuật planner biết chọn — xem
+`docs/plan/hyde-and-semantic-query-split.md`.
 
 ## Tech stack
 
@@ -62,7 +65,7 @@ Install dependencies:
 uv sync
 ```
 
-Configure `.env` (copy from `.env.example`): `DATABASE_URL` (Neon), `OPENAI_API`/`OPENAI_BASE_URL` (chat), `EMBEDDING_API_KEY`/`EMBEDDING_MODEL` (embedding), `TOP_K` (số chunk/lần retrieve), `HYDE_ENABLED` (bật HyDE thay semantic query split, tốn thêm 1 LLM call/turn)
+Configure `.env` (copy from `.env.example`): `DATABASE_URL` (Neon), `OPENAI_API`/`OPENAI_BASE_URL` (chat), `EMBEDDING_API_KEY`/`EMBEDDING_MODEL` (embedding), `TOP_K` (số chunk/lần retrieve), `JUDGE_API`/`JUDGE_MODEL` (model rẻ cho planner, trống thì dùng chung OPENAI_*)
 
 Build RAG data (chunk + embed + store in pgvector, one command):
 ```

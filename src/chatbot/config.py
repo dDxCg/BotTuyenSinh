@@ -19,21 +19,31 @@ class Settings:
     timeout_seconds: float = 60.0
     max_retries: int = 2
     top_k: int = 3
-    hyde_enabled: bool = False
+    judge_api_key: str = ""
+    judge_model: str = ""
+    judge_base_url: str = ""
+    judge_timeout_seconds: float = 60.0
+    judge_max_retries: int = 2
 
     @classmethod
     def from_env(cls) -> "Settings":
         api_key = os.getenv("OPENAI_API", "")
         if not api_key:
             raise RuntimeError("Thiếu OPENAI_API trong .env")
+        model = os.getenv("OPENAI_MODEL", "openai/gpt-4o-mini")
+        base_url = os.getenv("OPENAI_BASE_URL", "https://openrouter.ai/api/v1")
         return cls(
             api_key=api_key,
-            model=os.getenv("OPENAI_MODEL", "openai/gpt-4o-mini"),
-            base_url=os.getenv("OPENAI_BASE_URL", "https://openrouter.ai/api/v1"),
+            model=model,
+            base_url=base_url,
             temperature=float(os.getenv("OPENAI_TEMPERATURE", "0.3")),
             max_tokens=int(os.getenv("OPENAI_MAX_TOKENS", "1024")),
             timeout_seconds=float(os.getenv("OPENAI_TIMEOUT_SECONDS", "60")),
             max_retries=int(os.getenv("OPENAI_MAX_RETRIES", "2")),
             top_k=int(os.getenv("TOP_K", "3")),
-            hyde_enabled=os.getenv("HYDE_ENABLED", "false").strip().lower() == "true",
+            judge_api_key=os.getenv("JUDGE_API", "").strip() or api_key,
+            judge_model=os.getenv("JUDGE_MODEL", "").strip() or model,
+            judge_base_url=os.getenv("JUDGE_BASE_URL", "").strip() or base_url,
+            judge_timeout_seconds=float(os.getenv("JUDGE_TIMEOUT_SECONDS", "60")),
+            judge_max_retries=int(os.getenv("JUDGE_MAX_RETRIES", "2")),
         )

@@ -23,6 +23,7 @@ class GraphState(TypedDict):
     force_finalize: bool
     hyde_document: str
     query_fragments: list[str]
+    plan: list[str]
 
 
 def initial_state(question: str) -> GraphState:
@@ -41,6 +42,7 @@ def initial_state(question: str) -> GraphState:
         "force_finalize": False,
         "hyde_document": "",
         "query_fragments": [question],
+        "plan": [],
     }
 
 

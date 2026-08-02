@@ -45,6 +45,50 @@ class AgentLLM:
         return response.choices[0].message
 
 
+class JudgeLLM:
+    """Model rẻ/nhỏ riêng cho phân loại (planner, faithfulness check...) — tách khỏi
+    `AgentLLM` (model chính, đắt hơn, dùng để sinh câu trả lời)."""
+
+    def __init__(self, settings: Settings) -> None:
+        self.settings = settings
+        self.client = chat_client(
+            settings.judge_api_key,
+            settings.judge_base_url,
+            settings.judge_timeout_seconds,
+            settings.judge_max_retries,
+        )
+
+    def classify_techniques(self, question: str, available: tuple[str, ...]) -> list[str]:
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "Phân tích câu hỏi tuyển sinh sau, chọn 0 hoặc nhiều kỹ thuật cần dùng "
+                    f"trong danh sách: {', '.join(available)}.\n"
+                    "- 'query_split': câu hỏi gộp nhiều ý/chủ đề khác nhau trong 1 câu.\n"
+                    "- 'hyde': câu hỏi mơ hồ/ngắn, khó match trực tiếp với văn phong tài liệu.\n"
+                    "Không chắc hoặc câu đơn giản 1 ý rõ ràng: trả mảng rỗng []. Trả đúng 1 mảng "
+                    "JSON các chuỗi tên kỹ thuật, không thêm chữ nào khác."
+                ),
+            },
+            {"role": "user", "content": question},
+        ]
+        response = self.client.chat.completions.create(
+            model=self.settings.judge_model,
+            messages=messages,
+            temperature=0.0,
+            max_tokens=64,
+        )
+        raw = response.choices[0].message.content or "[]"
+        try:
+            plan = json.loads(raw)
+        except json.JSONDecodeError:
+            return []
+        if not isinstance(plan, list):
+            return []
+        return [item for item in plan if item in available]
+
+
 def to_openai_tools() -> list[dict[str, Any]]:
     return [
         {
@@ -128,6 +172,7 @@ def rewrite_query_candidates(llm: AgentLLM, question: str, candidates: list[str]
 
 __all__ = [
     "AgentLLM",
+    "JudgeLLM",
     "LLMCall",
     "generate_hypothetical_document",
     "raw_tool_calls_to_lc",

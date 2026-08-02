@@ -11,6 +11,8 @@ from ..state import GraphState
 
 def make_query_split_node(llm: AgentLLM) -> Callable[[GraphState], dict]:
     def query_split(state: GraphState) -> dict:
+        if "query_split" not in state["plan"]:
+            return {}
         fragments = split_subquestions(state["question"], llm)
         logger.debug("[query_split] question=%r fragments=%s", state["question"], fragments)
         return {"query_fragments": fragments}

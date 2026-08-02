@@ -14,6 +14,7 @@ from conftest import (
     make_fake_payload,
     make_fake_retriever,
     make_tool_call,
+    no_plan_judge_call,
     repeating_llm_call,
     scripted_llm_call,
 )
@@ -29,14 +30,14 @@ def _never_call(*_args, **_kwargs):
 
 def test_guardrail_short_circuits_before_retrieval_and_llm() -> None:
     """Câu hỏi bị guardrail chặn -> không được đụng tới retriever/LLM."""
-    graph = build_graph(retriever=make_fake_retriever(_never_call), llm_call=_never_call)
+    graph = build_graph(retriever=make_fake_retriever(_never_call), llm_call=_never_call, judge_call=no_plan_judge_call)
     state = run_graph(graph, "Em có nên nộp hồ sơ không ạ?")
     assert state["path"] == "contact_support"
     assert "Hotline" in state["final_answer"] or "hotline" in state["final_answer"].lower()
 
 
 def test_unrelated_question_returns_canned_reply() -> None:
-    graph = build_graph(retriever=make_fake_retriever(_never_call), llm_call=_never_call)
+    graph = build_graph(retriever=make_fake_retriever(_never_call), llm_call=_never_call, judge_call=no_plan_judge_call)
     state = run_graph(graph, "Con gà có trước hay quả trứng có trước?")
     assert state["path"] == "out_of_scope"
     assert "AI Thực Chiến" in state["final_answer"]
@@ -46,7 +47,7 @@ def test_no_grounding_short_circuits_before_llm() -> None:
     """Score thấp hơn ngưỡng -> contact_support, không gọi LLM (đúng thiết kế:
     grounding_decision là node duy nhất quyết định, thay 3 chỗ rải rác cũ)."""
     low_score_results = [make_fake_payload("c1", "Nội dung không liên quan lắm", score=0.3)]
-    graph = build_graph(retriever=make_fake_retriever(low_score_results), llm_call=_never_call)
+    graph = build_graph(retriever=make_fake_retriever(low_score_results), llm_call=_never_call, judge_call=no_plan_judge_call)
     state = run_graph(graph, "Điều kiện dự tuyển là gì?")
     assert state["path"] == "contact_support"
     assert state["sources"] == []
@@ -64,7 +65,7 @@ def test_grounded_question_runs_tool_calling_loop_and_attaches_sources() -> None
             FakeMessage(content="Điều kiện dự tuyển gồm tốt nghiệp THPT và đủ 18 tuổi."),
         ]
     )
-    graph = build_graph(retriever=retriever, llm_call=llm_call)
+    graph = build_graph(retriever=retriever, llm_call=llm_call, judge_call=no_plan_judge_call)
     state = run_graph(graph, "Điều kiện dự tuyển là gì?")
 
     assert state["path"] == "agent+tool_calling"
@@ -77,7 +78,7 @@ def test_grounded_question_without_tool_call_finalizes_directly() -> None:
     """Model có thể chốt Final Answer ngay lượt đầu, không nhất thiết gọi tool nào."""
     results = [make_fake_payload("c1", "Học phí là...", score=0.95)]
     llm_call = scripted_llm_call([FakeMessage(content="Học phí là 20 triệu/kỳ.")])
-    graph = build_graph(retriever=make_fake_retriever(results), llm_call=llm_call)
+    graph = build_graph(retriever=make_fake_retriever(results), llm_call=llm_call, judge_call=no_plan_judge_call)
     state = run_graph(graph, "Học phí bao nhiêu?")
     assert state["path"] == "agent+tool_calling"
     assert state["final_answer"] == "Học phí là 20 triệu/kỳ."
@@ -111,6 +112,6 @@ def test_runaway_tool_calling_hits_recursion_limit() -> None:
     llm_call = repeating_llm_call(
         FakeMessage(tool_calls=[make_tool_call("call_x", "attach_source_link", {"chunk_ids": ["c1"]})])
     )
-    graph = build_graph(retriever=make_fake_retriever(results), llm_call=llm_call)
+    graph = build_graph(retriever=make_fake_retriever(results), llm_call=llm_call, judge_call=no_plan_judge_call)
     with pytest.raises(GraphRecursionError):
         run_graph(graph, "Điều kiện dự tuyển là gì?", recursion_limit=6)

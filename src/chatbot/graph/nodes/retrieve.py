@@ -27,18 +27,17 @@ def _merge_chunks(chunk_lists: list[list[Chunk]], cap: int) -> list[Chunk]:
 
 def make_retrieve_node(retriever: Retriever, top_k: int = 5) -> Callable[[GraphState], dict]:
     def retrieve(state: GraphState) -> dict:
+        queries = list(state.get("query_fragments") or [state["question"]])
         hyde_document = state.get("hyde_document") or ""
-        fragments = state.get("query_fragments") or [state["question"]]
-
         if hyde_document:
-            logger.debug("[retrieve] dùng hyde_document làm query: %r", hyde_document)
-            chunks = retriever.retrieve(hyde_document, k=top_k)
-        elif len(fragments) > 1:
-            logger.debug("[retrieve] retrieve theo %d fragment: %s", len(fragments), fragments)
-            per_fragment = [retriever.retrieve(fragment, k=top_k) for fragment in fragments]
-            chunks = _merge_chunks(per_fragment, cap=top_k * len(fragments))
+            queries.append(hyde_document)
+
+        if len(queries) > 1:
+            logger.debug("[retrieve] retrieve theo %d query: %s", len(queries), queries)
+            per_query = [retriever.retrieve(query, k=top_k) for query in queries]
+            chunks = _merge_chunks(per_query, cap=top_k * len(queries))
         else:
-            chunks = retriever.retrieve(state["question"], k=top_k)
+            chunks = retriever.retrieve(queries[0], k=top_k)
 
         chunks = _prioritize_sources(chunks)
         best_score = max((c.score for c in chunks), default=0.0)
