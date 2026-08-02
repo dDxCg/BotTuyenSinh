@@ -20,7 +20,7 @@ from conftest import (
 
 from src.chatbot.agent_tools import build_registry
 from src.chatbot.graph import build_graph, make_tools_node, run_graph
-from src.chatbot.rag_bridge import NO_GROUNDING_THRESHOLD
+from src.rag.rag_bridge import NO_GROUNDING_THRESHOLD
 
 
 def _never_call(*_args, **_kwargs):

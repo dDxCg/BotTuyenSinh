@@ -6,7 +6,7 @@ from typing import Any, Callable
 
 import pytest
 
-from src.chatbot.rag_bridge import PgVectorRetriever
+from src.rag.rag_bridge import PgVectorRetriever
 
 
 def make_fake_payload(

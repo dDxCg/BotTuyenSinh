@@ -4,7 +4,7 @@ from typing import Any, Sequence
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
-PROMPT_DIR = Path(__file__).resolve().parent / "prompts"
+PROMPT_DIR = Path(__file__).resolve().parent
 
 _env = Environment(
     loader=FileSystemLoader(PROMPT_DIR),
@@ -16,20 +16,16 @@ _env = Environment(
 
 @dataclass(frozen=True)
 class ToolSignature:
-
-
     name: str
     description: str
     signature: str
 
 
 def render_admission_policy(threshold: float = 0.7) -> str:
-
     return _env.get_template("admission_policy.md").render(threshold=threshold)
 
 
 def render_rag_context(retrieved: Sequence[Any] | None = None, threshold: float = 0.7) -> str:
-
     chunks = list(retrieved or [])
     best_score = max((c.score for c in chunks), default=0.0)
     return _env.get_template("rag_context.j2").render(
@@ -49,7 +45,6 @@ def render_system_prompt(
     threshold: float = 0.7,
     template: str = "system.j2",
 ) -> str:
-
     chunks = list(retrieved or [])
     best_score = max((c.score for c in chunks), default=0.0)
     return _env.get_template(template).render(
@@ -62,3 +57,11 @@ def render_system_prompt(
         threshold=threshold,
         grounded=best_score >= threshold,
     )
+
+
+__all__ = [
+    "ToolSignature",
+    "render_admission_policy",
+    "render_rag_context",
+    "render_system_prompt",
+]

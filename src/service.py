@@ -8,9 +8,9 @@ from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
 
 from src.chatbot.config import Settings
 from src.chatbot.graph import build_graph, run_graph
-from src.chatbot.postprocess import DEFAULT_SUGGESTIONS
-from src.chatbot.rag_bridge import PgVectorRetriever
-from src.chatbot.types import Retriever
+from src.chatbot.agent_guardrail import DEFAULT_SUGGESTIONS
+from src.rag.rag_bridge import PgVectorRetriever
+from src.rag.types import Retriever
 
 
 @dataclass(frozen=True)

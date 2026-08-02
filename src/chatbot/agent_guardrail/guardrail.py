@@ -1,7 +1,6 @@
 import re
 import unicodedata
 
-
 UNRELATED_PATTERNS = (
     r"^\s*\d+(?:\s*[+\-*/x:]\s*\d+)+\s*\??$",
     r"con ga.{0,30}qua trung|qua trung.{0,30}con ga",

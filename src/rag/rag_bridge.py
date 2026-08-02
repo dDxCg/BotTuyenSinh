@@ -3,10 +3,8 @@ import unicodedata
 from collections import OrderedDict
 from typing import Any, Callable
 
-from src.rag.settings import RagSettings
-
+from .settings import RagSettings
 from .types import Chunk
-
 
 NO_GROUNDING_THRESHOLD = RagSettings.from_env().no_grounding_threshold
 
@@ -17,8 +15,7 @@ SOURCE_TYPE_BY_KIND = {
 
 
 def _load_retrieve() -> Callable[..., dict[str, Any]]:
-
-    from src.rag.pg_retrieval import retrieve
+    from .pg_retrieval import retrieve
 
     return retrieve
 
@@ -47,7 +44,6 @@ def cache_key(query: str, k: int) -> tuple[str, int]:
 
 
 class PgVectorRetriever:
-
     def __init__(
         self,
         retrieve_fn: Callable[..., dict[str, Any]] | None = None,
@@ -96,3 +92,11 @@ class PgVectorRetriever:
 
     def has_grounding(self) -> bool:
         return self.best_score() >= NO_GROUNDING_THRESHOLD
+
+
+__all__ = [
+    "NO_GROUNDING_THRESHOLD",
+    "PgVectorRetriever",
+    "cache_key",
+    "payload_to_chunks",
+]

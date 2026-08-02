@@ -1,34 +1,6 @@
 from collections.abc import Callable
-from dataclasses import dataclass, field
-from typing import Any, Protocol
-
-
-@dataclass(frozen=True)
-class Chunk:
-
-
-    text: str
-    source: str = "unknown"
-    score: float = 0.0
-    metadata: dict[str, Any] = field(default_factory=dict)
-
-
-class Retriever(Protocol):
-    def retrieve(self, query: str, k: int = 5) -> list[Chunk]: ...
-
-    def get_chunk(self, chunk_id: str) -> Chunk | None:
-
-        ...
-
-
-class NullRetriever:
-
-
-    def retrieve(self, query: str, k: int = 5) -> list[Chunk]:
-        return []
-
-    def get_chunk(self, chunk_id: str) -> Chunk | None:
-        return None
+from dataclasses import dataclass
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -50,8 +22,6 @@ class ToolRegistry:
         self._tools[tool.name] = tool
 
     def tool(self, name: str, description: str, signature: str) -> Callable:
-
-
         def wrap(func: Callable[..., Any]) -> Callable[..., Any]:
             self.register(Tool(name, description, signature, func))
             return func
@@ -65,7 +35,6 @@ class ToolRegistry:
         return list(self._tools)
 
     def signatures(self) -> list[Tool]:
-
         return list(self._tools.values())
 
     def call(self, name: str, args: dict[str, Any]) -> str:
@@ -79,3 +48,6 @@ class ToolRegistry:
 
     def __len__(self) -> int:
         return len(self._tools)
+
+
+__all__ = ["Tool", "ToolRegistry"]

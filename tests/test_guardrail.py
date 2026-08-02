@@ -1,8 +1,8 @@
-"""Regex guardrail — dùng chung giữa Service (cũ) và graph (mới)."""
+"""Regex guardrail — input filter trước retrieve trong graph."""
 
 import pytest
 
-from src.chatbot.guardrail import classify_restricted
+from src.chatbot.agent_guardrail import classify_restricted
 
 
 @pytest.mark.parametrize(

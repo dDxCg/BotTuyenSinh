@@ -10,8 +10,8 @@ flowchart LR
     UI[Streamlit UI<br/>src/streamlit_app]
     API[FastAPI<br/>src/app.py]
     Service[Service<br/>src/service.py]
-    Graph[LangGraph agent<br/>src/chatbot/graph.py]
-    Retriever[PgVectorRetriever<br/>src/chatbot/rag_bridge.py]
+    Graph[LangGraph agent<br/>src/chatbot/graph/]
+    Retriever[PgVectorRetriever<br/>src/rag/rag_bridge.py]
     DB[(Postgres + pgvector<br/>Neon)]
     LLM[OpenRouter<br/>chat + embedding]
 

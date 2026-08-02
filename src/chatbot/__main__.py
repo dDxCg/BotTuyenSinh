@@ -7,10 +7,11 @@ from langchain_core.messages import AIMessage, ToolMessage
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
 
+from src.rag.rag_bridge import PgVectorRetriever
+
 from .agent_tools import build_registry
 from .config import Settings
 from .graph import GraphState, build_graph, run_graph
-from .rag_bridge import PgVectorRetriever
 
 HELP = "Gõ 'exit' để thoát, 'reset' để xoá lịch sử, 'stats' để xem số lượt embedding."
 

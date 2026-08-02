@@ -1,11 +1,12 @@
 import re
 
+from src.rag.types import Chunk
+
 from .guardrail import _plain
-from .types import Chunk
 
 try:
-    from ..tools.attach_source_link import ChunkRef, attach_source_link
-    from ..tools.contact_support import contact_support
+    from ...tools.attach_source_link import ChunkRef, attach_source_link
+    from ...tools.contact_support import contact_support
 except ImportError:
     from tools.attach_source_link import ChunkRef, attach_source_link
     from tools.contact_support import contact_support
@@ -104,7 +105,6 @@ def _clean_answer(answer: str) -> str:
 
 
 def _is_refusal_answer(answer: str) -> bool:
-
     text = _plain(answer)
     refusal_patterns = (
         r"ngoai (chu de|pham vi)",
